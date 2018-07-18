@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomerAlertView {
-    func didTapInOkButtton()
+    func didTapInOkButtton(isSuccess:Bool)
 }
 
 class CustomerAlertViewController: UIViewController {
@@ -25,7 +25,12 @@ class CustomerAlertViewController: UIViewController {
     
     @IBAction func okButtonTapped(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.delegate?.didTapInOkButtton()
+            if self.titulo == SUCCESS {
+                self.delegate?.didTapInOkButtton(isSuccess: true)
+            }
+            else {
+                self.delegate?.didTapInOkButtton(isSuccess: false)
+            }
         }
     }
     

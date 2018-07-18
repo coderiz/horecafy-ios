@@ -64,7 +64,7 @@ class WholeSalerEditDataViewController: BaseViewController, UITextFieldDelegate,
     }
     
     //MARK: CustomerAlertView
-    func didTapInOkButtton() {
+    func didTapInOkButtton(isSuccess: Bool) {
         self.navigationController?.popToRootViewController(animated: true)
     }
     //MARK: UITextFieldDelegate

@@ -53,7 +53,7 @@ class CustomerCreateListViewController: UIViewController, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CategoryCollectionViewCell
         
         if indexPath.row == 0 {
-            cell.categoryName.text = "crear Productos lista"
+            cell.categoryName.text = "Lista libre"
             cell.lblFamilyCounter.isHidden = true
             cell.categoryImage.image = UIImage(named: "icon_CreateList")
         }

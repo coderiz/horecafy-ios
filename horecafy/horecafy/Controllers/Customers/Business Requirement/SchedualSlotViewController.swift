@@ -84,13 +84,15 @@ extension SchedualSlotViewController {
         self.loading.startAnimating()
         ApiService.instance.getCustomerAvailibility(CustomerId: loadUser().id) { (result) in
             self.loading.stopAnimating()
-            guard let result: Availibility = result as? Availibility else {
+            guard let Availableresult: AvailibilityResponse = result as? AvailibilityResponse else {
                 print("NO TypeOfBusiness were loaded from api")
                 return
             }
             
-            self.arrSelectedTimeSlots = result.availability.components(separatedBy: ",")
-            self.setGridView()
+            if let resultData:Availibility = Availableresult.data {
+                self.arrSelectedTimeSlots = resultData.availability.components(separatedBy: ",")
+                self.setGridView()
+            }
 //                self.MakeArrayFromString(JsonString: result.availability)
             
             

@@ -73,7 +73,8 @@ class FinalStepMakeOrder: BaseViewController {
                 }
                 
                 if ResponseforOrderRequest.totalRows != 0 {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    showAlert(self, SUCCESS, SUCCESS_TO_CREATE_ORDER, delegate: self)
+                    
                 }
                 
             })
@@ -164,3 +165,12 @@ extension FinalStepMakeOrder {
 }
 
 
+extension FinalStepMakeOrder : CustomerAlertView {
+    
+    func didTapInOkButtton(isSuccess: Bool) {
+        if isSuccess == true {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+}

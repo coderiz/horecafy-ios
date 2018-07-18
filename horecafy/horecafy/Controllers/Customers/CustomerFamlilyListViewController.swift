@@ -94,7 +94,7 @@ class CustomerFamlilyListViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          DispatchQueue.main.async {
-        let alert = UIAlertController(title: WARNING, message: "¿Quieres dar consumo y precio objetivo para que te oferten mejor?", preferredStyle: .alert)
+        let alert = UIAlertController(title: WARNING, message: "¿Quieres dar el consumo y tu precio objetivo para obtener mejores ofertas?", preferredStyle: .alert)
         
         let YesAction = UIAlertAction(title: "Sí", style: .default) { (UIAlertAction) in
             self.performSegue(withIdentifier: CUSTOMER_FAMILY_ADD_SEGUE, sender: nil)

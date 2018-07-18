@@ -118,6 +118,7 @@ func showAlert(_ vc: UIViewController, _ titulo: String, _ mensaje: String, dele
     customAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
     customAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
     customAlert.delegate = delegate
+
     vc.present(customAlert, animated: true, completion: nil)
 }
 // User account

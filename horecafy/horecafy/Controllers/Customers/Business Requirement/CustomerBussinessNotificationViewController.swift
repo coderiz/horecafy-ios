@@ -14,10 +14,13 @@ class CustomerBussinessNotificationViewController: UIViewController {
     
     @IBOutlet weak var tblNotificationView: UITableView!
     
+    @IBOutlet weak var lblNoData: UILabel!
+    
     var arrNotifications:[BusinessNotification] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setLayot()
         self.getBusinessNotifications()
         // Do any additional setup after loading the view.
@@ -93,20 +96,30 @@ extension CustomerBussinessNotificationViewController : UITableViewDataSource, U
 extension CustomerBussinessNotificationViewController {
     
     func setLayot() {
+         self.lblNoData.isHidden = true
         self.tblNotificationView.tableFooterView = UIView()
     }
     
-    func getBusinessNotifications(){
+    func getBusinessNotifications() {
         self.loading.startAnimating()
         
         let customerID = loadUser().id
         ApiService.instance.getCustomerBusinessNotification(CustomerId: customerID) { (result) in
             self.loading.stopAnimating()
             guard let result: [BusinessNotification] = result as? [BusinessNotification] else {
+                  self.lblNoData.isHidden = false
                 print("NO TypeOfBusiness were loaded from api")
                 return
             }
             self.arrNotifications = result
+            
+            if self.arrNotifications.count == 0 {
+                self.lblNoData.isHidden = false
+            }
+            else {
+                self.lblNoData.isHidden = true
+            }
+
             self.tblNotificationView.reloadData()
         }
     }

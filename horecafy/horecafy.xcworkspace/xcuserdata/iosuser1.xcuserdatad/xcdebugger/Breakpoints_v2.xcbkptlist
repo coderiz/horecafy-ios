@@ -26,7 +26,7 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Controllers/ForgotPasswordViewController.swift"
-                  timestampString = "553174722.544889"
+                  timestampString = "553610565.860628"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -41,7 +41,7 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Controllers/ForgotPasswordViewController.swift"
-                  timestampString = "553174722.5481859"
+                  timestampString = "553610565.864308"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "50"
@@ -57,13 +57,189 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "553174090.661387"
+            filePath = "horecafy/Controllers/Customers/Business Requirement/SchedualSlotViewController.swift"
+            timestampString = "553605151.69488"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "getListsByWholeSaler(wholeSalerId:categoryId:completion:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "btnAddAvaibility(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/Business Requirement/SchedualSlotViewController.swift"
+            timestampString = "553605151.6949871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "btnAddAvaibility(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/CustomerCreateAccountViewController.swift"
+            timestampString = "553430856.660051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "addAddress(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.CustomerCreateAccountViewController.addAddress(Any) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Controllers/Customers/CustomerCreateAccountViewController.swift"
+                  timestampString = "553610565.892399"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.CustomerCreateAccountViewController.addAddress(Any) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Controllers/Customers/CustomerCreateAccountViewController.swift"
+                  timestampString = "553610565.895771"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "954">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/CustomerCreateAccountViewController.swift"
+            timestampString = "553430857.708688"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "addContactData(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.CustomerCreateAccountViewController.addContactData(Any) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Controllers/Customers/CustomerCreateAccountViewController.swift"
+                  timestampString = "553610565.903214"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.CustomerCreateAccountViewController.addContactData(Any) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Controllers/Customers/CustomerCreateAccountViewController.swift"
+                  timestampString = "553610565.906531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "954">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "553610320.320484"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
+            landmarkName = "SendPraposal(Praposal:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.ApiService.SendPraposal(Praposal: horecafy.BusinessPraposal, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "553610565.914065"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "710"
+                  endingLineNumber = "710"
+                  offsetFromSymbolStart = "1842">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in horecafy.ApiService.SendPraposal(Praposal: horecafy.BusinessPraposal, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Drive/Bitbucket/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "553610565.917377"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "713"
+                  endingLineNumber = "713"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "553610320.320964"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "713"
+            endingLineNumber = "713"
+            landmarkName = "SendPraposal(Praposal:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

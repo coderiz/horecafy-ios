@@ -59,7 +59,7 @@ struct BusinessNotificationResponse:Codable {
     let rows: Int?
     let error: String
     let message: String
-    let data: [BusinessNotification]
+    let data: [BusinessNotification]?
 }
 
 struct BusinessPraposalAcceptResponse:Codable {
@@ -77,7 +77,7 @@ struct AvailibilityResponse:Codable {
     let rows: Int?
     let error: String
     let message: String
-    let data:Availibility
+    let data:Availibility?
 }
 
 struct Availibility:Codable {

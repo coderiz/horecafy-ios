@@ -57,13 +57,16 @@ extension SetTimeViewController {
         self.loading.startAnimating()
         ApiService.instance.getCustomerAvailibility(CustomerId: customerID) { (result) in
             self.loading.stopAnimating()
-            guard let result: Availibility = result as? Availibility else {
+            guard let Availableresult: AvailibilityResponse = result as? AvailibilityResponse else {
                 print("NO TypeOfBusiness were loaded from api")
                 return
             }
             
-            self.arrAvailibility = self.MakeArrayFromString(JsonString: result.availability)
-            self.tblTimeSlot.reloadData()
+            if let resultData:Availibility = Availableresult.data {
+                self.arrAvailibility = resultData.availability.components(separatedBy: ",")
+                self.tblTimeSlot.reloadData()
+            }
+            
         }
     }
     

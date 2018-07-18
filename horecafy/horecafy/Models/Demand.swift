@@ -151,8 +151,8 @@ struct DemandsByCustomer: Codable {
     let format: String
     let hiddenId: Int
     let id: String
-    let quantyPerMonth: Int
-    let targetPrice: Double
+    let quantyPerMonth: Int?
+    let targetPrice: Double?
 }
 
 

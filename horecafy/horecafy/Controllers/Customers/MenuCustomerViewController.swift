@@ -13,8 +13,8 @@ class MenuCustomerViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        arrMenu = ["crea tus listas","Comparte tus listas","Revisa ofertas", "Buscar productos", "hacer un pedido", "Visitas comerciales", "Revisar ofertas"]
-        arrMenuImages = ["Create_Your_List","Share_To_Lists","Check_Offers","Find_Products","Make_An_Order","Commercial_Visits","icon_Review"]
+        arrMenu = ["crea tus listas","Compartir listas","Revisar ofertas", "Buscar productos", "Visitas comerciales", "hacer un pedido"]
+        arrMenuImages = ["Create_Your_List","Share_To_Lists","icon_Review","Find_Products","Commercial_Visits","Make_An_Order"]
         //        self.CustomerMenuCollectionView.isHidden = true
         activityIndicator.stopAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -114,30 +114,28 @@ extension MenuCustomerViewController: UICollectionViewDataSource, UICollectionVi
                 }
             }
         case 2:
-            self.performSegue(withIdentifier: CUSTOMER_REVIEW_LIST, sender: nil)
-        
+//            self.performSegue(withIdentifier: CUSTOMER_REVIEW_LIST, sender: nil)
+            self.performSegue(withIdentifier: REVIEW_OFFERS_SEGUE, sender: nil)
         case 3:
             self.performSegue(withIdentifier: CUSTOMER_BUSSINESS_REQUEST_SEGUE, sender: nil)
         
         case 4:
-            self.performSegue(withIdentifier: MAKE_AN_ORDER_SEGUE, sender: nil)
+            self.performSegue(withIdentifier: CUSTOMER_BUSINESS_VISIT_SEGUE, sender: nil)
             
         case 5:
-            self.performSegue(withIdentifier: CUSTOMER_BUSINESS_VISIT_SEGUE, sender: nil)
+            self.performSegue(withIdentifier: MAKE_AN_ORDER_SEGUE, sender: nil)
         
-        case 6:
-            self.performSegue(withIdentifier: REVIEW_OFFERS_SEGUE, sender: nil)
-            
+//        case 6:
         default:
             break
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthHeight = (UIScreen.main.bounds.size.width - 40) / 3
+        let widthHeight = (UIScreen.main.bounds.size.width - 20) / 2
         //            ([[UIScreen mainScreen]bounds].size.width / 3 ) - 18;
         
-        return CGSize(width: widthHeight, height: widthHeight + 50.0)
+        return CGSize(width: widthHeight, height: widthHeight)
     }
 
     

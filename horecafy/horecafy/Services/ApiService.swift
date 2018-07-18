@@ -310,10 +310,20 @@ class ApiService {
                     return completion(nil)
                 }
                 
+                if let jsonDict: [String:Any] = json as? [String:Any] {
+                  
+                    if (jsonDict["totalRows"] as! Int) == 0 {
+                        return completion(nil)
+                    }
+                }
+                
+                
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let res = try! decoder.decode(AvailibilityResponse.self, from: jsonData)
-                completion(res.data)
+                completion(res)
+                
+
                 
             } else {
                 completion(false)

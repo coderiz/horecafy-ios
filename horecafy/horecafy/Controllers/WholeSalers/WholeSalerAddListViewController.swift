@@ -8,6 +8,7 @@ class WholeSalerAddListViewController: BaseViewController, UIPickerViewDelegate,
         let credentials = loadCredentials()
         return credentials.userId
     }
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var acceptButtonVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var categoryImage: UIImageView!

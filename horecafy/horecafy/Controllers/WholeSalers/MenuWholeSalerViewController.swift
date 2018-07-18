@@ -6,6 +6,8 @@ class MenuWholeSalerViewController: UIViewController {
 
     @IBOutlet weak var WholeSalerMenuCollectionView: UICollectionView!
     
+    
+    
     var arrMenu:[String] = []
     var arrMenuImages:[String] = []
     
@@ -93,18 +95,16 @@ extension MenuWholeSalerViewController: UICollectionViewDataSource, UICollection
             self.present(vc, animated: true, completion: nil)
         case 4:
             self.performSegue(withIdentifier: WHOLESALER_BUSINESS_VISIT_SEGUE , sender: nil)
-        
-
         default:
             break
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthHeight = (UIScreen.main.bounds.size.width - 40) / 3
+        let widthHeight = (UIScreen.main.bounds.size.width - 20) / 2
         //            ([[UIScreen mainScreen]bounds].size.width / 3 ) - 18;
         
-        return CGSize(width: widthHeight, height: widthHeight + 50.0)
+        return CGSize(width: widthHeight, height: widthHeight)
     }
     
     

@@ -87,7 +87,7 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
         countryTextField.text = user.country        
     }
     //MARK: CustomerAlertView
-    func didTapInOkButtton() {
+    func didTapInOkButtton(isSuccess: Bool) {
         self.navigationController?.popToRootViewController(animated: true)
     }
     // MARK: API

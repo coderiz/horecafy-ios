@@ -18,6 +18,8 @@ class WholesalerBusinessNotificationViewController: BaseViewController {
     
     @IBOutlet var TimeSlotPickerView: UIPickerView!
     
+    @IBOutlet weak var lblNoData: UILabel!
+    
     var txtSetTime:UITextField!
     var arrAvailibility:[String] = []
     
@@ -96,6 +98,7 @@ extension WholesalerBusinessNotificationViewController : UITableViewDataSource, 
 extension WholesalerBusinessNotificationViewController {
     
     func setLayot() {
+       self.lblNoData.isHidden = true
         self.tblNotificationView.tableFooterView = UIView()
         self.loading.hidesWhenStopped = true
         self.TimeSlotPickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,10 +112,20 @@ extension WholesalerBusinessNotificationViewController {
         ApiService.instance.getWholeSalerBusinessNotification(wholesalerId: WholeSalerID) { (result) in
             self.loading.stopAnimating()
             guard let result: [BusinessNotification] = result as? [BusinessNotification] else {
+                self.lblNoData.isHidden = false
                 print("NO TypeOfBusiness were loaded from api")
                 return
             }
+            
             self.arrNotifications = result
+            
+            if self.arrNotifications.count == 0 {
+                self.lblNoData.isHidden = false
+            }
+            else {
+                self.lblNoData.isHidden = true
+            }
+            
             self.tblNotificationView.reloadData()
 
         }
@@ -155,14 +168,15 @@ extension WholesalerBusinessNotificationViewController {
         self.loading.startAnimating()
         ApiService.instance.getCustomerAvailibility(CustomerId: Customer_ID) { (result) in
             self.loading.stopAnimating()
-            guard let result: Availibility = result as? Availibility else {
+            guard let Availableresult: AvailibilityResponse = result as? AvailibilityResponse else {
                 print("NO TypeOfBusiness were loaded from api")
                 return
             }
             
-            self.arrAvailibility = result.availability.components(separatedBy: ",")
-//                self.MakeArrayFromString(JsonString: result.availability)
-            self.TimeSlotPickerView.reloadAllComponents()
+            if let resultData:Availibility = Availableresult.data {
+                self.arrAvailibility = resultData.availability.components(separatedBy: ",")
+                self.TimeSlotPickerView.reloadAllComponents()
+            }
             
             self.OpenPopupToSetTime(ID: NotificationID)
             
