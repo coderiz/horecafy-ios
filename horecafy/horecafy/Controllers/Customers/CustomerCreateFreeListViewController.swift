@@ -49,7 +49,7 @@ class CustomerCreateFreeListViewController: BaseViewController {
             return response != ""
         })
         
-        if arrFreeLIst.count >= 0 {
+        if arrFreeLIst.count > 0 {
            
 //                list.filter { $0 != nil }
             let demandText:String = self.json(from: arrFreeLIst as Any) ?? ""
@@ -186,13 +186,13 @@ extension CustomerCreateFreeListViewController : UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let FooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0))
         
-        let BtnAddinToList = UIButton(frame: CGRect(x: 10, y: 5, width: 150, height: 40.0))
-        BtnAddinToList.setTitle("Agregar producto", for: .normal)
+        let BtnAddinToList = UIButton(frame: CGRect(x: 16, y: 5, width: UIScreen.main.bounds.width - 32, height: 40.0))
+        BtnAddinToList.setTitle("Añadir producto", for: .normal)
         BtnAddinToList.titleLabel?.baselineAdjustment = .alignCenters
 //        BtnAddinToList.titleLabel?.textAlignment = .left
-        BtnAddinToList.backgroundColor = UIColor.clear
+        BtnAddinToList.backgroundColor = UIColor(red: 57.0/255.0, green: 140.0/255.0, blue: 79.0/255.0, alpha: 1.0)
         BtnAddinToList.titleLabel?.font = UIFont(name: "HelveticaNeue-Regular", size: 15.0)
-        BtnAddinToList.setTitleColor(UIColor.black , for: .normal)
+        BtnAddinToList.setTitleColor(UIColor.white , for: .normal)
         BtnAddinToList.addTarget(self, action: #selector(self.BtnAddInToListAction), for: .touchUpInside)
         
         FooterView.addSubview(BtnAddinToList)

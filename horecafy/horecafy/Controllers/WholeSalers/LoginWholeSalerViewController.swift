@@ -17,12 +17,19 @@ class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
+        
         guard let email = emailTF.text, emailTF.text != "" else {
             showAlert(self, WARNING, EMAIL_MISSING)
             return
         }
+        
         guard let password = passwordTF.text, passwordTF.text != "" else {
             showAlert(self, WARNING, PASSWORD_MISSING)
+            return
+        }
+        
+        if ApiService.instance.checkInternet() == false {
+            showAlert(self,WARNING, NO_INTERNET)
             return
         }
         
@@ -34,6 +41,7 @@ class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate {
                 showAlert(self, ERROR, LOGIN_FAILED)
                 return
             }
+            
             if user.count == 0 {
                 showAlert(self, ERROR, LOGIN_FAILED)
                 return

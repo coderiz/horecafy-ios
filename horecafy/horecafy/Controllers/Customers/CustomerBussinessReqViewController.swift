@@ -128,20 +128,38 @@ extension CustomerBussinessReqViewController {
             return nil
         }
         
-        guard let brand = self.brand.text, self.brand.text != "" else {
-            showAlert(self, WARNING, BRAND_MISSING)
-            return nil
+        var brand = ""
+        if self.brand.text != "" {
+            brand = self.brand.text!
         }
         
-        guard let MonthConsumption = self.quantyOfMonth.text, self.quantyOfMonth.text != "" else {
-            showAlert(self, WARNING, TARGET_PRICE_MISSING)
-            return nil
+        
+        var MonthConsumption = ""
+        
+        if self.quantyOfMonth.text != "" {
+            MonthConsumption = self.quantyOfMonth.text!
         }
         
-        guard let targetPrice = Double(self.targetPrice.text!), self.targetPrice.text != "" else {
-            showAlert(self, WARNING, TARGET_PRICE_MISSING)
-            return nil
+        var targetPrice:Double = 0.0
+        
+        if self.targetPrice.text != "" {
+            targetPrice = Double(self.targetPrice.text!)!
         }
+
+//        guard let brand = self.brand.text, self.brand.text != "" else {
+//            showAlert(self, WARNING, BRAND_MISSING)
+//            return nil
+//        }
+//
+//        guard let MonthConsumption = self.quantyOfMonth.text, self.quantyOfMonth.text != "" else {
+//            showAlert(self, WARNING, TARGET_PRICE_MISSING)
+//            return nil
+//        }
+//
+//        guard let targetPrice = Double(self.targetPrice.text!), self.targetPrice.text != "" else {
+//            showAlert(self, WARNING, TARGET_PRICE_MISSING)
+//            return nil
+//        }
        
         let Request = CustomerBusinessRequest(customerId: Int(userId), productName: productName, brand: brand, consumption: MonthConsumption, targetPrice: targetPrice, MailFlag: sucessValue)
         

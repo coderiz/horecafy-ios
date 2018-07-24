@@ -13,6 +13,10 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
         super.viewDidLoad()
         demandsTV.delegate = self
         demandsTV.dataSource = self
+        
+        self.demandsTV.estimatedRowHeight = 53
+        self.demandsTV.rowHeight = UITableViewAutomaticDimension
+
         setupUI()
         loadDataFromApi()
     }
@@ -30,6 +34,7 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
             showAlert(self, WARNING, ZERO_ITEMS_SELECTED)
             return;
         }
+        
         sharingDemands = true
         var demandsShared = 0
         for demand in demandsToShare {
@@ -47,6 +52,7 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
                 }
                 demandsShared += 1;
                 if demandsShared == demandsToShare.count {
+                    demandsToShare.removeAll()
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: THANKS) as! ThanksOfferViewController
                     self.present(vc, animated: true, completion: nil)
                 }
@@ -65,6 +71,7 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
     func setupUI() {
         if let category = self.category {
             self.title = category.name
+             self.categoryName.text = category.name
         }
     }
     // MARK: API
@@ -80,10 +87,18 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
                 return
             }
             self.demands = result
+            demandsToShare.removeAll()
+            for SingleDemand in self.demands {
+                let demandId = SingleDemand.id
+                
+                demandsToShare.append(demandId)
+            }
+            
             self.demandsTV.reloadData()
         }
         
         if let category = self.category {
+           
             ApiService.instance.getCategoryImage(categoryImage: category.image) { (data) in
                 guard let data: Data = data as? Data else {
                     print("NO category image were loaded from api")

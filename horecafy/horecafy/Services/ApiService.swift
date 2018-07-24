@@ -1,11 +1,22 @@
 import Foundation
 import Alamofire
+import ReachabilitySwift
 
 extension String: Error{}
 class ApiService {
     
     static let instance = ApiService()
     var SelectedForgotUserType:Int = -1
+    
+    
+    //MARK:- Netowork Methods
+    
+    func checkInternet() -> Bool {
+        let reachability: Reachability
+        reachability = Reachability()!
+        let networkStatus: Int = reachability.currentReachabilityStatus.hashValue
+        return networkStatus != 0
+    }
     
     func shareDemand(demandId: String,completion: @escaping CompletionHandler) {
         

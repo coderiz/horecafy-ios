@@ -79,6 +79,7 @@ extension ReviewOfferViewController {
 
     
     func getOffers() {
+        
         self.Loading.startAnimating()
         ApiService.instance.getOfferList(completion: { (result) in
                 self.Loading.stopAnimating()

@@ -13,11 +13,14 @@ class DemandToShareCell: UITableViewCell {
     
     @IBOutlet weak var familyName: UILabel!
     
+    @IBOutlet weak var btnSelect: UISwitch!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
     }
+    
     @IBAction func selectItemTapped(_ sender: Any) {
         
         guard let demand = demand else {
@@ -47,6 +50,12 @@ class DemandToShareCell: UITableViewCell {
     
     func configureCell(demand: DemandsByCustomer)  {
         self.demand = demand
+        if demandsToShare.contains(demand.id) {
+            self.btnSelect.isOn = true
+        }
+        else {
+            self.btnSelect.isOn = false
+        }
         self.familyName.text = demand.family.name
     }
 }

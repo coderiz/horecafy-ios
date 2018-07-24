@@ -67,6 +67,7 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
             return
         }
         
+        
         let user = User(hiddenId: "", id: "", VAT: vat, email: email, name: name, typeOfBusinessId: 0, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, country: addresData.country, createdOn: Date(), visible: true)
         
         ApiService.instance.createWholeSaler(user: user, password: password) { (response) in

@@ -25,6 +25,12 @@ class LoginCustomerViewController: BaseViewController, UITextFieldDelegate {
             showAlert(self, WARNING, PASSWORD_MISSING)
             return
         }
+
+        if ApiService.instance.checkInternet() == false {
+            showAlert(self,WARNING, NO_INTERNET)
+            return
+        }
+
         loading.startAnimating()
         ApiService.instance.loginUser(email: email, password: password, typeUser: TypeOfUser.CUSTOMER.rawValue) { (response) in
             self.loading.stopAnimating()

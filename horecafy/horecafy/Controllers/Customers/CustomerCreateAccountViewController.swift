@@ -80,6 +80,8 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
             return;
         }
         
+
+        
         let user = User(hiddenId: "", id: "", VAT: vat, email: email, name: name, typeOfBusinessId: typeOfBusiness.id, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, country: addresData.country, createdOn: Date(), visible: true)
         self.loading.startAnimating()
         ApiService.instance.createCustomer(user: user, password: password) { (response) in
