@@ -91,8 +91,13 @@ class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource,
     private func setup(demandByCustomer: DemandsByCustomer) {
             self.brand.text = demandByCustomer.brand
             self.typeOfFormat.text = demandByCustomer.TypeOfFormat.name
-            self.quantyOfMonth.text = "\(demandByCustomer.quantyPerMonth)"
-            self.targetPrice.text = "\(demandByCustomer.targetPrice)"
+        if let QuantityPerMonth:Int = demandByCustomer.quantyPerMonth {
+            self.quantyOfMonth.text = "\(QuantityPerMonth)"
+        }
+        
+        if let TargetPrice:Double = demandByCustomer.targetPrice {
+            self.targetPrice.text = "\(TargetPrice)"
+        }
             self.format.text = demandByCustomer.format
             self.comments.text = ""
     }

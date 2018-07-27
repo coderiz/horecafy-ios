@@ -97,22 +97,8 @@ extension MenuCustomerViewController: UICollectionViewDataSource, UICollectionVi
         case 0:
             self.performSegue(withIdentifier: CUSTOMER_CREATE_LIST, sender: nil)
         case 1:
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "CustomerShareListViewControllerID") as? CustomerShareListViewController {
-                let credentials = loadCredentials()
-                activityIndicator.startAnimating()
-                ApiService.instance.getCategoriesDemandWithFamilyCount(customerId: credentials.userId) { (result) in
-                    self.activityIndicator.stopAnimating()
-                    guard let result: [CategoryWithFamilyCount] = result as? [CategoryWithFamilyCount] else {
-                        self.showListAlert()
-                        return
-                    }
-                    if result.isEmpty {
-                        self.showListAlert()
-                    }
-                    vc.categories = result
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
+           let vc = self.storyboard?.instantiateViewController(withIdentifier: "CustomerShareListViewControllerID") as! CustomerShareListViewController
+            self.navigationController?.pushViewController(vc, animated: true)
         case 2:
 //            self.performSegue(withIdentifier: CUSTOMER_REVIEW_LIST, sender: nil)
             self.performSegue(withIdentifier: REVIEW_OFFERS_SEGUE, sender: nil)

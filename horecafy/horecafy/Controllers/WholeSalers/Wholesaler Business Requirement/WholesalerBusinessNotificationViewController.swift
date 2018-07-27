@@ -98,7 +98,7 @@ extension WholesalerBusinessNotificationViewController : UITableViewDataSource, 
 extension WholesalerBusinessNotificationViewController {
     
     func setLayot() {
-       self.lblNoData.isHidden = true
+        self.lblNoData.isHidden = true
         self.tblNotificationView.tableFooterView = UIView()
         self.loading.hidesWhenStopped = true
         self.TimeSlotPickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -125,9 +125,7 @@ extension WholesalerBusinessNotificationViewController {
             else {
                 self.lblNoData.isHidden = true
             }
-            
             self.tblNotificationView.reloadData()
-
         }
     }
     
@@ -138,6 +136,7 @@ extension WholesalerBusinessNotificationViewController {
             textField.backgroundColor = UIColor.clear
             textField.tag = 55555
             textField.setDropDownButton()
+            textField.delegate = self
             textField.inputView = self.TimeSlotPickerView
         }
         
@@ -225,6 +224,20 @@ extension WholesalerBusinessNotificationViewController : WholesalerAcceptCellDel
 //    func AcceptRequest(BtnIndex: Int) {
 //
 //    }
+}
+
+//MARK:- UITextfieldDelegate Methods
+
+extension WholesalerBusinessNotificationViewController : UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if self.arrAvailibility.count > 0 {
+            let txtTime = self.alertController.textFields![0]
+            txtTime.text = self.arrAvailibility[0]
+        }
+        return true
+    }
+    
 }
 
 

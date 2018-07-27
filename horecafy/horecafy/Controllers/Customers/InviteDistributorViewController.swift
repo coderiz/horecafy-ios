@@ -57,7 +57,10 @@ class InviteDistributorViewController: BaseViewController {
                 }
                 
                 if ResponseforOrderRequest.totalRows != 0 {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    if let WholesalerName:String = (self.txtName.text){
+                    showAlert(self, SUCCESS, "Se ha enviado una invitacion a \(WholesalerName)", delegate: self)
+                    }
+                    
                 }
             })
         }
@@ -104,6 +107,16 @@ extension InviteDistributorViewController {
         return InvitationRequest
     }
     
+    
+}
+
+//MARK:- Alertiview Delegate Method
+
+extension InviteDistributorViewController : CustomerAlertView {
+    
+    func didTapInOkButtton(isSuccess: Bool) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     
 }
 

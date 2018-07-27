@@ -58,6 +58,7 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate {
             self.demandComments.text = demand.comments
         }
     }
+    
     // MARK: API
     func loadDataFromApi() {
         if let category = self.category {
@@ -96,10 +97,10 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate {
             return nil
         }
         
-        guard let format = format.text, self.format.text != "" else {
-            showAlert(self, WARNING, FORMAT_MISSING)
-            return nil
-        }
+//        guard let format = format.text, self.format.text != "" else {
+//            showAlert(self, WARNING, FORMAT_MISSING)
+//            return nil
+//        }
         
         guard let targetPrice = targetPrice.text, self.targetPrice.text != "" else {
             showAlert(self, WARNING, TARGET_PRICE_MISSING)
@@ -110,7 +111,9 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate {
             return nil
         }
         let comments = self.comments.text ?? ""
-   
+        
+        let format = self.format.text ?? ""
+        
         return Offer(hiddenId: "",
                           id: "",
                           customerId: demand.customerId,

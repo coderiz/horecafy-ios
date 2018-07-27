@@ -4,15 +4,58 @@ class CustomerShareListViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     var categories = [CategoryWithFamilyCount]()
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var lblNoData: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         setupUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadDataFromApi()
+    }
+    
+    // MARK: API CALL
+    
+    func loadDataFromApi() {
+        
+        let credentials = loadCredentials()
+        activityIndicator.startAnimating()
+        ApiService.instance.getCategoriesDemandWithFamilyCount(customerId: credentials.userId) { (result) in
+            self.activityIndicator.stopAnimating()
+            guard let result: [CategoryWithFamilyCount] = result as? [CategoryWithFamilyCount] else {
+                self.lblNoData.isHidden = false
+//                showAlert(self, "Información", "No hay listas para compartir. Crea tus listas primero")
+                return
+            }
+            if result.isEmpty {
+                self.lblNoData.isHidden = false
+//                showAlert(self, "Información", "No hay listas para compartir. Crea tus listas primero")
+            }
+            self.categories = result
+           
+            if self.categories.count == 0 {
+                self.lblNoData.isHidden = false
+            }
+            else {
+                self.lblNoData.isHidden = true
+            }
+            
+            self.categoriesCollectionView.reloadData()
+        }
+    }
+
+    
     // MARK: UI
     func setupUI() {
         title = "Compartir lista"
+        self.lblNoData.isHidden = true
+        self.activityIndicator.hidesWhenStopped  = true
         let layaout = self.categoriesCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layaout.sectionInset = UIEdgeInsetsMake(0, 3, 0, 3)
     }

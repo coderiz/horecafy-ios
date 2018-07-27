@@ -190,9 +190,9 @@ extension CustomerCreateFreeListViewController : UITableViewDataSource, UITableV
         BtnAddinToList.setTitle("Añadir producto", for: .normal)
         BtnAddinToList.titleLabel?.baselineAdjustment = .alignCenters
 //        BtnAddinToList.titleLabel?.textAlignment = .left
-        BtnAddinToList.backgroundColor = UIColor(red: 57.0/255.0, green: 140.0/255.0, blue: 79.0/255.0, alpha: 1.0)
+        BtnAddinToList.backgroundColor = UIColor.white
         BtnAddinToList.titleLabel?.font = UIFont(name: "HelveticaNeue-Regular", size: 15.0)
-        BtnAddinToList.setTitleColor(UIColor.white , for: .normal)
+        BtnAddinToList.setTitleColor(UIColor(red: 59.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0) , for: .normal)
         BtnAddinToList.addTarget(self, action: #selector(self.BtnAddInToListAction), for: .touchUpInside)
         
         FooterView.addSubview(BtnAddinToList)

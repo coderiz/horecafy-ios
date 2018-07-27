@@ -137,7 +137,7 @@ extension MakeOnOrderViewController {
         self.tblProductList.tableFooterView = UIView()
         self.DistributorPickerView.translatesAutoresizingMaskIntoConstraints = false
         self.txtDistribution.inputView = self.DistributorPickerView
-        self.txtDistribution.setDropDownButton()
+        self.setDropDownButton()
         self.txtDistribution.tag = 55555
         self.btnSubmit.isHidden = true
         var DictObject = Dictionary<String,Any>()
@@ -146,6 +146,20 @@ extension MakeOnOrderViewController {
         arrMakeOnOrder.append(DictObject)
         self.tblProductList.reloadData()
         
+    }
+    
+    func setDropDownButton() {
+        
+        let arrow = UIImageView(image: UIImage(named: "DropDown"))
+        arrow.backgroundColor = UIColor.clear
+        arrow.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+        arrow.contentMode = UIViewContentMode.center
+        
+        let RightView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 40, height: 40))
+        RightView.backgroundColor = UIColor.clear
+        RightView.addSubview(arrow)
+        self.txtDistribution.rightView = RightView
+        self.txtDistribution.rightViewMode = UITextFieldViewMode.always
     }
     
     func json(from object:Any) -> String? {
@@ -283,8 +297,10 @@ extension MakeOnOrderViewController : UIPickerViewDataSource, UIPickerViewDelega
 //            RowTitle = "Invitar a distribuidor nuevo"
 //        }
 //        else {
+        if self.arrDistributors.count > 0 {
             self.txtDistribution.text = self.arrDistributors[row].name
             self.selectedDistributorId = self.arrDistributors[row].hiddenId
+        }
 //        }
     }
 }
@@ -321,24 +337,23 @@ extension MakeOnOrderViewController : UITableViewDataSource, UITableViewDelegate
         MakeOrderCell.txtProductName.placeholder = "producto"
         MakeOrderCell.txtQuantity.placeholder = "cantidad"
         
-        MakeOrderCell.txtQuantity.keyboardType = .numberPad
+        MakeOrderCell.txtQuantity.keyboardType = .default
         MakeOrderCell.txtProductName.keyboardType = .default
         MakeOrderCell.selectionStyle = .none
         return MakeOrderCell
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let FooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0))
         
-        let BtnAddinToList = UIButton(frame: CGRect(x: 10, y: 5, width: 150, height: 40.0))
+        let FooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0))
+        let BtnAddinToList = UIButton(frame: CGRect(x: 16, y: 5, width: UIScreen.main.bounds.width - 32, height: 40.0))
         BtnAddinToList.setTitle("Agregar producto", for: .normal)
         BtnAddinToList.titleLabel?.baselineAdjustment = .alignCenters
-        //        BtnAddinToList.titleLabel?.textAlignment = .left
         BtnAddinToList.backgroundColor = UIColor.clear
-        BtnAddinToList.titleLabel?.font = UIFont(name: "HelveticaNeue-Regular", size: 15.0)
-        BtnAddinToList.setTitleColor(UIColor.black , for: .normal)
+        BtnAddinToList.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
+//            UIFont(name: "HelveticaNeue-Regular", size: 15.0)
+        BtnAddinToList.setTitleColor(UIColor(red: 59.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0) , for: .normal)
         BtnAddinToList.addTarget(self, action: #selector(self.BtnAddInToListAction), for: .touchUpInside)
-        
         FooterView.addSubview(BtnAddinToList)
         
         return FooterView

@@ -41,7 +41,8 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
             activityIndicator.startAnimating()
             ApiService.instance.shareDemand(demandId: demand) { (result) in
                 self.activityIndicator.stopAnimating()
-                guard let res: DemandByCustomerResponse = result as? DemandByCustomerResponse else {
+                guard let res: ShareDemandResponse = result as? ShareDemandResponse else {
+                    showAlert(self, WARNING, "Se produjo un error al compartir la demanda")
                     print("NO demands were loaded from api")
                     return
                 }
@@ -50,6 +51,7 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
                     showAlert(self, WARNING, "Se produjo un error al compartir la demanda")
                     return;
                 }
+                
                 demandsShared += 1;
                 if demandsShared == demandsToShare.count {
                     demandsToShare.removeAll()
@@ -64,7 +66,8 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
         super.viewWillAppear(animated)
         if sharingDemands {
             sharingDemands = false
-            self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
+            self.navigationController?.popViewController(animated: false)
+//            self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
         }
     }
     

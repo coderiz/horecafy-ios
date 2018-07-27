@@ -12,7 +12,7 @@ class MenuWholeSalerViewController: UIViewController {
     var arrMenuImages:[String] = []
     
     override func viewDidLoad() {
-        arrMenu = ["crea tus listas","Realiza ofertas", "Exporta solicitudes en fichero","Sube ofertas en fichero", "Visitas comerciales"]
+        arrMenu = ["Crear catalogo","Realiza ofertas", "Exporta solicitudes en fichero","Sube ofertas en fichero", "Visitas comerciales"]
         arrMenuImages = ["Create_Your_List","002-descuento","002-descargar-fichero-de-la-nube", "001-archivo-de-excel", "Commercial_Visits"]
 
         //        self.CustomerMenuCollectionView.isHidden = true

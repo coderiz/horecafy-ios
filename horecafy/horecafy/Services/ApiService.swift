@@ -31,7 +31,14 @@ class ApiService {
                     return completion(nil)
                 }
                 
-                let res: DemandByCustomerResponse = try! JSONDecoder().decode(DemandByCustomerResponse.self, from: jsonData)
+//                if let jsonDict: [String:Any] = json as? [String:Any] {
+//
+//                    if (jsonDict["totalRows"] as! Int) == 0 {
+//                        return completion(nil)
+//                    }
+//                }
+                
+                let res: ShareDemandResponse = try! JSONDecoder().decode(ShareDemandResponse.self, from: jsonData)
                 completion(res)
                 
             } else {

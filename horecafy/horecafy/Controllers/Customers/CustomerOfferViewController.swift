@@ -42,8 +42,12 @@ class CustomerOfferViewController: BaseViewController, UITextFieldDelegate {
             self.demandBrand.text = demand.brand
             self.demandNumber.text = "\(demand.hiddenId)"
             self.demandFormat.text = demand.format
-            self.demandQuantyOfMonth.text = "\(demand.quantyPerMonth)"
-            self.demandTargetPrice.text = "\(demand.targetPrice)"
+            if let QuantityPerMonth:Int = demand.quantyPerMonth {
+                self.demandQuantyOfMonth.text = "\(QuantityPerMonth)"
+            }
+            if let TargetPrice:Double = demand.targetPrice {
+                self.demandTargetPrice.text = "\(TargetPrice)"
+            }
         }
         
         if let offer = offer, let price = offer.offerPrice {

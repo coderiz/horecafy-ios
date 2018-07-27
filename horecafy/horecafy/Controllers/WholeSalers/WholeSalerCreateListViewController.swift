@@ -12,6 +12,7 @@ class WholeSalerCreateListViewController: UIViewController, UICollectionViewDele
         setupUI()
         loadCategoriesFromApi()
     }
+    
     // MARK: UI
     func setupUI() {
         title = "Crear lista"

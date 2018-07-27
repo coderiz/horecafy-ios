@@ -48,7 +48,10 @@ class WholeSalerAddListViewController: BaseViewController, UIPickerViewDelegate,
                     showAlert(self, ERROR, CUSTOMER_CREATE_DEMAND_FAILED)
                     return
                 }
-                self.navigationController?.popToRootViewController(animated: true)
+                if let CreatListVC = self.navigationController?.viewControllers[1] as? WholeSalerCreateListViewController {
+                    self.navigationController?.popToViewController(CreatListVC, animated: true)
+                }
+//                self.navigationController?.popToRootViewController(animated: true)
             }
         } else {
             showAlert(self, WARNING, BRAND_MISSING)

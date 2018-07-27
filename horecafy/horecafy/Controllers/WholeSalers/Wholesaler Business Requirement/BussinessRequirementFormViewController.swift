@@ -41,8 +41,9 @@ class BussinessRequirementFormViewController: BaseViewController {
     
     @IBAction func btnSendPropasal(_ sender: Any) {
         self.view.endEditing(true)
-        self.loading.startAnimating()
+        
         if let BusinessPraposalReq = self.BussinessPraposalRequest() {
+            self.loading.startAnimating()
             ApiService.instance.SendPraposal(Praposal: BusinessPraposalReq, completion: { (response) in
                 self.loading.stopAnimating()
                 guard let ResponseforPraposal:BusinessPraposalResponse = response as? BusinessPraposalResponse else {
@@ -50,7 +51,10 @@ class BussinessRequirementFormViewController: BaseViewController {
                     return
                 }
                 
+                showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
+                
                 if ResponseforPraposal.totalRows != 0 {
+                    showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
                     self.txtRestaurantType.text = ""
                     self.txtZipcode.text = ""
                     self.txtComments.text = ""
@@ -110,7 +114,7 @@ extension BussinessRequirementFormViewController {
         }
         
         guard let Comment = self.txtComments.text, self.txtComments.text != "" else {
-            showAlert(self, WARNING, MISSING_DELIVERY_DATE)
+            showAlert(self, WARNING, MISSING_COMMENTS)
             return nil
         }
  

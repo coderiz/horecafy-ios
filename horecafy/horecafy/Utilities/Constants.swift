@@ -175,6 +175,7 @@ let FAILURE_TO_SUBMIT = "Hubo un error para enviar. Inténtalo de nuevo"
 let AVAILIBILITY_ADDED_SUCESSFULLY = "Agregar disponibilidad con éxito."
 let FAILURE_TO_CONTACT = "Hubo un error al contactar al distribuidor."
 let NO_INTERNET = "No se ha podido establecer conexión. Por favor, intentelo de nuevo"
+let PRAPOSAL_SENT_SUCCESSFULLY = "propuesta enviada correctamente."
 
 
 

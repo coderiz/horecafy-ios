@@ -236,7 +236,7 @@ struct ListsByWholeSaler: Codable {
     let familyId: Int
     let brand: String
     let comments: String
-    let createdOn: Date
+//    let createdOn: Date
     let borrado: Bool
     let family: Family
 }
@@ -254,6 +254,15 @@ struct DemandByCustomerResponse: Codable {
     let error: String
     let message: String
     let data: [DemandsByCustomer]
+}
+
+struct ShareDemandResponse: Codable {
+    let totalRows: Int
+    let page: Int?
+    let rows: Int?
+    let error: String
+    let message: String
+//    let data: [DemandsByCustomer]
 }
 
 struct OfferCustomerResponse: Codable {
