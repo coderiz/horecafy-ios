@@ -198,7 +198,13 @@ class ApiService {
     
     
     func getOfferList(completion: @escaping CompletionHandler) {
-        Alamofire.request(URL_OFFER, method: .get).responseJSON { response in
+        
+        let body: [String: Any] = [
+            "customerId": loadCredentials().userId]
+        
+        Alamofire.request(URL_REVIEW_OFFERS, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
+            response in
+            
             if response.result.error == nil {
                 
                 guard let json = response.result.value else {
@@ -208,8 +214,9 @@ class ApiService {
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
+                
                 let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601FullBis)
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let res: ReviewOfferResponse = try! decoder.decode(ReviewOfferResponse.self, from: jsonData)
                 completion(res.data)
                 
@@ -218,6 +225,28 @@ class ApiService {
                 debugPrint(response.result.error as Any)
             }
         }
+        
+        
+//        Alamofire.request(URL_OFFER, method: .get).responseJSON { response in
+//            if response.result.error == nil {
+//
+//                guard let json = response.result.value else {
+//                    return completion(nil)
+//                }
+//
+//                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+//                    return completion(nil)
+//                }
+//                let decoder = JSONDecoder()
+//                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601FullBis)
+//                let res: ReviewOfferResponse = try! decoder.decode(ReviewOfferResponse.self, from: jsonData)
+//                completion(res.data)
+//
+//            } else {
+//                completion(false)
+//                debugPrint(response.result.error as Any)
+//            }
+//        }
     }
 
     
@@ -334,8 +363,7 @@ class ApiService {
                         return completion(nil)
                     }
                 }
-                
-                
+               
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let res = try! decoder.decode(AvailibilityResponse.self, from: jsonData)

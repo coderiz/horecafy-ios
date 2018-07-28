@@ -295,8 +295,8 @@
 			children = (
 				3E6BBE6020F5D8170018564B /* Review Offers */,
 				3EB4BA8020EBB8BB00EEE8EB /* Business Requirement */,
-				6F15092D203A08E700D3B8BF /* CustomerAddListViewController.swift */,
 				795025772032D460001233FF /* MenuCustomerViewController.swift */,
+				6F15092D203A08E700D3B8BF /* CustomerAddListViewController.swift */,
 				6FDC465F2031051F0019B375 /* CustomerCreateListViewController.swift */,
 				6FDC46582030E7510019B375 /* MainCustomerViewController.swift */,
 				6FDC46562030E5A30019B375 /* LoginCustomerViewController.swift */,

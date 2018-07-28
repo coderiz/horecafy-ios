@@ -33,7 +33,7 @@ struct OfferObject:Codable {
     let Product:ProductOfferObj
 //    let approvedByCustomer: String
     let borrado: Bool
-    let sentToCustomer:Date
+//    let sentToCustomer:Date
     let rejected:Bool
 }
 
