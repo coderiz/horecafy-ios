@@ -53,8 +53,16 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate {
             self.demandBrand.text = demand.brand
             self.demandNumber.text = demand.hiddenId
             self.demandFormat.text = demand.format
-            self.demandQuantyOfMonth.text = String(demand.quantyPerMonth)
-            self.demandTargetPrice.text = String(demand.targetPrice)
+            if let QuantityPerMonth:Int = demand.quantyPerMonth {
+                self.demandQuantyOfMonth.text = "\(QuantityPerMonth)"
+            }
+            
+            if let TargetPrice:Double = demand.targetPrice {
+                self.demandTargetPrice.text = "\(TargetPrice)"
+            }
+            
+//            self.demandQuantyOfMonth.text = String(demand.quantyPerMonth)
+//            self.demandTargetPrice.text = String(demand.targetPrice)
             self.demandComments.text = demand.comments
         }
     }
@@ -119,7 +127,7 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate {
                           customerId: demand.customerId,
                           demandId: demanId,
                           wholesalerId: String(userId),
-                          quantyPerMonth: demand.quantyPerMonth,
+                          quantyPerMonth: demand.quantyPerMonth!,
                           typeOfFormatId: demand.typeOfFormatId,
                           offerPrice: Double(targetPrice.replacingOccurrences(of: ",", with: "."))!,
                           brand: brand,

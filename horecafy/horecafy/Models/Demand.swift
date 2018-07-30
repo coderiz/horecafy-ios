@@ -290,9 +290,10 @@ struct DemandsByWholeSaler: Codable {
     let customerName: String
     let zipCode: String
     let familyId: Int
-    let quantyPerMonth: Int
+    let familyName: String
+    let quantyPerMonth: Int?
     let typeOfFormatId: Int
-    let targetPrice: Double
+    let targetPrice: Double?
     let brand: String
     let format: String
     let createdOn: Date

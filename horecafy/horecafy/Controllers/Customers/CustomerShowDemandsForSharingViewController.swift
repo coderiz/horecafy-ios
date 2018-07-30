@@ -55,7 +55,8 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
                 demandsShared += 1;
                 if demandsShared == demandsToShare.count {
                     demandsToShare.removeAll()
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: THANKS) as! ThanksOfferViewController
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouForShareViewController") as! ThankYouForShareViewController
+                    vc.strMessage = THANKS_FOR_SHARE_LIST
                     self.present(vc, animated: true, completion: nil)
                 }
             }

@@ -26,6 +26,7 @@
 		3E6BBE6A20F5F0080018564B /* ReviewOfferDistributorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6BBE6920F5F0080018564B /* ReviewOfferDistributorDetailViewController.swift */; };
 		3E6BBE6C20F617A00018564B /* ReviewOfferTitleTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6BBE6B20F617A00018564B /* ReviewOfferTitleTblCell.swift */; };
 		3E6BBE6E20F617B90018564B /* ReviewOfferTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6BBE6D20F617B90018564B /* ReviewOfferTblCell.swift */; };
+		3E6CE682210F0D6F005A3D48 /* ThankYouForShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CE681210F0D6F005A3D48 /* ThankYouForShareViewController.swift */; };
 		3E74A4DC20EB592C0062F011 /* InviteDistributorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E74A4DB20EB592C0062F011 /* InviteDistributorViewController.swift */; };
 		3E74A4DE20EB5FE80062F011 /* InviteDistributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E74A4DD20EB5FE80062F011 /* InviteDistributor.swift */; };
 		3E79958120E9F21500483CBB /* MakeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79958020E9F21500483CBB /* MakeOrder.swift */; };
@@ -139,6 +140,7 @@
 		3E6BBE6920F5F0080018564B /* ReviewOfferDistributorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewOfferDistributorDetailViewController.swift; sourceTree = "<group>"; };
 		3E6BBE6B20F617A00018564B /* ReviewOfferTitleTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewOfferTitleTblCell.swift; sourceTree = "<group>"; };
 		3E6BBE6D20F617B90018564B /* ReviewOfferTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewOfferTblCell.swift; sourceTree = "<group>"; };
+		3E6CE681210F0D6F005A3D48 /* ThankYouForShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouForShareViewController.swift; sourceTree = "<group>"; };
 		3E74A4DB20EB592C0062F011 /* InviteDistributorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDistributorViewController.swift; sourceTree = "<group>"; };
 		3E74A4DD20EB5FE80062F011 /* InviteDistributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteDistributor.swift; sourceTree = "<group>"; };
 		3E79958020E9F21500483CBB /* MakeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeOrder.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				3E79958420EA4F3D00483CBB /* FinalStepMakeOrder.swift */,
 				3E74A4DB20EB592C0062F011 /* InviteDistributorViewController.swift */,
 				3EB4BA7E20EBAD2F00EEE8EB /* ReviewOfferHomeViewController.swift */,
+				3E6CE681210F0D6F005A3D48 /* ThankYouForShareViewController.swift */,
 			);
 			path = Customers;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				3E5DE87520F79BD50075733F /* ContactDistributorThankYouViewController.swift in Sources */,
 				3EB4BA8C20EBB9F800EEE8EB /* WholesalerBusinessNotificationViewController.swift in Sources */,
 				6FDC4665203108320019B375 /* CustomerReviewListViewController.swift in Sources */,
+				3E6CE682210F0D6F005A3D48 /* ThankYouForShareViewController.swift in Sources */,
 				6F513761204B0CA4006B56F6 /* UploadDownloadViewController.swift in Sources */,
 				6F059EDA20335C8B003B9BA6 /* CustomerAddressDataViewController.swift in Sources */,
 				3E6BBE6C20F617A00018564B /* ReviewOfferTitleTblCell.swift in Sources */,

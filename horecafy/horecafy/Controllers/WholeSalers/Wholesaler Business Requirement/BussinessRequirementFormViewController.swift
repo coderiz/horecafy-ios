@@ -51,7 +51,7 @@ class BussinessRequirementFormViewController: BaseViewController {
                     return
                 }
                 
-                showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
+//                showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
                 
                 if ResponseforPraposal.totalRows != 0 {
                     showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
@@ -60,6 +60,9 @@ class BussinessRequirementFormViewController: BaseViewController {
                     self.txtComments.text = ""
                     self.typeOfBusinessSelected = nil
 //                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                else {
+                    showAlert(self, ERROR, ResponseforPraposal.message)
                 }
                 
             })
@@ -103,14 +106,20 @@ extension BussinessRequirementFormViewController {
     
     func BussinessPraposalRequest() -> BusinessPraposal? {
         
-//        guard let RestaurantZipcode = self.txtZipcode.text, self.txtZipcode.text != "" else {
-//                showAlert(self, WARNING, missing)
-//                return nil
-//            }
+        guard let RestaurantZipcode = self.txtZipcode.text, self.txtZipcode.text != "" else {
+                showAlert(self, WARNING, ZIP_CODE_MISSING)
+                return nil
+            }
     
-        guard let typeOfBusiness = typeOfBusinessSelected else {
-            showAlert(self, WARNING, MISSING_RESTAURANT_TYPE)
-            return nil
+//        guard let typeOfBusiness = typeOfBusinessSelected else {
+//            showAlert(self, WARNING, MISSING_RESTAURANT_TYPE)
+//            return nil
+//        }
+        
+        var TypeOfBusinessId:Int = 0
+        
+        if let TypeOfBusiness = typeOfBusinessSelected {
+            TypeOfBusinessId = TypeOfBusiness.id
         }
         
         guard let Comment = self.txtComments.text, self.txtComments.text != "" else {
@@ -118,7 +127,7 @@ extension BussinessRequirementFormViewController {
             return nil
         }
  
-        let MakeSendPraposal = BusinessPraposal(WholesalerId: Int(userId), typeOfBusinessId:  typeOfBusiness.id , comments: Comment, zipcode: (self.txtZipcode.text != "" ? self.txtZipcode.text! : ""))
+        let MakeSendPraposal = BusinessPraposal(WholesalerId: Int(userId), typeOfBusinessId: TypeOfBusinessId, comments: Comment, zipcode: RestaurantZipcode)
         
         return MakeSendPraposal
     }

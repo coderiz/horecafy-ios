@@ -74,7 +74,9 @@ class FinalStepMakeOrder: BaseViewController {
                 
                 if ResponseforOrderRequest.totalRows != 0 {
                     showAlert(self, SUCCESS, SUCCESS_TO_CREATE_ORDER, delegate: self)
-                    
+                }
+                else {
+                   showAlert(self, ERROR, ResponseforOrderRequest.message)
                 }
                 
             })

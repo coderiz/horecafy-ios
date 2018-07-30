@@ -167,7 +167,7 @@ let MISSING_PROPER_PRODUCT_DETAIL = "Por favor ingrese el producto con la cantid
 let MISSING_PRODUCT_DESCRIPTION = "Por favor ingrese la descripción del producto."
 let MISSING_DELIVERY_DATE = "por favor ingrese la fecha de entrega."
 let FAILURE_TO_CREATE_ORDER = "Hubo un error al crear la orden. Inténtalo de nuevo"
-let SUCCESS_TO_CREATE_ORDER = "Tu pedido se ha enviado"
+let SUCCESS_TO_CREATE_ORDER = "su pedido se ha enviado correctamente"
 let FAILURE_TO_SEND_INVITATION = "Hubo un error al enviar una invitación. Inténtalo de nuevo"
 let FAILURE_TO_SEND_PRAPOSAL = "Hubo un error al enviar una propuesta. Inténtalo de nuevo"
 let MISSING_RESTAURANT_TYPE = "Seleccione el tipo de restaurante"
@@ -177,7 +177,7 @@ let AVAILIBILITY_ADDED_SUCESSFULLY = "Agregar disponibilidad con éxito."
 let FAILURE_TO_CONTACT = "Hubo un error al contactar al distribuidor."
 let NO_INTERNET = "No se ha podido establecer conexión. Por favor, intentelo de nuevo"
 let PRAPOSAL_SENT_SUCCESSFULLY = "propuesta enviada correctamente."
-
+let THANKS_FOR_SHARE_LIST = "Gracias por compartir tu lista. Muy pronto recibirás Ofertas de distribuidores."
 
 
 

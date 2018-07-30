@@ -745,12 +745,11 @@ class ApiService {
     func SendPraposal(Praposal: BusinessPraposal, completion: @escaping CompletionHandler) {
         
         var body: [String: Any] = [
-            "wholesalerId": Praposal.WholesalerId,
-            "typeOfBusinessId": Praposal.typeOfBusinessId,
+            "wholesalerId": Praposal.WholesalerId, "zipcode": Praposal.zipcode,
             "comments": Praposal.comments]
         
         if Praposal.zipcode != "" {
-            body["zipcode"] = Praposal.zipcode
+            body["typeOfBusinessId"] = Praposal.typeOfBusinessId
         }
     
         Alamofire.request(URL_SEND_PRAPOSAL, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {

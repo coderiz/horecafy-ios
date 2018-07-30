@@ -191,16 +191,16 @@ extension MakeOnOrderViewController : UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var returnvalue:Bool = true
-        
-        if (textField != self.txtDistribution && textField.tag >= 10000) {
-            let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
-            let compSepByCharInSet = string.components(separatedBy: aSet)
-            let numberFiltered = compSepByCharInSet.joined(separator: "")
-            
-            if string != numberFiltered {
-                returnvalue = false
-            }
-        }
+//        && textField.tag >= 10000
+//        if (textField != self.txtDistribution) {
+//            let aSet = NSCharacterSet(charactersIn:"0123456789").inverted
+//            let compSepByCharInSet = string.components(separatedBy: aSet)
+//            let numberFiltered = compSepByCharInSet.joined(separator: "")
+//
+//            if string != numberFiltered {
+//                returnvalue = false
+//            }
+//        }
        return returnvalue
     }
     

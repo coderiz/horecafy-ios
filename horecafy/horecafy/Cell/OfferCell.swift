@@ -10,5 +10,6 @@ class OfferCell: UITableViewCell {
         self.customerNameLB.text = demand.customerId
         self.zipCodeLB.text = demand.zipCode
         self.createdOnLB.text = demand.createdOn.ToString
+        self.familyLB.text = demand.familyName
     }
 }
