@@ -50,7 +50,7 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
         self.typeOfBusinessSelected = typeOfBusiness[row]
         typeOfBusinessTextField.text = self.typeOfBusinessSelected?.name
         request.typeOfBusinessId = typeOfBusinessSelected?.id
-        typeOfBusinessTextField.resignFirstResponder()
+//        typeOfBusinessTextField.resignFirstResponder()
     }
     //MARK: Private Methods
     private func setupGUI() {
@@ -95,6 +95,7 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
         typeOfBusinessPI.dataSource = self
         typeOfBusinessPI.delegate = self
         typeOfBusinessTextField.inputView = typeOfBusinessPI
+        typeOfBusinessTextField.delegate = self
         activityIndicator.startAnimating()
         ApiService.instance.getTypeOfBusiness { (result) in
             self.activityIndicator.stopAnimating()
@@ -114,6 +115,17 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
             }
             self.typeOfBusinessPI.reloadAllComponents()
         }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == typeOfBusinessTextField {
+            if self.typeOfBusiness.count > 0 && self.typeOfBusinessTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
+                self.typeOfBusinessSelected = typeOfBusiness[0]
+                typeOfBusinessTextField.text = self.typeOfBusinessSelected?.name
+                request.typeOfBusinessId = typeOfBusinessSelected?.id
+            }
+        }
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -163,3 +175,5 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
         reloadView()
     }
 }
+
+

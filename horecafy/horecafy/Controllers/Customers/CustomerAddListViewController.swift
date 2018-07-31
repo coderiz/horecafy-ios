@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     var category: Category?
     var family: Family?
     var demandByCustomer: DemandsByCustomer?
@@ -48,6 +48,7 @@ class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource,
         typeOfFormatPI.dataSource = self
         typeOfFormatPI.delegate = self
         typeOfFormat.inputView = typeOfFormatPI
+        typeOfFormat.delegate = self
         setupUI()
     }
     
@@ -118,13 +119,9 @@ class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource,
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.typeOfFormatSelected = typeOfFormats[row]
         typeOfFormat.text = self.typeOfFormatSelected?.name
-        typeOfFormat.resignFirstResponder()
+//        typeOfFormat.resignFirstResponder()
     }
     
-    // MARK: UITextField
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
-    }
     
     override func keyboardWillAppear() {
         bottomConstraint.constant = 350
@@ -150,4 +147,25 @@ class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource,
         let demand = Demand(hiddenId: "", familyId: family.id, quantyPerMonth: quantyOfMonth!, typeOfFormatId: typeOfFormatSelected.id, targetPrice: targetPrice!, brand: brand, format: format, comments: comments, createdOn: Date(), borrado: true)
         return demand
     }
+}
+
+//MARK:- UITextfieldDelegate Methods
+
+extension CustomerAddListViewController : UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == typeOfFormat {
+            if self.typeOfFormats.count > 0 && self.typeOfFormat.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
+                self.typeOfFormatSelected = typeOfFormats[0]
+                typeOfFormat.text = self.typeOfFormatSelected?.name
+            }
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+    }
+
+    
 }

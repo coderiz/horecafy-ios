@@ -231,8 +231,9 @@ extension WholesalerBusinessNotificationViewController : WholesalerAcceptCellDel
 extension WholesalerBusinessNotificationViewController : UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if self.arrAvailibility.count > 0 {
-            let txtTime = self.alertController.textFields![0]
+         let txtTime = self.alertController.textFields![0]
+        if self.arrAvailibility.count > 0 && txtTime.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
+//            let txtTime = self.alertController.textFields![0]
             txtTime.text = self.arrAvailibility[0]
         }
         return true

@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     var typeOfBusiness = [TypeOfBusiness]()
     var typeOfBusinessSelected: TypeOfBusiness?
     @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
@@ -24,6 +24,7 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
         typeOfBusinessPI.dataSource = self
         typeOfBusinessPI.delegate = self
         typeOfBusinessTF.inputView = typeOfBusinessPI
+        typeOfBusinessTF.delegate = self
         loadDataFromApi()
     }
     
@@ -146,13 +147,10 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.typeOfBusinessSelected = typeOfBusiness[row]
         typeOfBusinessTF.text = self.typeOfBusinessSelected?.name
-        typeOfBusinessTF.resignFirstResponder()
+//        typeOfBusinessTF.resignFirstResponder()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
+
     override func keyboardWillAppear() {
         scrollViewHeightConstraint.constant = 800
         bottomConstraint.constant = 350
@@ -164,4 +162,25 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
         bottomConstraint.constant = 199
         reloadView()
     }
+}
+
+//MARK:- UITextfieldDelegate Methods
+
+extension CustomerCreateAccountViewController : UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == typeOfBusinessTF {
+            if self.typeOfBusiness.count > 0 && self.typeOfBusinessTF.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0{
+                self.typeOfBusinessSelected = typeOfBusiness[0]
+                typeOfBusinessTF.text = self.typeOfBusinessSelected?.name
+            }
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    
 }

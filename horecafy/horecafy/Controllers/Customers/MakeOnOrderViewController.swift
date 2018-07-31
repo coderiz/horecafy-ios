@@ -23,6 +23,9 @@ class MakeOnOrderViewController: BaseViewController {
     
     @IBOutlet weak var btnSubmit: UIButton!
     
+    @IBOutlet weak var submitButtonHeight: NSLayoutConstraint!
+    
+    
     var arrFinalOrderList:[Dictionary<String,Any>] = []
     
     var selectedDistributorId:String = ""
@@ -72,6 +75,7 @@ class MakeOnOrderViewController: BaseViewController {
     
     
     func CreatOrderList() {
+        
         let arrOrderLIst = self.arrMakeOnOrder.filter({ (response) -> Bool in
             return response["ProductName"] as? String != "" || response["Qty"] as? String != ""
         }) as [Dictionary<String, AnyObject>]
@@ -137,9 +141,11 @@ extension MakeOnOrderViewController {
         self.tblProductList.tableFooterView = UIView()
         self.DistributorPickerView.translatesAutoresizingMaskIntoConstraints = false
         self.txtDistribution.inputView = self.DistributorPickerView
+        self.txtDistribution.delegate = self
         self.setDropDownButton()
         self.txtDistribution.tag = 55555
         self.btnSubmit.isHidden = true
+        self.submitButtonHeight.constant = 0
         var DictObject = Dictionary<String,Any>()
         DictObject["ProductName"] = ""
         DictObject["Qty"] = ""
@@ -204,14 +210,27 @@ extension MakeOnOrderViewController : UITextFieldDelegate {
        return returnvalue
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == txtDistribution {
+            if self.arrDistributors.count > 0 && self.txtDistribution.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
+                self.txtDistribution.text = self.arrDistributors[0].name
+                self.selectedDistributorId = self.arrDistributors[0].hiddenId
+            }
+        }
+        return true
+    }
+
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.txtDistribution {
             if self.selectedDistributorId != "" {
                 self.btnSubmit.isHidden = false
+                self.submitButtonHeight.constant = 40
+                
             }
             else {
                 self.btnSubmit.isHidden = true
+                self.submitButtonHeight.constant = 0
             }
         }
         else {
@@ -234,6 +253,7 @@ extension MakeOnOrderViewController : UITextFieldDelegate {
     }
     
     //MARK: UITextFieldDelegate
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true

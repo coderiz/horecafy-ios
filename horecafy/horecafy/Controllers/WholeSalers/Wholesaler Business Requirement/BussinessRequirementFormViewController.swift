@@ -99,6 +99,7 @@ extension BussinessRequirementFormViewController {
         self.txtRestaurantType.tag = 55555
         self.RestaurantTypePicker.translatesAutoresizingMaskIntoConstraints = false
         self.txtRestaurantType.inputView = self.RestaurantTypePicker
+        self.txtRestaurantType.delegate = self
         self.txtRestaurantType.setDropDownButton()
         self.loading.hidesWhenStopped = true
         
@@ -148,6 +149,23 @@ extension BussinessRequirementFormViewController {
     
 }
 
+//MARK:- UITextfieldDelegate Methods
+
+extension BussinessRequirementFormViewController: UITextFieldDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        if textField == self.txtRestaurantType {
+            if self.typeOfBusiness.count > 0 && self.txtRestaurantType.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
+                self.typeOfBusinessSelected = typeOfBusiness[0]
+                self.txtRestaurantType.text = self.typeOfBusinessSelected?.name
+            }
+        }
+        return true
+    }
+    
+}
+
 //MARK:- UIPickerview Datasource & Delegate Methods
 
 extension BussinessRequirementFormViewController : UIPickerViewDataSource, UIPickerViewDelegate {
@@ -166,9 +184,10 @@ extension BussinessRequirementFormViewController : UIPickerViewDataSource, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.typeOfBusinessSelected = typeOfBusiness[row]
-        txtRestaurantType.text = self.typeOfBusinessSelected?.name
-        
+        if typeOfBusiness.count > 0 {
+            self.typeOfBusinessSelected = typeOfBusiness[row]
+            txtRestaurantType.text = self.typeOfBusinessSelected?.name
+        }
 //        self.selectedDistributorId = self.arrDistributors[row].hiddenId
     }
 }
