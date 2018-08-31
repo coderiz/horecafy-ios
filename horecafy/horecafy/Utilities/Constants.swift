@@ -10,7 +10,10 @@ import Foundation
 
 
 // API
+let BASE_URL_IMAGE_UPLOAD = "http://localhost:4201/api/v1/"
+
 let BASE_URL = "http://demo.aipxperts.com:4201"
+//let BASE_URL = "http://192.168.1.111:4201"
 //"https://horecafyapi.azurewebsites.net"
 let API_VERSION = "v1"
 let URL_TYPE_FORMAT = "\(BASE_URL)/api/\(API_VERSION)/type-format"
@@ -45,7 +48,14 @@ let URL_Add_AVAILIBILITY = URL_CUSTOMER
 let URL_CONTACT_DISTRIBUTOR = "\(URL_OFFER)/contact"
 let URL_REVIEW_OFFERS = "\(URL_OFFER)/customer"
 
-
+let URL_DECLINE_OFFER = "\(URL_OFFER)/decline"
+let URL_WHOLESALER_LIST_CATEGORY = "\(URL_WHOLESALER_LIST)/category"
+let URL_PROVINCE_LIST = "\(BASE_URL)/api/\(API_VERSION)/province/"
+let URL_UPLOAD_IMAGES_BUSINESS_VISIT = "businessvisit/upload/"
+let URL_UPLOAD_IMAGES_OFFER = "offer/"
+let URL_IMAGE_VIDEO_UPLOADS = "http://demo.aipxperts.com:4201/uploads/"
+let URL_WHOLESALER_STATS = "\(URL_WHOLESALER)/stats"
+let URL_CUSTOMER_STATS = "\(URL_CUSTOMER)/stats"
 
 // typealias  CompletionHandler = (_ Success: Bool) -> ()
 typealias  CompletionHandler = (_ result: Any?) -> ()
@@ -101,6 +111,7 @@ let CUSTOMER_CREATE_LIST = "CustomerCreateList"
 let CUSTOMER_REVIEW_LIST = "CustomerReviewList"
 
 // User Defaults
+let REMEMBER_ME_KEY = "rememberme"
 let LOGGED_IN_KEY = "loggedIn"
 let USER_ID = "userId"
 let ID = "id"
@@ -178,6 +189,8 @@ let FAILURE_TO_CONTACT = "Hubo un error al contactar al distribuidor."
 let NO_INTERNET = "No se ha podido establecer conexión. Por favor, intentelo de nuevo"
 let PRAPOSAL_SENT_SUCCESSFULLY = "propuesta enviada correctamente."
 let THANKS_FOR_SHARE_LIST = "Gracias por compartir tu lista. Muy pronto recibirás Ofertas de distribuidores."
+let FAILURE_TO_DECLINE = "Hubo un error al rechazar la oferta."
+
 
 
 

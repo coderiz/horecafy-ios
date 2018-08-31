@@ -20,6 +20,9 @@ class CustomerAcceptTblCell: UITableViewCell {
     @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var btnReject: UIButton!
     
+    @IBOutlet weak var btnPreviewImages: MyButton!
+    @IBOutlet weak var btnPreviewVideo: MyButton!
+    
     var AcceptCellDelegate:CustomerAcceptCellDelegate!
     
     override func awakeFromNib() {

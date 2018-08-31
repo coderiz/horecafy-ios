@@ -17,10 +17,42 @@ class DemandCell: UITableViewCell {
     var parentTableViewController: CustomerShowDemandsViewController?
     
     @IBOutlet weak var familyName: UILabel!
+    @IBOutlet var btnSelectItem: UIButton!
     
     @IBAction func deleteTapped(_ sender: Any) {
         print(self.demand?.hiddenId ?? "")
         self.parentTableViewController?.deleteItem(cell: self)
+    }
+    
+    @IBAction func selectItemTapped(_ sender: UIButton)
+    {
+        guard let demand = demand else {
+            return
+        }
+        let demandId = demand.id
+        
+        if sender.isSelected
+        {
+            print("Selected item -> \(demandId)")
+            demandsToShare.append(demandId)
+        }
+        else
+        {
+            if let ix = demandsToShare.index(of: demandId) {
+                demandsToShare.remove(at: ix)
+            }
+        }
+        
+//        let switchState = sender as! UISwitch
+//
+//        if switchState.isOn {
+//            print("Selected item -> \(demandId)")
+//            demandsToShare.append(demandId)
+//        } else {
+//            if let ix = demandsToShare.index(of: demandId) {
+//                demandsToShare.remove(at: ix)
+//            }
+//        }
     }
     
     func configureCell(demand: DemandsByCustomer)  {
@@ -28,5 +60,8 @@ class DemandCell: UITableViewCell {
         self.customer = demand.Customer
         self.family = demand.family
         self.familyName.text = family?.name
+        
+//        let demandId = demand.id
+//        demandsToShare.append(demandId)
     }
 }

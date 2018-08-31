@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import MobileCoreServices
+import AssetsLibrary
+import MediaPlayer
+import AVFoundation
 
-class BussinessRequirementFormViewController: BaseViewController {
+class BussinessRequirementFormViewController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var txtZipcode: UITextField!
     @IBOutlet weak var txtRestaurantType: UITextField!
@@ -16,13 +20,25 @@ class BussinessRequirementFormViewController: BaseViewController {
     @IBOutlet var RestaurantTypePicker: UIPickerView!
     @IBOutlet weak var loading: UIActivityIndicatorView!
 
+    @IBOutlet weak var uploadImageCollectionView: UICollectionView!
+    @IBOutlet weak var ivThumbnailVideo: UIImageView!
+    
+    @IBOutlet weak var btnSendPraposal: UIButton!
+    
     var typeOfBusiness = [TypeOfBusiness]()
     var typeOfBusinessSelected: TypeOfBusiness?
+    
+    var ImageDictionary : [String : UIImage] = [:]
+    var currentPickIndex: Int = -1
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
+    
+    var videoUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setLayout()
         self.getBusinessTypes()
+        print("\(Date().timeIntervalSince1970).mp4")
         // Do any additional setup after loading the view.
     }
 
@@ -44,31 +60,91 @@ class BussinessRequirementFormViewController: BaseViewController {
         
         if let BusinessPraposalReq = self.BussinessPraposalRequest() {
             self.loading.startAnimating()
+            self.btnSendPraposal.isEnabled = false
+            
             ApiService.instance.SendPraposal(Praposal: BusinessPraposalReq, completion: { (response) in
-                self.loading.stopAnimating()
+                
                 guard let ResponseforPraposal:BusinessPraposalResponse = response as? BusinessPraposalResponse else {
+                    self.loading.stopAnimating()
+                    self.btnSendPraposal.isEnabled = true
                     showAlert(self, ERROR, FAILURE_TO_SEND_PRAPOSAL)
+                    
                     return
                 }
                 
-//                showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
-                
                 if ResponseforPraposal.totalRows != 0 {
-                    showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
-                    self.txtRestaurantType.text = ""
-                    self.txtZipcode.text = ""
-                    self.txtComments.text = ""
-                    self.typeOfBusinessSelected = nil
-//                    self.navigationController?.popToRootViewController(animated: true)
+                    
+                    var imageArr: [UIImage] = []
+                    var index = 0
+                    while index < self.ImageDictionary.count
+                    {
+                        if let image = self.ImageDictionary["\(index)"] as? UIImage
+                        {
+                            imageArr.append(image)
+                        }
+                        index += 1
+                    }
+                    
+                    if imageArr.count > 0 || self.videoUrl != nil
+                    {
+                        let groupId = UserDefaults.standard.value(forKey: "groupId") as? String
+                        
+                        var videoData:NSData?
+                        
+                        if self.videoUrl != nil
+                        {
+                            videoData = NSData(contentsOf: self.videoUrl!)
+                        }
+                        else
+                        {
+                            videoData = nil
+                        }
+                        
+                        ApiService.requestForUploadProduct(imageArr, Video: videoData, strURL: URL_UPLOAD_IMAGES_BUSINESS_VISIT + groupId!, params: nil, headers: nil, success: { (response) in
+                            
+                            self.loading.stopAnimating()
+                            showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
+                            
+                            self.btnSendPraposal.isEnabled = true
+                            self.txtRestaurantType.text = ""
+                            self.txtZipcode.text = ""
+                            self.txtComments.text = ""
+                            self.typeOfBusinessSelected = nil
+                            
+                            self.ImageDictionary.removeAll()
+                            self.uploadImageCollectionView.reloadData()
+                            self.ivThumbnailVideo.image = UIImage(named: "Add")
+
+                        }, failure: { (error) in
+                            
+                            print("Error while uploading Images")
+                        })
+                    }
+                    else
+                    {
+                        self.loading.stopAnimating()
+    
+                        showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
+                        
+                        self.btnSendPraposal.isEnabled = true
+                        self.txtRestaurantType.text = ""
+                        self.txtZipcode.text = ""
+                        self.txtComments.text = ""
+                        self.typeOfBusinessSelected = nil
+                        
+                        self.ImageDictionary.removeAll()
+                        self.uploadImageCollectionView.reloadData()
+                        self.ivThumbnailVideo.image = UIImage(named: "Add")
+                    }
+                    
                 }
                 else {
                     showAlert(self, ERROR, ResponseforPraposal.message)
+                    self.btnSendPraposal.isEnabled = true
                 }
-                
             })
-        
-        
         }
+        
     }
     
     /*
@@ -80,12 +156,10 @@ class BussinessRequirementFormViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 
 //MARK:- Private Methods
-
 extension BussinessRequirementFormViewController {
     
     func setLayout() {
@@ -145,6 +219,211 @@ extension BussinessRequirementFormViewController {
             self.typeOfBusiness.remove(at: 0) // delete the firstone because is just for dropdownlists
             self.RestaurantTypePicker.reloadAllComponents()
         }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WholesalerOfferUploadImageCell", for: indexPath) as! WholesalerOfferUploadImageCell
+        
+        if let image = self.ImageDictionary["\(indexPath.item)"] as? UIImage
+        {
+            cell.uploadImage.image = image
+        }
+        else
+        {
+            cell.uploadImage.image = UIImage(named: "Add")
+        }
+        
+        cell.btnAdd.tag = indexPath.item
+        cell.btnAdd.addTarget(self, action: #selector(self.addImageAction(sender:)), for: .touchUpInside)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let widthPerItem = 50.0
+        
+        let heightPerItem = widthPerItem
+        
+        return CGSize(width: widthPerItem, height: heightPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+    
+    @IBAction func addImageAction(sender: UIButton) {
+        let alert = UIAlertController(title: "Seleccione la acción", message: nil, preferredStyle: .alert)
+        let cameraAction = UIAlertAction(title: "Capturar fotos desde la cámara", style: .default) { action in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self.openCamera()
+            }
+            else
+            {
+                let errAlert = UIAlertController(title: "No hay cámara disponible en tu dispositivo", message: nil, preferredStyle: .alert)
+                errAlert.addAction(UIAlertAction(title: "De acuerdo", style: .default, handler: nil))
+                self.present(errAlert, animated: true, completion: nil)
+            }
+        }
+        alert.addAction(cameraAction)
+        let albumAction = UIAlertAction(title: "Seleccionar foto de la galería", style: .default) { action in
+            self.openPhotoAlbum()
+        }
+        alert.addAction(albumAction)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { action in }
+        alert.addAction(cancelAction)
+        
+        self.currentPickIndex = sender.tag
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .camera
+        controller.allowsEditing = false
+        present(controller, animated: true, completion: {
+        })
+    }
+    
+    func openPhotoAlbum()
+    {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .photoLibrary
+        controller.allowsEditing = false
+        present(controller, animated: true, completion: {
+        })
+    }
+    
+    @IBAction func addVideoAction(sender: UIButton) {
+        let alert = UIAlertController(title: "Seleccione la acción", message: nil, preferredStyle: .alert)
+        let cameraAction = UIAlertAction(title: "Capture video de la cámara", style: .default) { action in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self.captureVideo()
+            }
+            else
+            {
+                let errAlert = UIAlertController(title: "No hay cámara disponible en tu dispositivo", message: nil, preferredStyle: .alert)
+                errAlert.addAction(UIAlertAction(title: "De acuerdo", style: .default, handler: nil))
+                self.present(errAlert, animated: true, completion: nil)
+            }
+        }
+        alert.addAction(cameraAction)
+        let albumAction = UIAlertAction(title: "Seleccionar video de la galería", style: .default) { action in
+            self.selectVideo()
+        }
+        alert.addAction(albumAction)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { action in }
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func captureVideo()
+    {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .camera
+        controller.mediaTypes = ["public.movie"]
+        controller.allowsEditing = false
+        controller.videoMaximumDuration = 90.0
+        present(controller, animated: true)
+    }
+    
+    func selectVideo()
+    {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .photoLibrary
+        controller.mediaTypes = ["public.movie"]
+        controller.videoMaximumDuration = 90.0
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if picker.mediaTypes == ["public.movie"]
+        {
+            var VideoURL:String = ""
+            
+            guard let capturedVideoURL = info[UIImagePickerControllerMediaURL] as? URL else {
+                dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            if let selectedVideoURL = info[UIImagePickerControllerMediaURL] as? URL {
+                VideoURL = "\(selectedVideoURL)"
+                self.videoUrl = selectedVideoURL
+            }
+            
+            var thumbnail: UIImage!
+            
+            thumbnail = self.thumbnailImageFromURL(videoURLString: VideoURL) as? UIImage
+            self.ivThumbnailVideo.image = thumbnail
+            
+            dismiss(animated: true, completion: nil)
+        }
+        else
+        {
+            guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+                dismiss(animated: true, completion:nil)
+                return
+            }
+            
+            self.ImageDictionary["\(currentPickIndex)"] = image
+            
+            dismiss(animated: true, completion:nil)
+            
+            self.uploadImageCollectionView.reloadData()
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        dismiss(animated: true, completion:nil)
+    }
+    
+    func thumbnailImageFromURL(videoURLString : String) -> UIImage {
+        let videoURL = URL(string: videoURLString)
+        let asset = AVURLAsset(url: videoURL! , options: nil)
+        let generator = AVAssetImageGenerator.init(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        let requestedTime : CMTime = CMTimeMake(1, 10)
+        var imgRef:UIImage = UIImage()
+        do {
+            imgRef = UIImage(cgImage: try generator.copyCGImage(at: requestedTime, actualTime: nil))
+        } catch {
+            
+        }
+        return imgRef
     }
     
 }

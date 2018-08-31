@@ -21,6 +21,10 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
     @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var stateList = [ProvinceData]()
+    private var stateListSelected: ProvinceData?
+    private var provincePickerView = UIPickerView()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupGUI()
@@ -39,19 +43,43 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return typeOfBusiness.count
+        if pickerView == self.provincePickerView
+        {
+            return stateList.count
+        }
+        else
+        {
+            return typeOfBusiness.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return typeOfBusiness[row].name
+        if pickerView == self.provincePickerView
+        {
+            return stateList[row].province
+        }
+        else
+        {
+            return typeOfBusiness[row].name
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.typeOfBusinessSelected = typeOfBusiness[row]
-        typeOfBusinessTextField.text = self.typeOfBusinessSelected?.name
-        request.typeOfBusinessId = typeOfBusinessSelected?.id
-//        typeOfBusinessTextField.resignFirstResponder()
+        if pickerView == self.provincePickerView
+        {
+            self.stateListSelected = stateList[row]
+            provinceTextField.text = self.stateListSelected?.province
+            request.province = stateListSelected?.province
+        }
+        else
+        {
+            self.typeOfBusinessSelected = typeOfBusiness[row]
+            typeOfBusinessTextField.text = self.typeOfBusinessSelected?.name
+            request.typeOfBusinessId = typeOfBusinessSelected?.id
+        }
+
     }
+    
     //MARK: Private Methods
     private func setupGUI() {
         
@@ -63,7 +91,7 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
     private func setupTextFields() {
         bottomConstraint.constant = 113
         title = "Edita tus datos"
-        nifOrCifTextField.delegate = self
+//        nifOrCifTextField.delegate = self
         emailTextField.delegate = self
         businessNameTextField.delegate = self
         typeOfBusinessTextField.delegate = self
@@ -73,9 +101,9 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
         cityTextField.delegate = self
         zipCodeTextField.delegate = self
         provinceTextField.delegate = self
-        countryTextField.delegate = self
+//        countryTextField.delegate = self
     
-        nifOrCifTextField.text = user.VAT
+//        nifOrCifTextField.text = user.VAT
         emailTextField.text = user.email
         businessNameTextField.text = user.name
         contactNameTextField.text = user.contactName
@@ -84,7 +112,7 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
         cityTextField.text = user.city
         zipCodeTextField.text = user.zipCode
         provinceTextField.text = user.province
-        countryTextField.text = user.country        
+//        countryTextField.text = user.country
     }
     //MARK: CustomerAlertView
     func didTapInOkButtton(isSuccess: Bool) {
@@ -115,6 +143,33 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
             }
             self.typeOfBusinessPI.reloadAllComponents()
         }
+        
+        provincePickerView.dataSource = self
+        provincePickerView.delegate = self
+        provinceTextField.inputView = provincePickerView
+        provinceTextField.delegate = self
+        activityIndicator.startAnimating()
+        ApiService.instance.getProvinceList(completion: { (result) in
+            self.activityIndicator.stopAnimating()
+            
+            guard let result: [ProvinceData] = result as? [ProvinceData] else
+            {
+                print("No Provinces were loaded from api")
+                return
+            }
+            
+            
+            self.stateList = result
+            let statefilter = self.stateList.filter{
+                $0.id == String(id)
+            }
+            if let state = statefilter.first {
+                self.provinceTextField.text = self.user.province
+            } else {
+                self.provinceTextField.text = ""
+            }
+            self.provincePickerView.reloadAllComponents()
+        })
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -123,6 +178,15 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
                 self.typeOfBusinessSelected = typeOfBusiness[0]
                 typeOfBusinessTextField.text = self.typeOfBusinessSelected?.name
                 request.typeOfBusinessId = typeOfBusinessSelected?.id
+            }
+        }
+        else if textField == provinceTextField
+        {
+            if self.stateList.count > 0 && self.provinceTextField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0
+            {
+                self.stateListSelected = stateList[0]
+                provinceTextField.text = self.stateListSelected?.province
+                request.province = stateListSelected?.province
             }
         }
         return true
@@ -135,8 +199,8 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
             return true
         }
         switch textField.tag {
-        case 0:
-            request.VAT = finalString
+//        case 0:
+//            request.VAT = finalString
         case 1:
             request.email = finalString
         case 2:
@@ -155,25 +219,14 @@ class CustomerEditDataViewController: BaseViewController, UITextFieldDelegate, U
             request.zipCode = finalString
         case 9:
             request.province = finalString
-        case 10:
-            request.country = finalString
+//        case 10:
+//            request.country = finalString
         default:
             break
         }
         return true
     }
-    
-    override func keyboardWillAppear() {
-        scrollViewHeightConstraint.constant = 1000
-        bottomConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        scrollViewHeightConstraint.constant = 716
-        bottomConstraint.constant = 113
-        reloadView()
-    }
+
 }
 
 

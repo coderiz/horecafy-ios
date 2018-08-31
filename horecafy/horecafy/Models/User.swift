@@ -38,7 +38,7 @@ struct CustomerRequest: Codable {
         self.city = user.city
         self.zipCode = user.zipCode
         self.province = user.province
-        self.country = user.country
+//        self.country = user.country
         self.createdOn = user.createdOn
         self.visible = user.visible
     }
@@ -58,7 +58,7 @@ struct User: Codable {
     let city: String
     let zipCode: String
     let province: String
-    let country: String
+//    let country: String
     let createdOn: Date
     let visible: Bool
 }
@@ -81,7 +81,7 @@ struct CustomerResponse: Codable {
     let page: Int?
     let rows: Int?
     let error: String
-    let message: String
+    let message: String?
     let data: [User]
 }
 
@@ -112,10 +112,23 @@ struct ForgotResponse:Codable {
     let data: [PasswordRecoveryDetail]
 }
 
-
 struct PasswordRecoveryDetail:Codable {
     let typeUser: Bool
     let userId: String
     let token: String
 }
 
+struct ProvinceData: Codable{
+    let id: String
+    let province: String
+}
+
+struct ProvinceListResponse: Codable
+{
+    let totalRows: Int
+    let page: Int?
+    let rows: Int?
+    let error: String?
+    let message: String?
+    let data: [ProvinceData]
+}

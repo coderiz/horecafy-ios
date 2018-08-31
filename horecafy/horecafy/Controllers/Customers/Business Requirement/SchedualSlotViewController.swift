@@ -28,7 +28,7 @@ class SchedualSlotViewController: BaseViewController {
         self.getCustomerAvailibility()
         // Do any additional setup after loading the view.
     }
-    
+
     
     @IBAction func btnAddAvaibility(_ sender: Any) {
         self.loading.startAnimating()
@@ -44,8 +44,6 @@ class SchedualSlotViewController: BaseViewController {
                showAlert(self, SUCCESS, AVAILIBILITY_ADDED_SUCESSFULLY)
             }
         }
-
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,8 +72,9 @@ extension SchedualSlotViewController {
     func SetLayout() {
         self.loading.hidesWhenStopped = true
         
-        self.arrDays = ["Lun","Mar","Mie","Jue","Vie","Sab","Sol"]
-        self.arrSlot = ["00:00 - 02:00","02:00 - 04:00","04:00 - 06:00","06:00 - 08:00","08:00 - 10:00","10:00 - 12:00","12:00 - 14:00","14:00 - 16:00","16:00 - 18:00","18:00 - 20:00","20:00 - 22:00","22:00 - 24:00"]
+        self.arrDays = ["Lun","Mar","Mie","Jue","Vie","Sab","Dom"]
+        self.arrSlot = ["10:00 - 12:00","12:00 - 14:00","14:00 - 16:00","16:00 - 18:00","18:00 - 20:00","20:00 - 22:00","22:00 - 24:00"]
+//        self.arrSlot = ["00:00 - 02:00","02:00 - 04:00","04:00 - 06:00","06:00 - 08:00","08:00 - 10:00","10:00 - 12:00","12:00 - 14:00","14:00 - 16:00","16:00 - 18:00","18:00 - 20:00","20:00 - 22:00","22:00 - 24:00"]
         self.setGridView()
        
     }
@@ -182,17 +181,10 @@ extension SchedualSlotViewController {
                 DayLineView.addSubview(btnTime)
                 ButtonY = ButtonY + ButtonHeight + 5
             }
-            
             self.TimeSlotScrollview.addSubview(DayLineView)
             ButtonX = ButtonX + ButtonHeight + 5
-            
         }
- 
-        
     }
-    
-    
-    
     
     @objc func pressedAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected

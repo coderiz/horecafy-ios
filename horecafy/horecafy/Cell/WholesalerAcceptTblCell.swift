@@ -19,10 +19,12 @@ class WholesalerAcceptTblCell: UITableViewCell {
     @IBOutlet weak var lblRestaurantName: UILabel!
     @IBOutlet weak var lblResaurantDesc: UILabel!
     
-    
 //    @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var btnSetTime: UIButton!
     @IBOutlet weak var lblAcceptStatus: UILabel!
+    
+    @IBOutlet weak var btnPreviewImages: MyButton!
+    @IBOutlet weak var btnPreviewVideo: MyButton!
     
     var AcceptCellDelegate:WholesalerAcceptCellDelegate!
     

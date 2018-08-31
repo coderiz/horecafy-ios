@@ -320,6 +320,12 @@ struct ListsByWholeSalerResponse: Codable {
     let data: [ListsByWholeSaler]
 }
 
-
+struct DeclineOfferResponse: Codable {
+    let totalRows: Int
+    let page: Int?
+    let rows: Int?
+    let error: String
+    let message: String
+}
 
 

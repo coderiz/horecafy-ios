@@ -3,6 +3,12 @@ import UIKit
 
 class MainWholeSalerViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -19,16 +25,20 @@ class MainWholeSalerViewController: UIViewController {
         }
     }
     
-    @IBAction func goLogin(_ sender: Any) {
+    @IBAction func goLogin(_ sender: Any)
+    {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: WHOLESALER_LOGIN) as! LoginWholeSalerViewController
         self.present(vc, animated: true, completion: nil)
     }
-    @IBAction func goCreateAccount(_ sender: Any) {
+    
+    @IBAction func goCreateAccount(_ sender: Any)
+    {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: WHOLESALER_CREATE) as! WholeSalerCreateAccountViewController
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func goBack(_ sender: Any) {
+    @IBAction func goBack(_ sender: Any)
+    {
         self.dismiss(animated: true, completion: nil)
     }
 

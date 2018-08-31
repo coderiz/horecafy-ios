@@ -52,6 +52,33 @@ class WholeSalerListToMakeOfferViewController: UIViewController, UITableViewDele
             }
         }
     }
+    
+    @objc func deleteItem(sender: UIButton) {
+
+        let listsToDelete = demands[sender.tag]
+            
+        demands.remove(at: sender.tag)
+
+        // Call api to delete the demands
+        ApiService.instance.deleteDemand(demandId: Int(listsToDelete.hiddenId)!, completion: { result in
+            if result == nil {
+                debugPrint("Error in the delete call")
+            }
+        })
+        self.demandsTVC.reloadData()
+        
+//        ApiService.instance.declineOffer(offerId: listsToDelete.id, completion: { result in
+//            guard let ResponseforDecline:DeclineOfferResponse = result as? DeclineOfferResponse else {
+//                showAlert(self, ERROR, FAILURE_TO_DECLINE)
+//                return
+//            }
+//            if ResponseforDecline.totalRows != 0 {
+//                self.demands.remove(at: sender.tag)
+//                self.demandsTVC.reloadData()
+//            }
+//        })
+    }
+    
     // MARK: UI Table View Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
@@ -68,6 +95,10 @@ class WholeSalerListToMakeOfferViewController: UIViewController, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = demandsTVC.dequeueReusableCell(withIdentifier: "offerCellId", for: indexPath) as! OfferCell
         let demand = demands[indexPath.item]
+        
+        cell.btnDelete.tag = indexPath.row
+        cell.btnDelete.addTarget(self, action: #selector(deleteItem(sender:)), for: .touchUpInside)
+        
         cell.configureCell(demand: demand)
         return cell
     }

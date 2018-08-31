@@ -15,7 +15,6 @@ class CommercialVisitViewController: BaseViewController, CarbonTabSwipeNavigatio
     
     var tabSwipe = CarbonTabSwipeNavigation()
 
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()

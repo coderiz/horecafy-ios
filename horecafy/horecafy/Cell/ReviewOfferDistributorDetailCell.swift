@@ -11,14 +11,14 @@ import UIKit
 class ReviewOfferDistributorDetailCell: UITableViewCell {
 
     @IBOutlet weak var lblProductName: UILabel!
-    
     @IBOutlet weak var lblBrand: UILabel!
-    
     @IBOutlet weak var lblPrice: UILabel!
-    
     @IBOutlet weak var lblFormat: UILabel!
-    
     @IBOutlet weak var lblComments: UILabel!
+    
+    @IBOutlet weak var btnDecline: UIButton!
+    @IBOutlet weak var btnPreviewImages: MyButton!
+    @IBOutlet weak var btnPreviewVideo: MyButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

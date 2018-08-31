@@ -28,15 +28,6 @@ class WholeSalerAddListViewController: BaseViewController, UIPickerViewDelegate,
         loadDataFromApi()
     }
     
-    override func keyboardWillAppear() {
-        acceptButtonVerticalConstraint.constant = 250
-        self.checkConstraintStatus()
-    }
-    
-    override func keyboardWillDisappear() {
-        acceptButtonVerticalConstraint.constant = 20
-        self.checkConstraintStatus()
-    }
     //MARK: Actions
     @IBAction func acceptTapped(_ sender: Any) {
       view.endEditing(true)

@@ -42,10 +42,7 @@ class WholesalerCommercialVisitViewController: BaseViewController , CarbonTabSwi
     }
     
 
-    
     func carbonTabSwipeNavigation(_ carbonTabSwipeNavigation: CarbonTabSwipeNavigation, viewControllerAt index: UInt) -> UIViewController {
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         if index == 0 {
             return self.storyboard!.instantiateViewController(withIdentifier: "BussinessRequirementFormViewController")

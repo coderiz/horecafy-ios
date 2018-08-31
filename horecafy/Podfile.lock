@@ -1,32 +1,42 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.6.0)
   - CarbonKit (2.1.10)
   - IQKeyboardManagerSwift (6.0.4)
   - ReachabilitySwift (3)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - Alamofire (~> 4.6)
   - CarbonKit (~> 2.1.10)
   - IQKeyboardManagerSwift
   - ReachabilitySwift (~> 3)
+  - SDWebImage
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
     - Alamofire
     - CarbonKit
     - IQKeyboardManagerSwift
     - ReachabilitySwift
+    - SDWebImage
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CarbonKit: f5037447bf6fcb9b41800ba8d991cd779575a9d7
   IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: e498b84e5d571f3cb9e3d8b9fa6e78f508392474
+PODFILE CHECKSUM: 72507ad2cf5f8652d73e0c115aaf6f9387781b3d
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

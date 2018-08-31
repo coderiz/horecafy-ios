@@ -16,6 +16,7 @@ class CustomerCategoryDemandOfferViewController: UIViewController, UITableViewDe
         ApiService().getApprovedCustomerOffers(customerId: credentials.userId, demandId: demand.hiddenId) { result in
             if let offersCustomer = result as? [OfferCustomer] {
                 self.offersCustomer = offersCustomer
+                print(self.offersCustomer)
                 self.tableView.reloadData()
             }
         }

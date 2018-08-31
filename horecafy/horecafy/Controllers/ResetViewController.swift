@@ -70,16 +70,6 @@ class ResetViewController: BaseViewController {
 //            self.dismiss(animated: true, completion: nil)
         }
     }
-    
-    override func keyboardWillAppear() {
-        bottomConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        bottomConstraint.constant = 0
-        reloadView()
-    }
 
 }
 

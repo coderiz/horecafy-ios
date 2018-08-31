@@ -1,7 +1,8 @@
 
 import UIKit
 
-class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDelegate {
+class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDelegate
+{
     @IBOutlet weak var vatTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -10,28 +11,31 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
     @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        vatTF.delegate = self
+       // vatTF.delegate = self
         emailTF.delegate = self
         passwordTF.delegate = self
         rePasswordTF.delegate = self
         nameTF.delegate = self
     }
     
-    @IBAction func goBack(_ sender: Any) {
+    @IBAction func goBack(_ sender: Any)
+    {
         userAddressData = nil
         userContactData = nil
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func createAccount(_ sender: Any) {
+    @IBAction func createAccount(_ sender: Any)
+    {
         
         guard let vat = vatTF.text?.removingSpacesAndNewLines, vatTF.text != "" else {
             showAlert(self, WARNING, VAT_MISSING)
             return
         }
-        
+
         guard let email = emailTF.text?.removingSpacesAndNewLines, emailTF.text != "" else {
             showAlert(self, WARNING, EMAIL_MISSING)
             return
@@ -67,8 +71,8 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
             return
         }
         
-        
-        let user = User(hiddenId: "", id: "", VAT: vat, email: email, name: name, typeOfBusinessId: 0, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, country: addresData.country, createdOn: Date(), visible: true)
+        let user = User(hiddenId: "", id: "", VAT: vat, email: email, name: name, typeOfBusinessId: 0, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, createdOn: Date(), visible: true)
+//        let user = User(hiddenId: "", id: "", VAT: vat, email: email, name: name, typeOfBusinessId: 0, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, country: addresData.country, createdOn: Date(), visible: true)
         
         ApiService.instance.createWholeSaler(user: user, password: password) { (response) in
             guard let customerResponse = response as? WholeSalerResponse else {
@@ -105,15 +109,4 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
         return true
     }
     
-    override func keyboardWillAppear() {
-        scrollViewHeightConstraint.constant = 800
-        bottomConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        scrollViewHeightConstraint.constant = 716
-        bottomConstraint.constant = 199
-        reloadView()
-    }
 }

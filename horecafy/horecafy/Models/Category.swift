@@ -28,6 +28,23 @@ struct CategoryResponse: Codable {
     let data: [Category]
 }
 
+struct AddedCategory: Codable {
+    let id: Int
+    let name: String
+    let image: String
+    let totalFamilies:Int
+    let totalSelectedFamilies:Int
+}
+
+struct AddedCategoryResponse: Codable {
+    let totalRows: Int
+    let page: Int?
+    let rows: Int?
+    let error: String
+    let message: String
+    let data: [AddedCategory]
+}
+
 struct CategoryWithFamilyCount: Codable {
     let id: Int
     let name: String

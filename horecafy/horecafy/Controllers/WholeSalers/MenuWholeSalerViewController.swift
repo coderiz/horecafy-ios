@@ -6,10 +6,11 @@ class MenuWholeSalerViewController: UIViewController {
 
     @IBOutlet weak var WholeSalerMenuCollectionView: UICollectionView!
     
-    
-    
     var arrMenu:[String] = []
     var arrMenuImages:[String] = []
+    
+    var demandCount = 0
+    var visitsCount = 0
     
     override func viewDidLoad() {
         arrMenu = ["Crear catalogo","Realiza ofertas", "Exporta solicitudes en fichero","Sube ofertas en fichero", "Visitas comerciales"]
@@ -18,19 +19,42 @@ class MenuWholeSalerViewController: UIViewController {
         //        self.CustomerMenuCollectionView.isHidden = true
         activityIndicator.stopAnimating()
         activityIndicator.hidesWhenStopped = true
+        
+        if !isLoggedIn {
+            showLogin()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !isLoggedIn {
-            showLogin()
-        }
+      // self.getMenuIconsLabelCount()
     }
     
     func showLogin() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    func getMenuIconsLabelCount(){
+        
+        let WholeSalerID = loadUser().id
+        
+        ApiService.getWholesalerMenuIconsLabelCount(wholesalerId: WholeSalerID) { (result) in
+            
+            guard let result: wholesalerStats = result as? wholesalerStats else
+            {
+                print("No stats loaded from api")
+                return
+            }
+            
+            self.demandCount = result.totalPendingDemands
+            self.visitsCount = result.totalPendingVisits
+            
+            self.WholeSalerMenuCollectionView.reloadData()
+        }
+
     }
     
     @IBAction func didTapInEditButton(_ sender: Any) {
@@ -39,11 +63,21 @@ class MenuWholeSalerViewController: UIViewController {
         }
     }
     
-    @IBAction func goBack(_ sender: Any) {
-        removeCredentials()
-        removeUser()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
-        self.present(vc, animated: true, completion: nil)
+    @IBAction func goBack(_ sender: Any)
+    {
+        let alert = UIAlertController(title: "horecafy", message: "¿Realmente quieres desconectarte?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Sí", style: .default, handler: { action in
+            removeCredentials()
+            removeUser()
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
+            self.present(vc, animated: true, completion: nil)
+        })
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func downloadTapped(_ sender: Any) {
@@ -72,6 +106,41 @@ extension MenuWholeSalerViewController: UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeMenuCell", for: indexPath) as! HomeMenuCell
         cell.imgMenu.image = UIImage(named: self.arrMenuImages[indexPath.item])
         cell.lblMenuName.text = self.arrMenu[indexPath.item]
+        
+        switch indexPath.item {
+        case 0:
+            cell.lblCount.isHidden = true
+        case 1:
+            
+            if self.demandCount == 0
+            {
+                cell.lblCount.isHidden = true
+            }
+            else
+            {
+                cell.lblCount.isHidden = false
+                cell.lblCount.text = "\(self.demandCount)"
+            }
+
+        case 2:
+            cell.lblCount.isHidden = true
+        case 3:
+            cell.lblCount.isHidden = true
+        case 4:
+            
+            if self.visitsCount == 0
+            {
+                cell.lblCount.isHidden = true
+            }
+            else
+            {
+                cell.lblCount.isHidden = false
+                cell.lblCount.text = "\(self.visitsCount)"
+            }
+    
+        default:
+            break
+        }
         
         return cell
     }

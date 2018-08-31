@@ -26,13 +26,4 @@ class CustomerContactDataViewController: BaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func keyboardWillAppear() {
-        bottomHeightConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        bottomHeightConstraint.constant = 16
-        reloadView()
-    }
 }

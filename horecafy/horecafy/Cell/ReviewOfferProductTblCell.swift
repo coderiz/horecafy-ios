@@ -26,6 +26,12 @@ class ReviewOfferProductTblCell: UITableViewCell {
 
     @IBOutlet weak var btnContact: UIButton!
     
+    @IBOutlet weak var btnDecline: UIButton!
+    
+    @IBOutlet weak var btnPreviewImages: MyButton!
+    
+    @IBOutlet weak var btnPreviewVideo: MyButton!
+    
     var ContactDelegate:ContactDistributorDelegate!
     
     

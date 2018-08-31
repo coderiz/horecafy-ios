@@ -15,6 +15,9 @@ class CustomerNotificationDetailTblCell: UITableViewCell {
     @IBOutlet weak var lblAcceptStatus: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     
+    @IBOutlet weak var btnPreviewImages: MyButton!
+    @IBOutlet weak var btnPreviewVideo: MyButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

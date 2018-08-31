@@ -12,6 +12,12 @@ class WholeSalerMakeOfferCategoryViewController: UIViewController, UICollectionV
         setupUI()
         loadDataFromApi()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadDataFromApi()
+    }
     // MARK: UI
     func setupUI() {
         self.title = "Realizar oferta"

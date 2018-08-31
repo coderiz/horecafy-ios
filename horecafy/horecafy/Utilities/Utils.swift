@@ -29,6 +29,15 @@ var isLoggedIn: Bool {
     }
 }
 
+var isRememberPressed: Bool{
+    get {
+        return UserDefaults.standard.bool(forKey: REMEMBER_ME_KEY)
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: REMEMBER_ME_KEY)
+    }
+}
+
 func loadUser() -> User {
     let userId = Int64(UserDefaults.standard.integer(forKey: USER_ID))
     let id = UserDefaults.standard.string(forKey: ID) ?? ""
@@ -41,11 +50,11 @@ func loadUser() -> User {
     let city = UserDefaults.standard.string(forKey: CITY) ?? ""
     let postalCode = UserDefaults.standard.string(forKey: POSTAL_CODE) ?? ""
     let province = UserDefaults.standard.string(forKey: PROVINCE) ?? ""
-    let country = UserDefaults.standard.string(forKey: COUNTRY) ?? ""
+//    let country = UserDefaults.standard.string(forKey: COUNTRY) ?? ""
     let businessName = UserDefaults.standard.string(forKey: BUSINNES_NAME) ?? ""
     let businessID = UserDefaults.standard.integer(forKey: BUSINNES_ID)
 
-    return User(hiddenId: "\(userId)", id: id, VAT: VAT, email: email, name: businessName, typeOfBusinessId: businessID , contactName: contactName, contactEmail: contactEmail, contactMobile: telephone, address: address, city: city, zipCode: postalCode, province: province, country: country, createdOn: Date(), visible: true)
+    return User(hiddenId: "\(userId)", id: id, VAT: VAT, email: email, name: businessName, typeOfBusinessId: businessID, contactName: contactName, contactEmail: contactEmail, contactMobile: telephone, address: address, city: city, zipCode: postalCode, province: province, createdOn: Date(), visible: true)
 }
 
 func storeUser(user: User) {
@@ -60,7 +69,7 @@ func storeUser(user: User) {
     UserDefaults.standard.set(user.city, forKey: CITY)
     UserDefaults.standard.set(user.zipCode, forKey: POSTAL_CODE)
     UserDefaults.standard.set(user.province, forKey: PROVINCE)
-    UserDefaults.standard.set(user.country, forKey: COUNTRY)
+//    UserDefaults.standard.set(user.country, forKey: COUNTRY)
     UserDefaults.standard.set(user.name, forKey: BUSINNES_NAME)
     UserDefaults.standard.set(user.typeOfBusinessId, forKey: BUSINNES_ID)
     isLoggedIn = true
@@ -84,6 +93,7 @@ func removeUser() {
     UserDefaults.standard.removeObject(forKey: BUSINNES_NAME)
     UserDefaults.standard.removeObject(forKey: BUSINNES_ID)
     isLoggedIn = false
+    isRememberPressed = false
 }
 
 func storeCredentials(_ credentials: Credentials) {
@@ -109,7 +119,9 @@ func removeCredentials() {
     UserDefaults.standard.removeObject(forKey: USER_PASSWORD)
     UserDefaults.standard.removeObject(forKey: USER_TYPE)
     isLoggedIn = false
+    isRememberPressed = false
 }
+
 // Custom Alert View
 func showAlert(_ vc: UIViewController, _ titulo: String, _ mensaje: String, delegate: CustomerAlertView? = nil) {
     let customAlert = CustomerAlertViewController(titulo: titulo, mensaje: mensaje)

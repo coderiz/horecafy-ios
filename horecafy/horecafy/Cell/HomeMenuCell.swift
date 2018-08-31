@@ -14,6 +14,10 @@ class HomeMenuCell: UICollectionViewCell {
     @IBOutlet weak var imgMenu: UIImageView!
     
     @IBOutlet weak var lblMenuName: UILabel!
+    @IBOutlet weak var lblCount: UILabel!
     
-    
+    override func awakeFromNib() {
+        self.lblCount.layer.cornerRadius = 15.0
+        self.lblCount.layer.masksToBounds = true
+    }
 }

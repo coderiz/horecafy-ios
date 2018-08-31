@@ -122,17 +122,6 @@ class CustomerAddListViewController: BaseViewController, UIPickerViewDataSource,
 //        typeOfFormat.resignFirstResponder()
     }
     
-    
-    override func keyboardWillAppear() {
-        bottomConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        bottomConstraint.constant = 65
-        reloadView()
-    }
-    
     private func demand() -> Demand? {
         
         guard let family = family , let typeOfFormatSelected = typeOfFormatSelected else {

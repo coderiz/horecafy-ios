@@ -19,17 +19,18 @@ class ReviewOfferViewController: UIViewController {
     var arrMenuImages:[String] = []
     var arrMaster:[OfferObject] = []
     
-    var arrDistributor:[DistributorObj] = []
-    var arrProductDistributor:[ProductObj] = []
+//    var arrDistributor:[DistributorObj] = []
+//    var arrProductDistributor:[ProductObj] = []
     
     var arrProducts:[String] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setLayout()
         
         self.getOffers()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getOffers), name: Notification.Name("getOffers"), object: nil)
         // Do any additional setup after loading the view.
     }
 
@@ -51,9 +52,7 @@ class ReviewOfferViewController: UIViewController {
 
 }
 
-
 //Private Methods
-
 extension ReviewOfferViewController {
     
     func setLayout() {
@@ -67,18 +66,17 @@ extension ReviewOfferViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == REVIEW_OFFERS_DISTRIBUTOR_SEGUE {
             let vc = segue.destination as! ReviewOfferDistributorViewController
-            vc.arrDistributors = self.arrDistributor
-            vc.arrOffers = self.arrMaster
+//            vc.arrDistributors = self.arrDistributor
+//            vc.arrOffers = self.arrMaster
         }
         else if segue.identifier == REVIEW_OFFERS_PRODUCT_SEGUE {
             let vc = segue.destination as! ReviewOfferProductViewController
-            vc.arrProducts = self.arrProductDistributor
+//            vc.arrProducts = self.arrProductDistributor
 //            vc.arrOffers = self.arrMaster
         }
     }
 
-    
-    func getOffers() {
+    @objc func getOffers() {
         
         self.Loading.startAnimating()
         ApiService.instance.getOfferList(completion: { (result) in
@@ -88,7 +86,8 @@ extension ReviewOfferViewController {
                 return
             }
             
-            self.arrMaster = result
+//            self.arrMaster = result
+            AppDelegate.sharedInstance.arrOfferMaster = result
             self.Build_Data_Structure()
         })
     }
@@ -101,7 +100,7 @@ extension ReviewOfferViewController {
         var arrProductDist:[ProductObj] = []
         var arrDistributors:[DistributorObj] = []
         
-        for SingleOffer in arrMaster {
+        for SingleOffer in AppDelegate.sharedInstance.arrOfferMaster {
             let ID = SingleOffer.WholeSaler.id
             let HiddenId = SingleOffer.WholeSaler.hiddenId
             let Name = SingleOffer.WholeSaler.name
@@ -147,9 +146,9 @@ extension ReviewOfferViewController {
             
         }
         
-        self.arrProductDistributor = arrProductDist
-        self.arrDistributor = arrDistributors
-        print(self.arrDistributor)
+        AppDelegate.sharedInstance.arrProductDistributor = arrProductDist
+        AppDelegate.sharedInstance.arrDistributor = arrDistributors
+        print(AppDelegate.sharedInstance.arrDistributor)
     }
     
 }

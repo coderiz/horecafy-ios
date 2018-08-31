@@ -35,10 +35,14 @@ struct BusinessNotification:Codable {
     let status: Bool
 //    let createdOn: Date
     let borrado: Bool
-    let comments: String
+    let comments: String?
 //    let name: String
     let Customer:CustomerObj
     let Wholesaler:WholesalerObj
+    let groupId: String?
+    let video: String?
+    let images: String?
+    let visitDate: String?
 }
 
 struct CustomerObj:Codable {
@@ -93,5 +97,5 @@ struct SetTimeSlotResponse:Codable {
     let page: Int?
     let rows: Int?
     let error: String
-    let message: String
+    let message: String?
 }

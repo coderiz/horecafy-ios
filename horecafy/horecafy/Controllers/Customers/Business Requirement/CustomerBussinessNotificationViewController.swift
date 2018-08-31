@@ -63,6 +63,31 @@ extension CustomerBussinessNotificationViewController : UITableViewDataSource, U
             AcceptCell.lblRestaurantName.text = NotificationObject.Wholesaler.name
             
             AcceptCell.lblResaurantDesc.text = NotificationObject.comments
+            
+            if NotificationObject.images != ""
+            {
+                AcceptCell.btnPreviewImages.isHidden = false
+                AcceptCell.btnPreviewImages.row = indexPath.row
+                AcceptCell.btnPreviewImages.section = indexPath.section
+                AcceptCell.btnPreviewImages.addTarget(self, action: #selector(previewImage(sender:)), for: .touchUpInside)
+            }
+            else
+            {
+                AcceptCell.btnPreviewImages.isHidden = true
+            }
+            
+            if NotificationObject.video != ""
+            {
+                AcceptCell.btnPreviewVideo.isHidden = false
+                AcceptCell.btnPreviewVideo.row = indexPath.row
+                AcceptCell.btnPreviewVideo.section = indexPath.section
+                AcceptCell.btnPreviewVideo.addTarget(self, action: #selector(previewVideo(sender:)), for: .touchUpInside)
+            }
+            else
+            {
+                AcceptCell.btnPreviewVideo.isHidden = true
+            }
+            
             AcceptCell.btnAccept.tag = indexPath.row
             AcceptCell.btnReject.tag = indexPath.row
             AcceptCell.AcceptCellDelegate = self
@@ -72,9 +97,39 @@ extension CustomerBussinessNotificationViewController : UITableViewDataSource, U
             let DetailCell = self.tblNotificationView.dequeueReusableCell(withIdentifier: "CustomerNotificationDetailTblCell") as! CustomerNotificationDetailTblCell
             DetailCell.lblRestaurantName.text = NotificationObject.Wholesaler.name
             DetailCell.lblResaurantDesc.text = NotificationObject.comments
-            if NotificationObject.timeslot != nil {
+            
+            if NotificationObject.images != ""
+            {
+                DetailCell.btnPreviewImages.isHidden = false
+                DetailCell.btnPreviewImages.row = indexPath.row
+                DetailCell.btnPreviewImages.section = indexPath.section
+                DetailCell.btnPreviewImages.addTarget(self, action: #selector(previewImage(sender:)), for: .touchUpInside)
+            }
+            else
+            {
+                DetailCell.btnPreviewImages.isHidden = true
+            }
+            
+            if NotificationObject.video != ""
+            {
+                DetailCell.btnPreviewVideo.isHidden = false
+                DetailCell.btnPreviewVideo.row = indexPath.row
+                DetailCell.btnPreviewVideo.section = indexPath.section
+                DetailCell.btnPreviewVideo.addTarget(self, action: #selector(previewVideo(sender:)), for: .touchUpInside)
+            }
+            else
+            {
+                DetailCell.btnPreviewVideo.isHidden = true
+            }
+            
+            if NotificationObject.timeslot != nil && NotificationObject.visitDate != ""{
+                
+                let date = self.getDateFromString(date: NotificationObject.visitDate!)
+                let timeSlot = self.getTimeSlot(timeslot: NotificationObject.timeslot!)
+                let timeDate = date + " " + timeSlot
+                
                 DetailCell.lblTime.isHidden = false
-                DetailCell.lblTime.text = NotificationObject.timeslot
+                DetailCell.lblTime.text = timeDate//NotificationObject.timeslot
             }
             else {
                 DetailCell.lblTime.isHidden = true
@@ -87,6 +142,59 @@ extension CustomerBussinessNotificationViewController : UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 154.0
+    }
+    
+    @objc func previewImage(sender: MyButton)
+    {
+        let VC = self.storyboard?.instantiateViewController(withIdentifier: "ShowPreviewPopupVC") as! ShowPreviewPopupVC
+        
+        let NotificationObject:BusinessNotification = self.arrNotifications[sender.row]
+        if NotificationObject.images != ""
+        {
+            let images = NotificationObject.images
+            let imageArr = images?.components(separatedBy: ",")
+            VC.arrImages = imageArr!
+        }
+        VC.showImageVideo = "showImages"
+        
+        self.present(VC, animated: true, completion: nil)
+    }
+    
+    @objc func previewVideo(sender: MyButton)
+    {
+        let VC = self.storyboard?.instantiateViewController(withIdentifier: "ShowPreviewPopupVC") as! ShowPreviewPopupVC
+        
+        let NotificationObject:BusinessNotification = self.arrNotifications[sender.row]
+        if NotificationObject.video != ""
+        {
+            VC.strVideo = NotificationObject.video
+        }
+        VC.showImageVideo = "showVideo"
+        
+        self.present(VC, animated: true, completion: nil)
+    }
+    
+    func getDateFromString(date: String) -> String
+    {
+        /*  let responseDate = date
+         let prefixIndex = responseDate.index(of: "T")
+         let dateString = responseDate.prefix(upTo: prefixIndex!) */
+        
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dat = formatter.date(from: date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        let strDate = formatter.string(from: dat!)
+        
+        return strDate
+    }
+    
+    func getTimeSlot(timeslot: String) -> String
+    {
+        let responseString = timeslot
+        let finalString = responseString.dropFirst(4)
+        return String(finalString)
     }
 }
 
@@ -147,13 +255,13 @@ extension CustomerBussinessNotificationViewController : CustomerAcceptCellDelega
      
         let NotificationID = self.arrNotifications[BtnIndex].id
         self.Accept_RejectPraposal(isAccept: false, NotificationID: NotificationID)
-        
+        NotificationCenter.default.post(name: Notification.Name("UpdateCustomerVisitCommercialsCount"), object: nil)
     }
     
     func AcceptRequest(BtnIndex: Int) {
         
         let NotificationID = self.arrNotifications[BtnIndex].id
         self.Accept_RejectPraposal(isAccept: true, NotificationID: NotificationID)
-    
+        NotificationCenter.default.post(name: Notification.Name("UpdateCustomerVisitCommercialsCount"), object: nil)
     }
 }

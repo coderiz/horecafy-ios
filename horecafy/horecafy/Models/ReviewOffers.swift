@@ -35,6 +35,8 @@ struct OfferObject:Codable {
     let borrado: Bool
 //    let sentToCustomer:Date
     let rejected:Bool
+    let images: String
+    let video: String
 }
 
 struct WholesalerOfferObj:Codable {

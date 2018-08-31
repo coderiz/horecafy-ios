@@ -10,8 +10,26 @@ class LoginCustomerViewController: BaseViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         emailTF.delegate = self
         passwordTF.delegate = self
+        
+//                emailTF.text = "maulik.raiyani@aipxperts.com"
+//                passwordTF.text = "aipx@1234"
+
     }
 
+    @IBAction func rememberMePressed(_ sender: UIButton)
+    {
+        if sender.isSelected == true
+        {
+            isRememberPressed = false
+            sender.isSelected = false
+        }
+        else
+        {
+            isRememberPressed = true
+            sender.isSelected = true
+        }
+    }
+    
     @IBAction func goBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -38,14 +56,19 @@ class LoginCustomerViewController: BaseViewController, UITextFieldDelegate {
                 showAlert(self, ERROR, LOGIN_FAILED)
                 return
             }
+            
             if user.count == 0 {
                 showAlert(self, ERROR, LOGIN_FAILED)
                 return
             }
-            storeCredentials(Credentials(userId: Int64(user[0].hiddenId)!, email: email, password: password, typeUser: TypeOfUser.CUSTOMER))
+            
+            print("User -> \(user)")
+            
+           storeCredentials(Credentials(userId: Int64(user[0].hiddenId)!, email: email, password: password, typeUser: TypeOfUser.CUSTOMER))
             if let userUnwrapped = user.first {
-             storeUser(user: userUnwrapped)
+                storeUser(user: userUnwrapped)
             }
+        
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -64,14 +87,5 @@ class LoginCustomerViewController: BaseViewController, UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
-    
-    override func keyboardWillAppear() {
-        bottomConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        bottomConstraint.constant = 0
-        reloadView()
-    }
+
 }

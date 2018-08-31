@@ -15,11 +15,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        IQKeyboardManager.shared.enable = true
-        
+    var arrProductDistributor:[ProductObj] = []
+    var arrDistributor:[DistributorObj] = []
+    var arrOfferMaster:[OfferObject] = []
     
+    class var sharedInstance: AppDelegate
+    {
+        struct Singleton
+        {
+            static let instance = AppDelegate()
+        }
+        return Singleton.instance
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    {
+        IQKeyboardManager.shared.enable = true
+    
+        if isRememberPressed == true
+        {
+            isLoggedIn = true
+        }
+        else
+        {
+            isLoggedIn = false
+        }
+        
+//        if isLoggedIn {
+//            let credentials = loadCredentials()
+//            let mainSB = UIStoryboard(name: "main", bundle: nil)
+//            if credentials.typeUser == .CUSTOMER {
+//                let navigation = mainSB.instantiateViewController(withIdentifier: INITIAL) as! InitialViewController
+//                self.window?.rootViewController = navigation
+//            }
+//            else {
+//                let navigation = mainSB.instantiateViewController(withIdentifier: INITIAL_WHOLESALER) as! InitialWholeSalerViewController
+//                self.window?.rootViewController = navigation
+//            }
+//        }
+        
         return true
     }
 

@@ -1,6 +1,7 @@
 import UIKit
 
-class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate {
+class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate
+{
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var loading: UIActivityIndicatorView!
@@ -10,6 +11,23 @@ class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         emailTF.delegate = self
         passwordTF.delegate = self
+        
+//        emailTF.text = "maulik.raiyani@aipxperts.com"
+//        passwordTF.text = "aipx@1234"
+    }
+    
+    @IBAction func rememberMePressed(_ sender: UIButton)
+    {
+        if sender.isSelected == true
+        {
+            isRememberPressed = false
+            sender.isSelected = false
+        }
+        else
+        {
+            isRememberPressed = true
+            sender.isSelected = true
+        }
     }
     
     @IBAction func goBack(_ sender: Any) {
@@ -48,13 +66,13 @@ class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate {
             }
             
             print("User -> \(user)")
-            
+
             storeCredentials(Credentials(userId: Int64(user[0].hiddenId)!, email: email, password: password, typeUser: TypeOfUser.WHOLESALER))
             if let userUnwrapped = user.first {
-             storeUser(user: userUnwrapped)
+                storeUser(user: userUnwrapped)
             }
-            self.dismiss(animated: true, completion: nil)
             
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -66,20 +84,10 @@ class LoginWholeSalerViewController: BaseViewController, UITextFieldDelegate {
         
     }
     
-    
-    
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }
-    override func keyboardWillAppear() {
-        bottomConstraint.constant = 350
-        reloadView()
-    }
     
-    override func keyboardWillDisappear() {
-        bottomConstraint.constant = 0
-        reloadView()
-    }
 }

@@ -72,6 +72,7 @@ class WholeSalerShowListsViewController: UIViewController {
                 if result == nil {
                     debugPrint("Error in the delete call")
                 }
+                NotificationCenter.default.post(name: Notification.Name("updateAddedCategoryCheckBox"), object: nil)
             })
             listsTVC.beginUpdates()
             listsTVC.deleteRows(at: [deletionIndexPath], with: .fade)
@@ -105,6 +106,7 @@ extension WholeSalerShowListsViewController: UITableViewDelegate, UITableViewDat
         cell.configureCell(list: list)
         cell.parentTableViewController = self
         
+        cell.selectionStyle = .none
         return cell
     }
 }

@@ -76,3 +76,9 @@ extension String {
         return components(separatedBy: .whitespacesAndNewlines).joined()
     }
 }
+
+extension DispatchQueue {
+    static func delay(_ delay: DispatchTimeInterval, closure: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: closure)
+    }
+}

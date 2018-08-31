@@ -14,8 +14,6 @@ class ReviewOfferDistributorViewController: UIViewController {
     @IBOutlet var TableHeaderView: UIView!
     
     @IBOutlet weak var lblSharedProducts: UILabel!
-    
-    
     @IBOutlet weak var lblOfferedProducts: UILabel!
     
     @IBOutlet weak var TblDistributors: UITableView!
@@ -30,6 +28,12 @@ class ReviewOfferDistributorViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.TblDistributors.reloadData()
+        self.TblDistributors.tableFooterView = UIView()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,24 +57,20 @@ class ReviewOfferDistributorViewController: UIViewController {
 extension ReviewOfferDistributorViewController {
     
     func setLayout() {
-        self.lblSharedProducts.text = "\(self.arrOffers.count)"
-        self.lblOfferedProducts.text = "\(self.arrDistributors.count)"
+        self.lblSharedProducts.text = "\(AppDelegate.sharedInstance.arrOfferMaster.count)"
+        self.lblOfferedProducts.text = "\(AppDelegate.sharedInstance.arrDistributor.count)"
         self.TblDistributors.tableHeaderView = self.TableHeaderView
         self.TblDistributors.tableFooterView = UIView()
     }
     
-
-    
 }
 
-
 //MARK:- UITableview datasource & Delegate Methods
-
 extension ReviewOfferDistributorViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.arrDistributors.count > 0 {
-            return self.arrDistributors.count + 1
+        if AppDelegate.sharedInstance.arrDistributor.count > 0 {
+            return AppDelegate.sharedInstance.arrDistributor.count + 1
         }
         return 1
     }
@@ -88,23 +88,21 @@ extension ReviewOfferDistributorViewController : UITableViewDataSource, UITableV
             
             let tblReviewOfferCell = self.TblDistributors.dequeueReusableCell(withIdentifier: "ReviewOfferTblCell") as! ReviewOfferTblCell
             
-            tblReviewOfferCell.lblProduct.text = self.arrDistributors[indexPath.row - 1].name
+            tblReviewOfferCell.lblProduct.text = AppDelegate.sharedInstance.arrDistributor[indexPath.row - 1].name
             
-            tblReviewOfferCell.lblProductCount.text = "\(self.arrDistributors[indexPath.row - 1].Products.count)"
+            tblReviewOfferCell.lblProductCount.text = "\(AppDelegate.sharedInstance.arrDistributor[indexPath.row - 1].Products.count)"
             
             tblCell = tblReviewOfferCell
         }
-        
         
         tblCell.selectionStyle = .none
         return tblCell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let ReviewOfferDetailPage = self.storyboard?.instantiateViewController(withIdentifier: "ReviewOfferDistributorDetailViewController") as!  ReviewOfferDistributorDetailViewController
-        ReviewOfferDetailPage.Distributor = self.arrDistributors[indexPath.row - 1]
+        ReviewOfferDetailPage.Distributor = AppDelegate.sharedInstance.arrDistributor[indexPath.row - 1]
         self.navigationController?.pushViewController(ReviewOfferDetailPage, animated: true)
         
     }

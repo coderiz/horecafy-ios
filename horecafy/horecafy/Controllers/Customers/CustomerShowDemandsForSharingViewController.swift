@@ -16,7 +16,8 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
         
         self.demandsTV.estimatedRowHeight = 53
         self.demandsTV.rowHeight = UITableViewAutomaticDimension
-
+        self.demandsTV.tableFooterView = UIView()
+        
         setupUI()
         loadDataFromApi()
     }
@@ -40,14 +41,16 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
         for demand in demandsToShare {
             activityIndicator.startAnimating()
             ApiService.instance.shareDemand(demandId: demand) { (result) in
-                self.activityIndicator.stopAnimating()
+                
                 guard let res: ShareDemandResponse = result as? ShareDemandResponse else {
+                    self.activityIndicator.stopAnimating()
                     showAlert(self, WARNING, "Se produjo un error al compartir la demanda")
                     print("NO demands were loaded from api")
                     return
                 }
                 
                 if res.error != "" {
+                    self.activityIndicator.stopAnimating()
                     showAlert(self, WARNING, "Se produjo un error al compartir la demanda")
                     return;
                 }
@@ -55,6 +58,7 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
                 demandsShared += 1;
                 if demandsShared == demandsToShare.count {
                     demandsToShare.removeAll()
+                    self.activityIndicator.stopAnimating()
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "ThankYouForShareViewController") as! ThankYouForShareViewController
                     vc.strMessage = THANKS_FOR_SHARE_LIST
                     self.present(vc, animated: true, completion: nil)
@@ -68,7 +72,6 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
         if sharingDemands {
             sharingDemands = false
             self.navigationController?.popViewController(animated: false)
-//            self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
         }
     }
     
@@ -113,6 +116,7 @@ class CustomerShowDemandsForSharingViewController: UIViewController, UITableView
             }
         }
     }
+    
     // MARK: UI Table View Controller
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return demands.count

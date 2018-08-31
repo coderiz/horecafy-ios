@@ -16,7 +16,7 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        vatTF.delegate = self
+//        vatTF.delegate = self
         emailTF.delegate = self
         passwordTF.delegate = self
         rePasswordTF.delegate = self
@@ -36,10 +36,10 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
     
     @IBAction func createAccount(_ sender: Any) {
         
-        guard let vat = vatTF.text, vatTF.text != "" else {
-            showAlert(self, WARNING, VAT_MISSING)
-            return
-        }
+//        guard let vat = vatTF.text, vatTF.text != "" else {
+//            showAlert(self, WARNING, VAT_MISSING)
+//            return
+//        }
         
         guard let email = emailTF.text, emailTF.text != "" else {
             showAlert(self, WARNING, EMAIL_MISSING)
@@ -81,9 +81,8 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
             return;
         }
         
-
+        let user = User(hiddenId: "", id: "", VAT: "", email: email, name: name, typeOfBusinessId: typeOfBusiness.id, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, createdOn: Date(), visible: true)
         
-        let user = User(hiddenId: "", id: "", VAT: vat, email: email, name: name, typeOfBusinessId: typeOfBusiness.id, contactName: contactData.contactName, contactEmail: email, contactMobile: contactData.contactMobile, address: addresData.address, city: addresData.city, zipCode: addresData.zipCode, province: addresData.province, country: addresData.country, createdOn: Date(), visible: true)
         self.loading.startAnimating()
         ApiService.instance.createCustomer(user: user, password: password) { (response) in
             
@@ -150,18 +149,6 @@ class CustomerCreateAccountViewController: BaseViewController, UIPickerViewDataS
 //        typeOfBusinessTF.resignFirstResponder()
     }
     
-
-    override func keyboardWillAppear() {
-        scrollViewHeightConstraint.constant = 800
-        bottomConstraint.constant = 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        scrollViewHeightConstraint.constant = 716
-        bottomConstraint.constant = 199
-        reloadView()
-    }
 }
 
 //MARK:- UITextfieldDelegate Methods

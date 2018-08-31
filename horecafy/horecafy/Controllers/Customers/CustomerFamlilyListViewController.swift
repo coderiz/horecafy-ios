@@ -29,6 +29,7 @@ class CustomerFamlilyListViewController: UIViewController, UITableViewDelegate, 
         activityIndicator.hidesWhenStopped = true
         self.familyTVC.delegate = self
         self.familyTVC.dataSource = self
+        self.familyTVC.tableFooterView = UIView()
         setupUI()
         loadDataFromApi()
     }

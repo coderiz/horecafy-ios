@@ -11,6 +11,8 @@ class MenuCustomerViewController: UIViewController {
     var arrMenu:[String] = []
     var arrMenuImages:[String] = []
     
+    var offerCount = 0
+    var visitCount = 0
     
     override func viewDidLoad() {
         arrMenu = ["crea tus listas","Compartir listas","Revisar ofertas", "Buscar productos", "Visitas comerciales", "hacer un pedido"]
@@ -18,11 +20,8 @@ class MenuCustomerViewController: UIViewController {
         //        self.CustomerMenuCollectionView.isHidden = true
         activityIndicator.stopAnimating()
         activityIndicator.hidesWhenStopped = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-         if !isLoggedIn {
+        
+        if !isLoggedIn {
             showLogin()
         }
         else {
@@ -32,12 +31,40 @@ class MenuCustomerViewController: UIViewController {
                 self.present(vc, animated: true, completion: nil)
             }
         }
+        
+        self.getMenuIconsLabelCount()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getMenuIconsLabelCount), name: Notification.Name("UpdateCustomerVisitCommercialsCount"), object: nil)
     }
     
     func showLogin() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @objc func getMenuIconsLabelCount() {
+        
+        if loadCredentials().typeUser == .CUSTOMER
+        {
+            let customerID = loadUser().id
+            
+            ApiService.getCustomerMenuIconsLabelCount(customerId: customerID) { (result) in
+                
+                guard let result: customerStats = result as? customerStats else
+                {
+                    print("No stats loaded from api")
+                    return
+                }
+                
+                self.offerCount = result.totalPendingOffers
+                self.visitCount = result.totalPendingVisits
+                
+                self.CustomerMenuCollectionView.reloadData()
+            }
+        }
+        
+    }
+    
     //MARK: Actions
     @IBAction func didTapInEditButton(_ sender: Any) {
         if let editUserViewController = storyboard?.instantiateViewController(withIdentifier: "CustomerEditDataID") as? CustomerEditDataViewController {
@@ -45,11 +72,21 @@ class MenuCustomerViewController: UIViewController {
         }
     }
     
-    @IBAction func goBack(_ sender: Any) {
-        removeCredentials()
-        removeUser()
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
-        self.present(vc, animated: true, completion: nil)
+    @IBAction func goBack(_ sender: Any)
+    {
+        let alert = UIAlertController(title: "horecafy", message: "¿Realmente quieres desconectarte?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Sí", style: .default, handler: { action in
+            removeCredentials()
+            removeUser()
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
+            self.present(vc, animated: true, completion: nil)
+        })
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func didTapInCustomerListsButton(_ sender: Any) {
@@ -87,6 +124,48 @@ extension MenuCustomerViewController: UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeMenuCell", for: indexPath) as! HomeMenuCell
         cell.imgMenu.image = UIImage(named: self.arrMenuImages[indexPath.item])
         cell.lblMenuName.text = self.arrMenu[indexPath.item]
+
+        
+        if indexPath.item == 0
+        {
+            cell.lblCount.isHidden = true
+        }
+        else if indexPath.item == 1
+        {
+            cell.lblCount.isHidden = true
+        }
+        else if indexPath.item == 2
+        {
+            if self.offerCount == 0
+            {
+                cell.lblCount.isHidden = true
+            }
+            else
+            {
+                cell.lblCount.isHidden = false
+                cell.lblCount.text = "\(self.offerCount)"
+            }
+        }
+        else if indexPath.item == 3
+        {
+            cell.lblCount.isHidden = true
+        }
+        else if indexPath.item == 4
+        {
+            if self.visitCount == 0
+            {
+                cell.lblCount.isHidden = true
+            }
+            else
+            {
+                cell.lblCount.isHidden = false
+                cell.lblCount.text = "\(self.visitCount)"
+            }
+        }
+        else if indexPath.item == 5
+        {
+            cell.lblCount.isHidden = true
+        }
 
         return cell
     }

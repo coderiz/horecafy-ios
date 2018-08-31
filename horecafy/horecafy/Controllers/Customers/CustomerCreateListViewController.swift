@@ -5,6 +5,7 @@ class CustomerCreateListViewController: UIViewController, UICollectionViewDataSo
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var categories = [Category]()
+    var categoryImageName = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,14 @@ class CustomerCreateListViewController: UIViewController, UICollectionViewDataSo
             
             self.categories = result
             self.categories.remove(at: 0) // delete the firstone because is just for dropdownlists
+            
+            var index = 0
+            while index < self.categories.count
+            {
+                self.categoryImageName.append(self.categories[index].image)
+                index += 1
+            }
+            
             self.categoriesCollectionView.reloadData()
         }
     }
@@ -60,26 +69,22 @@ class CustomerCreateListViewController: UIViewController, UICollectionViewDataSo
         else {
             let category = categories[indexPath.item - 1]
             cell.categoryName.text = category.name
-            let FamilyCounter = category.totalFamilies
-            if FamilyCounter == 0 {
-                cell.lblFamilyCounter.isHidden = true
-            }
-            else {
-                cell.lblFamilyCounter.isHidden = false
-                if FamilyCounter >= 100 {
-                    cell.lblFamilyCounter.text = "99+"
-                }
-                else if FamilyCounter < 100 {
-                    cell.lblFamilyCounter.text = "\(FamilyCounter)"
-                }
-            }
-            ApiService.instance.getCategoryImage(categoryImage: category.image) { (data) in
-                guard let data: Data = data as? Data else {
-                    print("NO category image were loaded from api")
-                    return
-                }
-                cell.categoryImage.image = UIImage.init(data: data)
-            }
+            
+            cell.lblFamilyCounter.isHidden = true
+            
+//            ApiService.instance.getCategoryImage(categoryImage: category.image) { (data) in
+//                guard let data: Data = data as? Data else {
+//                    print("NO category image were loaded from api")
+//                    return
+//                }
+//                let image = UIImage.init(data: data)
+//                let resizedImage = GlobalData.sharedInstance.resizedImage(withImage: image!, scaledTonewSize: CGSize(width: 150.0, height: 150.0))
+//                cell.categoryImage.image = resizedImage//UIImage.init(data: data)
+//            }
+            cell.categoryImage.sd_setShowActivityIndicatorView(true)
+            cell.categoryImage.sd_setIndicatorStyle(.white)
+            print(category.image)
+            cell.categoryImage.sd_setImage(with: URL(string: "\(URL_CATEGORIES_IMAGE)/\(self.categoryImageName[indexPath.item - 1])"), placeholderImage: nil, options: .refreshCached, completed: nil)
         }
         return cell
     }

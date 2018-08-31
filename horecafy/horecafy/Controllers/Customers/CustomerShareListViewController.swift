@@ -21,7 +21,6 @@ class CustomerShareListViewController: UIViewController, UICollectionViewDelegat
     }
     
     // MARK: API CALL
-    
     func loadDataFromApi() {
         
         let credentials = loadCredentials()
@@ -30,12 +29,10 @@ class CustomerShareListViewController: UIViewController, UICollectionViewDelegat
             self.activityIndicator.stopAnimating()
             guard let result: [CategoryWithFamilyCount] = result as? [CategoryWithFamilyCount] else {
                 self.lblNoData.isHidden = false
-//                showAlert(self, "Información", "No hay listas para compartir. Crea tus listas primero")
                 return
             }
             if result.isEmpty {
                 self.lblNoData.isHidden = false
-//                showAlert(self, "Información", "No hay listas para compartir. Crea tus listas primero")
             }
             self.categories = result
            

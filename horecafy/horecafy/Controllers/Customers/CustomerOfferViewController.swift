@@ -97,13 +97,4 @@ class CustomerOfferViewController: BaseViewController, UITextFieldDelegate {
         return true
     }
     
-    override func keyboardWillAppear() {
-        bottomConstraint.constant += 350
-        reloadView()
-    }
-    
-    override func keyboardWillDisappear() {
-        bottomConstraint.constant -= 350
-        reloadView()
-    }
 }

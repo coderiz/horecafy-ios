@@ -1,6 +1,7 @@
 import Foundation
 import Alamofire
 import ReachabilitySwift
+import SwiftyJSON
 
 extension String: Error{}
 class ApiService {
@@ -150,6 +151,33 @@ class ApiService {
         }
     }
     
+    func declineOffer(offerId: String, completion: @escaping CompletionHandler) {
+        
+        Alamofire.request("\(URL_DECLINE_OFFER)/\(offerId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON {
+            response in
+            
+            if response.result.error == nil {
+                
+                guard let json = response.result.value else {
+                    return completion(nil)
+                }
+                
+                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                    return completion(nil)
+                }
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                let res: DeclineOfferResponse = try! decoder.decode(DeclineOfferResponse.self, from: jsonData)
+//                print(res.data)
+                completion(res)
+                
+            } else {
+                completion(nil)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+    
     func getListsByWholeSaler(wholeSalerId: Int64, categoryId: Int, completion: @escaping CompletionHandler) {
         Alamofire.request("\(URL_WHOLESALER)/\(wholeSalerId)/lists?categoryId=\(categoryId)&borrado=0").responseJSON { response in
             if response.result.error == nil {
@@ -196,7 +224,33 @@ class ApiService {
         }
     }
     
-    
+    func addCategoryList(body: [String:Any], completion: @escaping CompletionHandler) {
+        
+        Alamofire.request(URL_WHOLESALER_LIST_CATEGORY, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
+            response in
+            
+            if response.result.error == nil {
+                
+                guard let json = response.result.value else {
+                    return completion(nil)
+                }
+                
+                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                    return completion(nil)
+                }
+                
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                let res: AddFamilyResponse = try! decoder.decode(AddFamilyResponse.self, from: jsonData)
+                completion(res)
+                
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+        
     func getOfferList(completion: @escaping CompletionHandler) {
         
         let body: [String: Any] = [
@@ -327,9 +381,16 @@ class ApiService {
                 guard let json = response.result.value else {
                     return completion(nil)
                 }
-                
+
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
+                }
+                
+                if let jsonDict: [String:Any] = json as? [String:Any] {
+                    
+                    if (jsonDict["totalRows"] as! Int) == 0 {
+                        return completion(nil)
+                    }
                 }
                 
                 let decoder = JSONDecoder()
@@ -352,7 +413,7 @@ class ApiService {
                 guard let json = response.result.value else {
                     return completion(nil)
                 }
-                
+               
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
@@ -368,8 +429,6 @@ class ApiService {
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let res = try! decoder.decode(AvailibilityResponse.self, from: jsonData)
                 completion(res)
-                
-
                 
             } else {
                 completion(false)
@@ -390,9 +449,17 @@ class ApiService {
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
+                
+                if let jsonDict: [String:Any] = json as? [String:Any] {
+                    
+                    if (jsonDict["totalRows"] as! Int) == 0 {
+                        return completion(nil)
+                    }
+                }
+                
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let res = try! decoder.decode(BusinessNotificationResponse.self, from: jsonData)
+                let res: BusinessNotificationResponse = try! decoder.decode(BusinessNotificationResponse.self, from: jsonData)
                 completion(res.data)
                 
             } else {
@@ -433,11 +500,12 @@ class ApiService {
         }
     }
     
-    func SetTimeSlot(NotificationID:String, TimeSlot:String, completion: @escaping CompletionHandler) {
+    func SetTimeSlot(NotificationID:String, TimeSlot:String, visitDate:String, completion: @escaping CompletionHandler) {
         
         var body:[String:Any] = [:]
         
         body["timeslot"] = TimeSlot
+        body["visitDate"] = visitDate
         
         Alamofire.request("\(URL_SET_TIMESLOT)/\(NotificationID)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
             response in
@@ -760,6 +828,15 @@ class ApiService {
                 guard let json = response.result.value else {
                     return completion(nil)
                 }
+                
+                let resp = json as! [String : Any]
+                let data = resp["data"] as! [Any]
+                let dataDict = data[0] as! [String : Any]
+                let groupId = dataDict["groupId"] as! String
+                
+                UserDefaults.standard.set(groupId, forKey: "groupId")
+                UserDefaults.standard.synchronize()
+                
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
@@ -837,6 +914,14 @@ class ApiService {
                     return completion(nil)
                 }
                 
+                let resp = json as! [String : Any]
+                let data = resp["data"] as! [Any]
+                let dataDict = data[0] as! [String : Any]
+                let offerId = dataDict["id"] as! String
+                
+                UserDefaults.standard.set(offerId, forKey: "offerId")
+                UserDefaults.standard.synchronize()
+                
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
@@ -873,6 +958,7 @@ class ApiService {
     
     func updateUser(request: CustomerRequest, customer: Bool, completion: @escaping CompletionHandler) {
         let credentials = loadCredentials()
+        
         let body: [String: Any] = [
             "hiddenId": request.hiddenId,
             "id": request.id,
@@ -887,9 +973,10 @@ class ApiService {
             "address": request.address,
             "city": request.city,
             "zipCode": request.zipCode,
-            "province": request.province,
-            "country": request.country,
-            "visible": true
+            "visible": true,
+            "province": request.province
+            //"country": request.country,
+            
         ]
         Alamofire.request(customer == true ? URL_CUSTOMER : URL_WHOLESALER, method: .put, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { response in
             switch response.result {
@@ -900,13 +987,54 @@ class ApiService {
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
+                
+                if let jsonDict: [String:Any] = json as? [String:Any] {
+                    
+                    if (jsonDict["totalRows"] as! Int) == 0 {
+                        return completion(nil)
+                    }
+                }
+                
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let res = try! decoder.decode(CustomerResponse.self, from: jsonData)
-                if let user = res.data.first {
-                    storeUser(user: user)
+                if customer == true
+                {
+                    let res = try! decoder.decode(CustomerResponse.self, from: jsonData)
+                    if let user = res.data.first {
+                        storeUser(user: user)
+                    }
                 }
+                else
+                {
+                    let res = try! decoder.decode(WholeSalerResponse.self, from: jsonData)
+                    if let user = res.data.first {
+                        storeUser(user: user)
+                    }
+                }
+                
+                
                 completion(true)
+            }
+        }
+    }
+    
+    func getProvinceList(completion: @escaping CompletionHandler)
+    {
+        Alamofire.request(URL_PROVINCE_LIST, method: .get, parameters: nil, headers: nil).responseJSON { response in
+            switch response.result {
+            case .failure(let error):
+                completion(false)
+                debugPrint(error as Any)
+            case .success(let json):
+                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                    return completion(nil)
+                }
+                
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                let res = try! decoder.decode(ProvinceListResponse.self, from: jsonData)
+                
+                completion(res.data)
             }
         }
     }
@@ -997,6 +1125,29 @@ class ApiService {
         }
     }
     
+    func getAddedCategories(wholesalerId: String, completion: @escaping CompletionHandler)
+    {
+        Alamofire.request("\(URL_CATEGORIES)/\(wholesalerId)").responseJSON { response in
+            if response.result.error == nil {
+                
+                guard let json = response.result.value else {
+                    return completion(nil)
+                }
+                
+                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                    return completion(nil)
+                }
+                
+                let res: AddedCategoryResponse = try! JSONDecoder().decode(AddedCategoryResponse.self, from: jsonData)
+                completion(res.data)
+                
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+    
     func getCategoryImage(categoryImage: String, completion: @escaping CompletionHandler) {
         Alamofire.request("\(URL_CATEGORIES_IMAGE)/\(categoryImage)").response { (response) in
             if (response.error == nil) {
@@ -1009,6 +1160,52 @@ class ApiService {
             }
             else {
                 completion(nil)
+            }
+        }
+    }
+    
+    class func getWholesalerMenuIconsLabelCount(wholesalerId: String, completion: @escaping CompletionHandler)
+    {
+        Alamofire.request("\(URL_WHOLESALER_STATS)/\(wholesalerId)").responseJSON { response in
+            if response.result.error == nil {
+                
+                guard let json = response.result.value else {
+                    return completion(nil)
+                }
+                
+                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                    return completion(nil)
+                }
+                
+                let res: wholesalerStatsResponse = try! JSONDecoder().decode(wholesalerStatsResponse.self, from: jsonData)
+                completion(res.data)
+                
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+    
+    class func getCustomerMenuIconsLabelCount(customerId: String, completion: @escaping CompletionHandler)
+    {
+        Alamofire.request("\(URL_CUSTOMER_STATS)/\(customerId)").responseJSON { response in
+            if response.result.error == nil {
+                
+                guard let json = response.result.value else {
+                    return completion(nil)
+                }
+                
+                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                    return completion(nil)
+                }
+                
+                let res: customerStatsResponse = try! JSONDecoder().decode(customerStatsResponse.self, from: jsonData)
+                completion(res.data)
+                
+            } else {
+                completion(false)
+                debugPrint(response.result.error as Any)
             }
         }
     }
@@ -1184,8 +1381,7 @@ class ApiService {
             "address": user.address,
             "city": user.city,
             "zipCode": user.zipCode,
-            "province": user.province,
-            "country": user.country
+            "province": user.province//,"country": user.country
         ]
         
         Alamofire.request(URL_WHOLESALER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
@@ -1217,7 +1413,7 @@ class ApiService {
     func createCustomer(user: User, password: String, completion: @escaping CompletionHandler) {
         
         let body: [String: Any] = [
-            "VAT": user.VAT,
+//            "VAT": user.VAT,
             "email": user.email.lowercased(),
             "password": password,
             "name": user.name,
@@ -1229,7 +1425,7 @@ class ApiService {
             "city": user.city,
             "zipCode": user.zipCode,
             "province": user.province,
-            "country": user.country
+//            "country": user.country
         ]
         
         Alamofire.request(URL_CUSTOMER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
@@ -1256,5 +1452,109 @@ class ApiService {
                 debugPrint(response.result.error as Any)
             }
         }
+    }
+    
+    class func requestForUploadProduct(_ ImageArray: [UIImage], Video: NSData?, strURL : String, params : [String : AnyObject]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void){
+        
+        print("\(BASE_URL)/api/\(API_VERSION)/\(strURL) request:")// \(params!)")
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData: MultipartFormData) in
+            
+            var index = 0
+            for image in ImageArray {
+                
+                var imageData = NSData()
+                imageData = UIImageJPEGRepresentation(image, 0.5)! as NSData
+//                var image = UIImage.init(data: imageData as Data) //Check whether image converted successfully
+                
+                multipartFormData.append(imageData as Data, withName: "images", fileName: "\(Date().timeIntervalSince1970)WSphoto.jpg", mimeType: "image/jpeg")
+                index += 1
+            }
+            
+            if Video != nil
+            {
+                multipartFormData.append(Video! as Data, withName: "video", fileName: "\(Date().timeIntervalSince1970).mp4", mimeType: "video/mp4")
+            }
+        
+        }, to: BASE_URL + "/api/" + API_VERSION + "/\(strURL)", method: .put, headers: headers, encodingCompletion: { encodingResult in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                
+                upload.responseString(completionHandler: { (response: DataResponse<String>) in
+                    print(response)
+                })
+                
+                upload.responseJSON {  responseObject in
+                    
+                    upload.responseJSON(completionHandler: { (responseObject) -> Void in
+                        
+                        if responseObject.result.isSuccess {
+                            let resJson = JSON(responseObject.result.value!)
+                            print(resJson)
+                            success(resJson)
+                        }
+                        if responseObject.result.isFailure {
+                            let error : Error = responseObject.result.error!
+                            print(error)
+                            failure(error)
+                        }
+                    })
+                }
+            case .failure(_):
+                print("failure")
+            }
+        })
+    }
+    
+    class func requestForUploadOffer(_ ImageArray: [UIImage], Video: NSData?, strURL : String, params : [String : AnyObject]?, headers : [String : String]?, success:@escaping (JSON) -> Void, failure:@escaping (Error) -> Void){
+        
+        print("\(BASE_URL)/api/\(API_VERSION)/\(strURL) request:")// \(params!)")
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData: MultipartFormData) in
+            
+            var index = 0
+            for image in ImageArray {
+                
+                var imageData = NSData()
+                imageData = UIImageJPEGRepresentation(image, 0.5)! as NSData
+                //                var image = UIImage.init(data: imageData as Data) //Check whether image converted successfully
+                
+                multipartFormData.append(imageData as Data, withName: "images", fileName: "\(Date().timeIntervalSince1970)p.jpg", mimeType: "image/jpeg")
+                index += 1
+            }
+            
+            if Video != nil
+            {
+                multipartFormData.append(Video! as Data, withName: "video", fileName: "\(Date().timeIntervalSince1970).mp4", mimeType: "video/mp4")
+            }
+            
+        }, to: BASE_URL + "/api/" + API_VERSION + "/\(strURL)", method: .put, headers: headers, encodingCompletion: { encodingResult in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                
+                upload.responseString(completionHandler: { (response: DataResponse<String>) in
+                    print(response)
+                })
+                
+                upload.responseJSON {  responseObject in
+                    
+                    upload.responseJSON(completionHandler: { (responseObject) -> Void in
+                        
+                        if responseObject.result.isSuccess {
+                            let resJson = JSON(responseObject.result.value!)
+                            print(resJson)
+                            success(resJson)
+                        }
+                        if responseObject.result.isFailure {
+                            let error : Error = responseObject.result.error!
+                            print(error)
+                            failure(error)
+                        }
+                    })
+                }
+            case .failure(_):
+                print("failure")
+            }
+        })
     }
 }
