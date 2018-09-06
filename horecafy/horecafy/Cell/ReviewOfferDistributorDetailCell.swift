@@ -20,6 +20,8 @@ class ReviewOfferDistributorDetailCell: UITableViewCell {
     @IBOutlet weak var btnPreviewImages: MyButton!
     @IBOutlet weak var btnPreviewVideo: MyButton!
     
+    @IBOutlet weak var btnContactDistributor: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

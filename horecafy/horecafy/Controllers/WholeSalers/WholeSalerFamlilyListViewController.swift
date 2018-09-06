@@ -9,6 +9,8 @@ class WholeSalerFamlilyListViewController: UIViewController, UITableViewDelegate
         super.viewDidLoad()
         familyTVC.delegate = self
         familyTVC.dataSource = self
+        familyTVC.tableFooterView = UIView()
+        
         setupUI()
         loadDataFromApi()
     }

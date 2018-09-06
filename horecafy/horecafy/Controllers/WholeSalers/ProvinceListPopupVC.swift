@@ -24,19 +24,13 @@ class ProvinceListPopupVC: UIViewController, UITableViewDataSource, UITableViewD
         
             self.activityIndicator.stopAnimating()
             self.activityIndicator.hidesWhenStopped = true
+            self.tblvwProvinceList.tableFooterView = UIView()
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         if textFieldValue.count > 0 && isFrom == "EditAccount"
         {
@@ -46,6 +40,14 @@ class ProvinceListPopupVC: UIViewController, UITableViewDataSource, UITableViewD
         {
             stateListSelected = self.textFieldValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
         }
+        self.tblvwProvinceList.reloadData()
+        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
     }
     
     @objc func selectDeselect(sender: UIButton)

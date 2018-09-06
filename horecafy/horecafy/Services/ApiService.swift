@@ -705,7 +705,7 @@ class ApiService {
     func createCustomerBusinessRequest(BusinessRequest: CustomerBusinessRequest, completion: @escaping CompletionHandler) {
         
         let body: [String: Any] = [
-            "customerId": BusinessRequest.customerId,"productName": BusinessRequest.productName, "brand": BusinessRequest.brand, "consumption": BusinessRequest.consumption, "targetPrice": BusinessRequest.targetPrice, "success": BusinessRequest.MailFlag]
+            "customerId": BusinessRequest.customerId,"productName": BusinessRequest.productName, "brand": BusinessRequest.brand, "consumption": BusinessRequest.consumption, "targetPrice": BusinessRequest.targetPrice, "allowCall": BusinessRequest.MailFlag]
         
         Alamofire.request(URL_CUSTOMER_BUSINESS_REQUEST, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
             response in
@@ -831,22 +831,28 @@ class ApiService {
                 
                 let resp = json as! [String : Any]
                 let data = resp["data"] as! [Any]
-                let dataDict = data[0] as! [String : Any]
-                let groupId = dataDict["groupId"] as! String
-                
-                UserDefaults.standard.set(groupId, forKey: "groupId")
-                UserDefaults.standard.synchronize()
-                
-                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                if resp["totalRows"] as! Int == 0
+                {
                     return completion(nil)
                 }
-                
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let res: BusinessPraposalResponse = try! decoder.decode(BusinessPraposalResponse.self, from: jsonData)
-                
-                completion(res)
-                
+                else
+                {
+                    let dataDict = data[0] as! [String : Any]
+                    let groupId = dataDict["groupId"] as! String
+                    
+                    UserDefaults.standard.set(groupId, forKey: "groupId")
+                    UserDefaults.standard.synchronize()
+                    
+                    guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                        return completion(nil)
+                    }
+                    
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                    let res: BusinessPraposalResponse = try! decoder.decode(BusinessPraposalResponse.self, from: jsonData)
+                    
+                    completion(res)
+                }
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
@@ -905,6 +911,9 @@ class ApiService {
             "comments": offer.comments,
         ]
         
+        print(URL_OFFER)
+        print(body)
+        
         Alamofire.request(URL_OFFER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
             response in
             
@@ -916,21 +925,30 @@ class ApiService {
                 
                 let resp = json as! [String : Any]
                 let data = resp["data"] as! [Any]
-                let dataDict = data[0] as! [String : Any]
-                let offerId = dataDict["id"] as! String
-                
-                UserDefaults.standard.set(offerId, forKey: "offerId")
-                UserDefaults.standard.synchronize()
-                
-                guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                if resp["totalRows"] as! Int == 0
+                {
                     return completion(nil)
                 }
+                else
+                {
+                    let dataDict = data[0] as! [String : Any]
+                    let offerId = dataDict["id"] as! String
+                    
+                    UserDefaults.standard.set(offerId, forKey: "offerId")
+                    UserDefaults.standard.synchronize()
+                    
+                    guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
+                        return completion(nil)
+                    }
+                    
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                    let res: OfferResponse = try! decoder.decode(OfferResponse.self, from: jsonData)
+                    
+                    completion(res)
+                }
                 
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let res: OfferResponse = try! decoder.decode(OfferResponse.self, from: jsonData)
                 
-                completion(res)
                 
             } else {
                 completion(false)

@@ -37,6 +37,12 @@ class MenuCustomerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.getMenuIconsLabelCount), name: Notification.Name("UpdateCustomerVisitCommercialsCount"), object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.getMenuIconsLabelCount()
+    }
+    
     func showLogin() {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: MAIN) as! MainViewController
         self.present(vc, animated: true, completion: nil)

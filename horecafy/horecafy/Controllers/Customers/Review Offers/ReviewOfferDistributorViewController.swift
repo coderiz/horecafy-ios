@@ -34,6 +34,7 @@ class ReviewOfferDistributorViewController: UIViewController {
         self.TblDistributors.reloadData()
         self.TblDistributors.tableFooterView = UIView()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,15 +55,15 @@ class ReviewOfferDistributorViewController: UIViewController {
 
 //MARK:- Private Methods
 
-extension ReviewOfferDistributorViewController {
-    
-    func setLayout() {
-        self.lblSharedProducts.text = "\(AppDelegate.sharedInstance.arrOfferMaster.count)"
+extension ReviewOfferDistributorViewController
+{
+    func setLayout()
+    {
+        self.lblSharedProducts.text = "\(AppDelegate.sharedInstance.arrProductDistributor.count)"
         self.lblOfferedProducts.text = "\(AppDelegate.sharedInstance.arrDistributor.count)"
         self.TblDistributors.tableHeaderView = self.TableHeaderView
         self.TblDistributors.tableFooterView = UIView()
     }
-    
 }
 
 //MARK:- UITableview datasource & Delegate Methods
@@ -99,12 +100,11 @@ extension ReviewOfferDistributorViewController : UITableViewDataSource, UITableV
         return tblCell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         let ReviewOfferDetailPage = self.storyboard?.instantiateViewController(withIdentifier: "ReviewOfferDistributorDetailViewController") as!  ReviewOfferDistributorDetailViewController
         ReviewOfferDetailPage.Distributor = AppDelegate.sharedInstance.arrDistributor[indexPath.row - 1]
         self.navigationController?.pushViewController(ReviewOfferDetailPage, animated: true)
-        
     }
     
 }

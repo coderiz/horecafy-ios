@@ -191,7 +191,7 @@ let PRAPOSAL_SENT_SUCCESSFULLY = "propuesta enviada correctamente."
 let THANKS_FOR_SHARE_LIST = "Gracias por compartir tu lista. Muy pronto recibirás Ofertas de distribuidores."
 let FAILURE_TO_DECLINE = "Hubo un error al rechazar la oferta."
 
-
+let PLEASE_TRY_AGAIN = "Error al crear una oferta Inténtalo de nuevo."
 
 
 

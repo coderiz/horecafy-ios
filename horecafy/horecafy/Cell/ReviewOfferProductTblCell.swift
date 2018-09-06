@@ -26,7 +26,7 @@ class ReviewOfferProductTblCell: UITableViewCell {
 
     @IBOutlet weak var btnContact: UIButton!
     
-    @IBOutlet weak var btnDecline: UIButton!
+    @IBOutlet weak var btnDecline: MyButton!
     
     @IBOutlet weak var btnPreviewImages: MyButton!
     
@@ -46,10 +46,9 @@ class ReviewOfferProductTblCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func btnContactAction(_ sender: Any) {
+    @IBAction func btnContactAction(_ sender: Any)
+    {
         self.ContactDelegate.ContactDistributor(CustomCell: self)
-        
-        
     }
     
 

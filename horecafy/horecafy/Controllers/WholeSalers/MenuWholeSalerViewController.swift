@@ -23,13 +23,13 @@ class MenuWholeSalerViewController: UIViewController {
         if !isLoggedIn {
             showLogin()
         }
-        
+        self.getMenuIconsLabelCount()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-      // self.getMenuIconsLabelCount()
+        self.getMenuIconsLabelCount()
     }
     
     func showLogin() {

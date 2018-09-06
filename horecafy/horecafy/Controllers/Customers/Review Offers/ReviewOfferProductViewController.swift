@@ -26,7 +26,7 @@ class ReviewOfferProductViewController: UIViewController {
         
         self.tblProducts.estimatedRowHeight = 160
         self.tblProducts.rowHeight = UITableViewAutomaticDimension
-
+        self.tblProducts.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
 
@@ -49,17 +49,21 @@ class ReviewOfferProductViewController: UIViewController {
         self.tblProducts.reloadData()
     }
     
-    @objc func declineOffer(sender: UIButton)
+    @objc func declineOffer(sender: MyButton)
     {
-        let distributors = AppDelegate.sharedInstance.arrProductDistributor[sender.tag - 1].Distributors
+        let distributors = AppDelegate.sharedInstance.arrProductDistributor[sender.section].Distributors[sender.row]
         
-        ApiService.instance.declineOffer(offerId: String(distributors[sender.tag].id), completion: { result in
+     //   let Distriutor:OfferObject = AppDelegate.sharedInstance.arrProductDistributor[sender.section].Distributors[sender.row]
+        
+        ApiService.instance.declineOffer(offerId: String(distributors.id), completion: { result in
             guard let ResponseforDecline:DeclineOfferResponse = result as? DeclineOfferResponse else {
                 showAlert(self, ERROR, FAILURE_TO_DECLINE)
                 return
             }
             if ResponseforDecline.totalRows != 0 {
-                AppDelegate.sharedInstance.arrProductDistributor.remove(at: sender.tag - 1)
+                
+                AppDelegate.sharedInstance.arrProductDistributor[sender.section].Distributors.remove(at: sender.row)
+         
                 self.tblProducts.reloadData()
                 
                 NotificationCenter.default.post(name: Notification.Name("getOffers"), object: nil)
@@ -145,7 +149,8 @@ extension ReviewOfferProductViewController :UITableViewDataSource, UITableViewDe
         TblCell.lblFormat.text = "\(Distriutor.fomat)"
         TblCell.lblComments.text = "\(Distriutor.comments)" == "" ? " " : "\(Distriutor.comments)"
         
-        TblCell.btnDecline.tag = indexPath.row
+        TblCell.btnDecline.section = indexPath.section
+        TblCell.btnDecline.row = indexPath.row
         TblCell.btnDecline.addTarget(self, action: #selector(declineOffer(sender:)), for: .touchUpInside)
         
         if Distriutor.images != ""

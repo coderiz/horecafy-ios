@@ -77,7 +77,6 @@ class ReviewOfferDistributorDetailViewController: UIViewController {
     
 }
 
-
 //MARK:- Private Methods
 extension ReviewOfferDistributorDetailViewController {
     
@@ -97,7 +96,6 @@ extension ReviewOfferDistributorDetailViewController {
 }
 
 //MARK:- UITableview Datasource & Delegate Methods
-
 extension ReviewOfferDistributorDetailViewController:UITableViewDataSource {
     
     
@@ -178,6 +176,5 @@ extension ReviewOfferDistributorDetailViewController:UITableViewDataSource {
         
         self.present(VC, animated: true, completion: nil)
     }
-    
     
 }

@@ -10,7 +10,9 @@ class CustomerCategoryDemandOfferViewController: UIViewController, UITableViewDe
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.rowHeight = 103
+        
         guard let demand = demand else { return }
         let credentials = loadCredentials()
         ApiService().getApprovedCustomerOffers(customerId: credentials.userId, demandId: demand.hiddenId) { result in

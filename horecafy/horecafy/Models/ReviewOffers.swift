@@ -73,7 +73,7 @@ struct DistributorObj:Codable {
 struct ProductObj:Codable {
     let id: Int64
     let name:String
-    let Distributors:[OfferObject]
+    var Distributors:[OfferObject]
 }
 
 

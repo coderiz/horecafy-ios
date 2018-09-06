@@ -12,6 +12,8 @@ class WholeSalerShowListsViewController: UIViewController {
         super.viewDidLoad()
         listsTVC.delegate = self
         listsTVC.dataSource = self
+        listsTVC.tableFooterView = UIView()
+        
         setupUI()
         loadDataFromApi()
     }

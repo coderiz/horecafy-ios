@@ -24,6 +24,8 @@ class BussinessRequirementFormViewController: BaseViewController, UINavigationCo
     @IBOutlet weak var ivThumbnailVideo: UIImageView!
     
     @IBOutlet weak var btnSendPraposal: UIButton!
+    @IBOutlet weak var btnRestaurantType: UIButton!
+    @IBOutlet weak var btnSelectVideo: UIButton!
     
     var typeOfBusiness = [TypeOfBusiness]()
     var typeOfBusinessSelected: TypeOfBusiness?
@@ -57,16 +59,19 @@ class BussinessRequirementFormViewController: BaseViewController, UINavigationCo
     
     @IBAction func btnSendPropasal(_ sender: Any) {
         self.view.endEditing(true)
+        self.view.isUserInteractionEnabled = false
         
         if let BusinessPraposalReq = self.BussinessPraposalRequest() {
             self.loading.startAnimating()
-            self.btnSendPraposal.isEnabled = false
+
+            self.view.isUserInteractionEnabled = false
             
             ApiService.instance.SendPraposal(Praposal: BusinessPraposalReq, completion: { (response) in
                 
                 guard let ResponseforPraposal:BusinessPraposalResponse = response as? BusinessPraposalResponse else {
                     self.loading.stopAnimating()
-                    self.btnSendPraposal.isEnabled = true
+
+                    self.view.isUserInteractionEnabled = true
                     showAlert(self, ERROR, FAILURE_TO_SEND_PRAPOSAL)
                     
                     return
@@ -105,7 +110,8 @@ class BussinessRequirementFormViewController: BaseViewController, UINavigationCo
                             self.loading.stopAnimating()
                             showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
                             
-                            self.btnSendPraposal.isEnabled = true
+                            self.view.isUserInteractionEnabled = true
+                            
                             self.txtRestaurantType.text = ""
                             self.txtZipcode.text = ""
                             self.txtComments.text = ""
@@ -125,8 +131,9 @@ class BussinessRequirementFormViewController: BaseViewController, UINavigationCo
                         self.loading.stopAnimating()
     
                         showAlert(self, SUCCESS, PRAPOSAL_SENT_SUCCESSFULLY)
+
+                        self.view.isUserInteractionEnabled = true
                         
-                        self.btnSendPraposal.isEnabled = true
                         self.txtRestaurantType.text = ""
                         self.txtZipcode.text = ""
                         self.txtComments.text = ""

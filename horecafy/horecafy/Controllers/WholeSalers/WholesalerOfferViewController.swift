@@ -6,29 +6,31 @@ import AVFoundation
 
 class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var category: Category?
     var family: Family?
     var demand: DemandsByWholeSaler?
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var uploadImageCollectionView: UICollectionView!
     @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak var ivThumbnailVideo: UIImageView!
+    
     @IBOutlet weak var brand: UITextField!
     @IBOutlet weak var format: UITextField!
     @IBOutlet weak var targetPrice: UITextField!
     @IBOutlet weak var comments: UITextField!
-    @IBOutlet weak var categoryName: UILabel!
+
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var demandNumber: UILabel!
     @IBOutlet weak var demandBrand: UILabel!
     @IBOutlet weak var demandFormat: UILabel!
     @IBOutlet weak var demandQuantyOfMonth: UILabel!
     @IBOutlet weak var demandTargetPrice: UILabel!
     @IBOutlet weak var demandComments: UILabel!
-    
-    @IBOutlet weak var uploadImageCollectionView: UICollectionView!
-    @IBOutlet weak var ivThumbnailVideo: UIImageView!
 
     var ImageDictionary : [String : UIImage] = [:]
     var currentPickIndex: Int = -1
@@ -65,6 +67,7 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate, UI
             self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
         }
     }
+    
     // MARK: UI
     func setupUI() {
         title = "Enviar Oferta"
@@ -252,10 +255,10 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate, UI
         {
             var VideoURL:String = ""
             
-            guard let capturedVideoURL = info[UIImagePickerControllerMediaURL] as? URL else {
-                dismiss(animated: true, completion: nil)
-                return
-            }
+//            guard let capturedVideoURL = info[UIImagePickerControllerMediaURL] as? URL else {
+//                dismiss(animated: true, completion: nil)
+//                return
+//            }
             
             if let selectedVideoURL = info[UIImagePickerControllerMediaURL] as? URL {
                 VideoURL = "\(selectedVideoURL)"
@@ -304,14 +307,19 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate, UI
         return imgRef
     }
     
-    @IBAction func acceptTapped(_ sender: Any) {
+    @IBAction func acceptTapped(_ sender: Any)
+    {
         guard let offer = offerRequest() else { return }
         offerDone = true
         activityIndicator.startAnimating()
+        self.view.endEditing(true)
+        self.view.isUserInteractionEnabled = false
+        
         ApiService.instance.createOffer(offer: offer) { (response) in
             
             guard let responseForOffer = response as? OfferResponse else {
                 self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
                 showAlert(self, ERROR, OFFER_CREATE_DEMAND_FAILED)
                 return
             }
@@ -346,6 +354,8 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate, UI
                     
                     ApiService.requestForUploadOffer(imageArr, Video: videoData, strURL: URL_UPLOAD_IMAGES_OFFER + offerId, params: nil, headers: nil, success: { (response) in
                         
+                        self.view.isUserInteractionEnabled = true
+                        
                         self.ImageDictionary.removeAll()
                         self.uploadImageCollectionView.reloadData()
                         self.ivThumbnailVideo.image = UIImage(named: "Add")
@@ -368,6 +378,7 @@ class WholesalerOfferViewController: BaseViewController, UITextFieldDelegate, UI
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "WholesalerThanksViewControllerID") as! ThanksOfferViewController
                     self.present(vc, animated: true, completion: nil)
                     self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                 }
             }
             else

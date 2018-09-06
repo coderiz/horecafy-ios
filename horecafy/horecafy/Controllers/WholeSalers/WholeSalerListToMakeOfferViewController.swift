@@ -11,6 +11,8 @@ class WholeSalerListToMakeOfferViewController: UIViewController, UITableViewDele
         super.viewDidLoad()
         demandsTVC.delegate = self
         demandsTVC.dataSource = self
+        demandsTVC.tableFooterView = UIView()
+        
         setupUI()
     }
     

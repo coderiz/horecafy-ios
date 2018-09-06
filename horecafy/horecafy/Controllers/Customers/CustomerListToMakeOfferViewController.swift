@@ -11,6 +11,7 @@ class CustomerListToMakeOfferViewController: UIViewController, UITableViewDelega
         super.viewDidLoad()
         demandsTVC.delegate = self
         demandsTVC.dataSource = self
+        demandsTVC.tableFooterView = UIView()
         setupUI()
     }
     

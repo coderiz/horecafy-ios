@@ -18,7 +18,7 @@ class ShowPreviewPopupVC: UIViewController, UICollectionViewDataSource, UICollec
     var strVideo: String!
     var showImageVideo = ""
     
-    var player:AVPlayer!
+   // var player:AVPlayer!
     
     @IBOutlet weak var previewImagesCollectionView: UICollectionView!
     @IBOutlet var pageControl: UIPageControl!
@@ -40,28 +40,28 @@ class ShowPreviewPopupVC: UIViewController, UICollectionViewDataSource, UICollec
         {
             self.hideShow(collVw: true, vw: false, pageCtrl: true)
         }
-        
-        if showImageVideo == "showVideo"
-        {
-            let videoURL = URL(string: URL_IMAGE_VIDEO_UPLOADS + self.strVideo)
-            player = AVPlayer(url: videoURL!)
-            let playerLayer = AVPlayerLayer(player: player)
-            playerLayer.frame = self.vwPreviewVideo.bounds
-            self.vwPreviewVideo.layer.addSublayer(playerLayer)
-            
-        }
-        else if showImageVideo == "showImages"
-        {
-            self.pageControl.numberOfPages = self.arrImages.count
-        }
+
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if showImageVideo == "showVideo"
         {
+            let videoURL = URL(string: URL_IMAGE_VIDEO_UPLOADS + self.strVideo)
+            let player = AVPlayer(url: videoURL!)
+            let playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = CGRect(x: 0, y: 0, width: self.vwPreviewVideo.frame.size.width, height: self.vwPreviewVideo.frame.size.height)
+            self.vwPreviewVideo.layer.addSublayer(playerLayer)
             player.play()
+        }
+        else if showImageVideo == "showImages"
+        {
+            self.pageControl.numberOfPages = self.arrImages.count
         }
     }
     

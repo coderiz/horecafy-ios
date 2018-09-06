@@ -36,6 +36,9 @@ class WholesalerBusinessNotificationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tblNotificationView.tableFooterView = UIView()
+        
         self.setLayot()
         self.getBusinessNotifications()
 
