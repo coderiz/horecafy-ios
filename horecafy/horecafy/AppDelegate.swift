@@ -8,6 +8,8 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 
@@ -32,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         IQKeyboardManager.shared.enable = true
     
+        Fabric.with([Crashlytics.self])
+        
         if isRememberPressed == true
         {
             isLoggedIn = true

@@ -165,6 +165,7 @@ class ApiService {
                 guard let jsonData: Data = try? JSONSerialization.data(withJSONObject: json) as Data else {
                     return completion(nil)
                 }
+                
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let res: DeclineOfferResponse = try! decoder.decode(DeclineOfferResponse.self, from: jsonData)

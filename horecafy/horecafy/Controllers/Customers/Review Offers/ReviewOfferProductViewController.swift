@@ -53,8 +53,6 @@ class ReviewOfferProductViewController: UIViewController {
     {
         let distributors = AppDelegate.sharedInstance.arrProductDistributor[sender.section].Distributors[sender.row]
         
-     //   let Distriutor:OfferObject = AppDelegate.sharedInstance.arrProductDistributor[sender.section].Distributors[sender.row]
-        
         ApiService.instance.declineOffer(offerId: String(distributors.id), completion: { result in
             guard let ResponseforDecline:DeclineOfferResponse = result as? DeclineOfferResponse else {
                 showAlert(self, ERROR, FAILURE_TO_DECLINE)

@@ -15,4 +15,6 @@ target 'horecafy' do
   pod 'CarbonKit', '~> 2.1.10’
   pod 'ActionSheetPicker-3.0'
   pod 'SDWebImage'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

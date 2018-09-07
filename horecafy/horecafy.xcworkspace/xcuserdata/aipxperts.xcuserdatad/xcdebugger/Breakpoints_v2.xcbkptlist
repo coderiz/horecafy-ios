@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.6690069"
+            timestampString = "558023394.976841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1492"
-            endingLineNumber = "1492"
+            startingLineNumber = "1493"
+            endingLineNumber = "1493"
             landmarkName = "requestForUploadProduct(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.669969"
+            timestampString = "558023394.977041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1488"
-            endingLineNumber = "1488"
+            startingLineNumber = "1489"
+            endingLineNumber = "1489"
             landmarkName = "requestForUploadProduct(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.670475"
+            timestampString = "558023394.977145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1540"
-            endingLineNumber = "1540"
+            startingLineNumber = "1541"
+            endingLineNumber = "1541"
             landmarkName = "requestForUploadOffer(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.670927"
+            timestampString = "558023394.97723"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1546"
-            endingLineNumber = "1546"
+            startingLineNumber = "1547"
+            endingLineNumber = "1547"
             landmarkName = "requestForUploadOffer(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.671371"
+            timestampString = "558023394.977309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1561"
-            endingLineNumber = "1561"
+            startingLineNumber = "1562"
+            endingLineNumber = "1562"
             landmarkName = "requestForUploadOffer(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferProductViewController.swift"
-            timestampString = "557414901.763624"
+            timestampString = "558023394.977391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "declineOffer(sender:)"
             landmarkType = "7">
             <Locations>
@@ -106,11 +106,11 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
-                  timestampString = "557903523.3503079"
+                  timestampString = "558023395.967965"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
                   offsetFromSymbolStart = "1289">
                </Location>
                <Location
@@ -121,11 +121,11 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
-                  timestampString = "557903523.3517489"
+                  timestampString = "558023395.970641"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.671887"
+            timestampString = "558023394.977481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
+            startingLineNumber = "711"
+            endingLineNumber = "711"
             landmarkName = "createCustomerBusinessRequest(BusinessRequest:completion:)"
             landmarkType = "7">
             <Locations>
@@ -154,11 +154,11 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "557903523.356003"
+                  timestampString = "558023395.97686"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "710"
-                  endingLineNumber = "710"
+                  startingLineNumber = "711"
+                  endingLineNumber = "711"
                   offsetFromSymbolStart = "1056">
                </Location>
                <Location
@@ -169,11 +169,11 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "557903523.358175"
+                  timestampString = "558023395.979614"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "713"
-                  endingLineNumber = "713"
+                  startingLineNumber = "714"
+                  endingLineNumber = "714"
                   offsetFromSymbolStart = "37">
                </Location>
             </Locations>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.672282"
+            timestampString = "558023394.977553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "713"
-            endingLineNumber = "713"
+            startingLineNumber = "714"
+            endingLineNumber = "714"
             landmarkName = "createCustomerBusinessRequest(BusinessRequest:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.672683"
+            timestampString = "558023394.977627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "932"
-            endingLineNumber = "932"
+            startingLineNumber = "933"
+            endingLineNumber = "933"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.673102"
+            timestampString = "558023394.977699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "928"
-            endingLineNumber = "928"
+            startingLineNumber = "929"
+            endingLineNumber = "929"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.673498"
+            timestampString = "558023394.97777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "917"
-            endingLineNumber = "917"
+            startingLineNumber = "918"
+            endingLineNumber = "918"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
             <Locations>
@@ -250,11 +250,11 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "557903523.375759"
+                  timestampString = "558023396.002653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "917"
-                  endingLineNumber = "917"
+                  startingLineNumber = "918"
+                  endingLineNumber = "918"
                   offsetFromSymbolStart = "2302">
                </Location>
                <Location
@@ -265,11 +265,11 @@
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "557903523.378154"
+                  timestampString = "558023396.00528"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "920"
-                  endingLineNumber = "920"
+                  startingLineNumber = "921"
+                  endingLineNumber = "921"
                   offsetFromSymbolStart = "37">
                </Location>
             </Locations>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.6740789"
+            timestampString = "558023394.977917"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "918"
-            endingLineNumber = "918"
+            startingLineNumber = "919"
+            endingLineNumber = "919"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.674413"
+            timestampString = "558023394.9779871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "912"
-            endingLineNumber = "912"
+            startingLineNumber = "913"
+            endingLineNumber = "913"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "557833020.6750669"
+            timestampString = "558023394.978056"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "902"
-            endingLineNumber = "902"
+            startingLineNumber = "903"
+            endingLineNumber = "903"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferProductViewController.swift"
-            timestampString = "557917290.979149"
+            timestampString = "558023394.97825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "ContactDistributor(CustomCell:)"
             landmarkType = "7">
          </BreakpointContent>
