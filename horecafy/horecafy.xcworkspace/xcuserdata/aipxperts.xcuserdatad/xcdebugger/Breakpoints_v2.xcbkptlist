@@ -10,13 +10,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.976841"
+            timestampString = "558345497.9342099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1493"
             endingLineNumber = "1493"
             landmarkName = "requestForUploadProduct(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in static horecafy.ApiService.requestForUploadProduct(Swift.Array&lt;__ObjC.UIImage&gt;, Video: Swift.Optional&lt;__ObjC.NSData&gt;, strURL: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success: (SwiftyJSON.JSON) -&gt; (), failure: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.1894751"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1493"
+                  endingLineNumber = "1493"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Swift.String&gt;) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in static horecafy.ApiService.requestForUploadProduct(Swift.Array&lt;__ObjC.UIImage&gt;, Video: Swift.Optional&lt;__ObjC.NSData&gt;, strURL: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success: (SwiftyJSON.JSON) -&gt; (), failure: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.192203"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1493"
+                  endingLineNumber = "1493"
+                  offsetFromSymbolStart = "893">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977041"
+            timestampString = "558345497.934473"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1489"
@@ -42,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977145"
+            timestampString = "558345497.934606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1541"
@@ -58,13 +90,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.97723"
+            timestampString = "558345497.93472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1547"
             endingLineNumber = "1547"
             landmarkName = "requestForUploadOffer(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in static horecafy.ApiService.requestForUploadOffer(Swift.Array&lt;__ObjC.UIImage&gt;, Video: Swift.Optional&lt;__ObjC.NSData&gt;, strURL: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success: (SwiftyJSON.JSON) -&gt; (), failure: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.20847"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1547"
+                  endingLineNumber = "1547"
+                  offsetFromSymbolStart = "294">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in static horecafy.ApiService.requestForUploadOffer(Swift.Array&lt;__ObjC.UIImage&gt;, Video: Swift.Optional&lt;__ObjC.NSData&gt;, strURL: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success: (SwiftyJSON.JSON) -&gt; (), failure: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.211114"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1549"
+                  endingLineNumber = "1549"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,13 +138,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977309"
+            timestampString = "558345497.934828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1562"
             endingLineNumber = "1562"
             landmarkName = "requestForUploadOffer(_:Video:strURL:params:headers:success:failure:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in static horecafy.ApiService.requestForUploadOffer(Swift.Array&lt;__ObjC.UIImage&gt;, Video: Swift.Optional&lt;__ObjC.NSData&gt;, strURL: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success: (SwiftyJSON.JSON) -&gt; (), failure: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.217345"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1562"
+                  endingLineNumber = "1562"
+                  offsetFromSymbolStart = "461">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in static horecafy.ApiService.requestForUploadOffer(Swift.Array&lt;__ObjC.UIImage&gt;, Video: Swift.Optional&lt;__ObjC.NSData&gt;, strURL: Swift.String, params: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, headers: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.String&gt;&gt;, success: (SwiftyJSON.JSON) -&gt; (), failure: (Swift.Error) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.220148"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1562"
+                  endingLineNumber = "1562"
+                  offsetFromSymbolStart = "238">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferProductViewController.swift"
-            timestampString = "558023394.977391"
+            timestampString = "558345497.934914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -105,13 +201,13 @@
                   symbolName = "horecafy.ReviewOfferProductViewController.declineOffer(sender: horecafy.MyButton) -&gt; ()"
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
-                  timestampString = "558023395.967965"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
+                  timestampString = "558340917.226661"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
                   endingLineNumber = "56"
-                  offsetFromSymbolStart = "1289">
+                  offsetFromSymbolStart = "1373">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -120,8 +216,8 @@
                   symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in horecafy.ReviewOfferProductViewController.declineOffer(sender: horecafy.MyButton) -&gt; ()"
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
-                  timestampString = "558023395.970641"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
+                  timestampString = "558340917.2294"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
@@ -138,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977481"
+            timestampString = "558345497.93499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "711"
@@ -153,8 +249,8 @@
                   symbolName = "horecafy.ApiService.createCustomerBusinessRequest(BusinessRequest: horecafy.CustomerBusinessRequest, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "558023395.97686"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.236688"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "711"
@@ -168,8 +264,8 @@
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in horecafy.ApiService.createCustomerBusinessRequest(BusinessRequest: horecafy.CustomerBusinessRequest, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "horecafy"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "558023395.979614"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.239777"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "714"
@@ -186,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977553"
+            timestampString = "558345497.935094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "714"
@@ -202,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977627"
+            timestampString = "558345497.935181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "933"
@@ -218,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977699"
+            timestampString = "558345497.935269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "929"
@@ -234,45 +330,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.97777"
+            timestampString = "558345497.935341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "918"
             endingLineNumber = "918"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "horecafy.ApiService.createOffer(offer: horecafy.Offer, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "horecafy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "558023396.002653"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "918"
-                  endingLineNumber = "918"
-                  offsetFromSymbolStart = "2302">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in horecafy.ApiService.createOffer(offer: horecafy.Offer, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "horecafy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/horecafy/horecafy/Services/ApiService.swift"
-                  timestampString = "558023396.00528"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "921"
-                  endingLineNumber = "921"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -298,7 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.977917"
+            timestampString = "558345497.935517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "919"
@@ -314,13 +378,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.9779871"
+            timestampString = "558345497.935593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "913"
             endingLineNumber = "913"
             landmarkName = "createOffer(offer:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.ApiService.createOffer(offer: horecafy.Offer, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.276008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "913"
+                  endingLineNumber = "913"
+                  offsetFromSymbolStart = "2302">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in horecafy.ApiService.createOffer(offer: horecafy.Offer, completion: (Swift.Optional&lt;Any&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Services/ApiService.swift"
+                  timestampString = "558340917.278965"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "916"
+                  endingLineNumber = "916"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,7 +426,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "horecafy/Services/ApiService.swift"
-            timestampString = "558023394.978056"
+            timestampString = "558345497.935679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "903"
@@ -377,13 +473,237 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferProductViewController.swift"
-            timestampString = "558023394.97825"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "558345497.935858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
+            landmarkName = "customerAcceptOffer(offerId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/CustomerOfferViewController.swift"
+            timestampString = "558267122.2339261"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "acceptTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferViewController.swift"
+            timestampString = "558340572.145365"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "Build_Data_Structure()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "558345497.936051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "getOfferList(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "558345497.936215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "882"
+            endingLineNumber = "882"
+            landmarkName = "ContactDistributor(Wholesaler_ID:Customer_ID:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferProductViewController.swift"
+            timestampString = "558345497.936331"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "ContactDistributor(CustomCell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.ReviewOfferProductViewController.ContactDistributor(CustomCell: __ObjC.UITableViewCell) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
+                  timestampString = "558340917.323397"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "235"
+                  endingLineNumber = "235"
+                  offsetFromSymbolStart = "1664">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in horecafy.ReviewOfferProductViewController.ContactDistributor(CustomCell: __ObjC.UITableViewCell) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferProductViewController.swift"
+                  timestampString = "558340917.326943"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "237"
+                  endingLineNumber = "237"
+                  offsetFromSymbolStart = "25">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "558345497.9364001"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "628"
+            endingLineNumber = "628"
+            landmarkName = "customerAcceptOffer(offerId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "558345497.936469"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "624"
+            endingLineNumber = "624"
+            landmarkName = "customerAcceptOffer(offerId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Services/ApiService.swift"
+            timestampString = "558345497.93655"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "619"
+            endingLineNumber = "619"
+            landmarkName = "customerAcceptOffer(offerId:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferDistributorDetailViewController.swift"
+            timestampString = "558345497.936638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "btnContactDistributor(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "horecafy.ReviewOfferDistributorDetailViewController.btnContactDistributor(Any) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferDistributorDetailViewController.swift"
+                  timestampString = "558340917.349961"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "405">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in horecafy.ReviewOfferDistributorDetailViewController.btnContactDistributor(Any) -&gt; ()"
+                  moduleName = "horecafy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aipxperts/Desktop/Projects/horecafy-ios/F&amp;C%20Installed/horecafy/horecafy/Controllers/Customers/Review%20Offers/ReviewOfferDistributorDetailViewController.swift"
+                  timestampString = "558340917.35165"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "horecafy/Controllers/Customers/Review Offers/ReviewOfferProductViewController.swift"
+            timestampString = "558345497.937237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

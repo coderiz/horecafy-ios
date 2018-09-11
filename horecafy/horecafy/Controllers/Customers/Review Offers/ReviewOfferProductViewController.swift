@@ -151,6 +151,15 @@ extension ReviewOfferProductViewController :UITableViewDataSource, UITableViewDe
         TblCell.btnDecline.row = indexPath.row
         TblCell.btnDecline.addTarget(self, action: #selector(declineOffer(sender:)), for: .touchUpInside)
         
+        if Distriutor.approvedByCustomer != ""
+        {
+            TblCell.btnContact.isHidden = true
+        }
+        else
+        {
+            TblCell.btnContact.isHidden = false
+        }
+        
         if Distriutor.images != ""
         {
             TblCell.btnPreviewImages.isHidden = false
@@ -218,18 +227,43 @@ extension ReviewOfferProductViewController : ContactDistributorDelegate {
     {
         if self.loading.isAnimating == false {
             let Index:IndexPath = self.tblProducts.indexPath(for: CustomCell)!
-            let SelectedDistributorID = AppDelegate.sharedInstance.arrProductDistributor[Index.section].Distributors[Index.row].WholeSaler.id
-            self.loading.startAnimating()
-            ApiService.instance.ContactDistributor(Wholesaler_ID: SelectedDistributorID, Customer_ID: loadUser().id) { (response) in
-                self.loading.stopAnimating()
-                guard let ResponseforOrderRequest:ContactDistributorResponse = response as? ContactDistributorResponse else {
-                    showAlert(self, ERROR, FAILURE_TO_CONTACT)
-                    return
-                }
-                if ResponseforOrderRequest.totalRows != 0 {
-                    self.performSegue(withIdentifier: CONTACT_DISTRIBUTOR_THANK_YOU, sender: nil)
+            
+            let id = Int(AppDelegate.sharedInstance.arrProductDistributor[Index.section].Distributors[Index.row].hiddenId)
+            if id != 0
+            {
+                self.loading.startAnimating()
+                ApiService.instance.customerAcceptOffer(offerId: id) { (result) in
+                    
+                    if result as? Bool == true
+                    {
+                        self.loading.stopAnimating()
+                        self.performSegue(withIdentifier: CONTACT_DISTRIBUTOR_THANK_YOU, sender: nil)
+                    }
+                    else
+                    {
+                        self.loading.stopAnimating()
+                        print("Failed to accept Offer")
+            
+                    }
                 }
             }
+            else
+            {
+                return
+            }
+            
+//            let SelectedDistributorID = AppDelegate.sharedInstance.arrProductDistributor[Index.section].Distributors[Index.row].WholeSaler.id
+//            self.loading.startAnimating()
+//            ApiService.instance.ContactDistributor(Wholesaler_ID: SelectedDistributorID, Customer_ID: loadUser().id) { (response) in
+//                self.loading.stopAnimating()
+//                guard let ResponseforOrderRequest:ContactDistributorResponse = response as? ContactDistributorResponse else {
+//                    showAlert(self, ERROR, FAILURE_TO_CONTACT)
+//                    return
+//                }
+//                if ResponseforOrderRequest.totalRows != 0 {
+//                    self.performSegue(withIdentifier: CONTACT_DISTRIBUTOR_THANK_YOU, sender: nil)
+//                }
+//            }
         }
     }
 

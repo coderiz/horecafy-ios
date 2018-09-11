@@ -32,6 +32,7 @@ class CustomerOfferViewController: BaseViewController, UITextFieldDelegate {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.stopAnimating()
     }
+    
     // MARK: UI
     func setupUI() {
         title = "Aceptar Oferta"

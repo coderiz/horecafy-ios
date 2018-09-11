@@ -31,7 +31,7 @@ struct OfferObject:Codable {
     let fomat: String
     let comments: String
     let Product:ProductOfferObj
-//    let approvedByCustomer: String
+    let approvedByCustomer: String
     let borrado: Bool
 //    let sentToCustomer:Date
     let rejected:Bool

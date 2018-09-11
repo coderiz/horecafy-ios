@@ -241,7 +241,7 @@ extension BussinessRequirementFormViewController {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WholesalerOfferUploadImageCell", for: indexPath) as! WholesalerOfferUploadImageCell
         
-        if let image = self.ImageDictionary["\(indexPath.item)"] as? UIImage
+        if let image = self.ImageDictionary["\(indexPath.item)"]
         {
             cell.uploadImage.image = image
         }
@@ -381,7 +381,8 @@ extension BussinessRequirementFormViewController {
         {
             var VideoURL:String = ""
             
-            guard let capturedVideoURL = info[UIImagePickerControllerMediaURL] as? URL else {
+            //capturedVideoURL
+            guard let _ = info[UIImagePickerControllerMediaURL] as? URL else {
                 dismiss(animated: true, completion: nil)
                 return
             }
@@ -393,7 +394,7 @@ extension BussinessRequirementFormViewController {
             
             var thumbnail: UIImage!
             
-            thumbnail = self.thumbnailImageFromURL(videoURLString: VideoURL) as? UIImage
+            thumbnail = self.thumbnailImageFromURL(videoURLString: VideoURL) 
             self.ivThumbnailVideo.image = thumbnail
             
             dismiss(animated: true, completion: nil)

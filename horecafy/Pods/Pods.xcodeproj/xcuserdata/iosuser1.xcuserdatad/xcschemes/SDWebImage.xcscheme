@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "296C431ACDEFFA72B9B57991684A0D39"
-               BlueprintName = "ReachabilitySwift"
+               BlueprintIdentifier = "757EDBF5B6B9BE23A449B84B9C398307"
+               BlueprintName = "SDWebImage"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "ReachabilitySwift.framework">
+               BuildableName = "SDWebImage.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

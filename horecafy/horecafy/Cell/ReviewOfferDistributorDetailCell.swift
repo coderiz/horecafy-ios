@@ -20,7 +20,9 @@ class ReviewOfferDistributorDetailCell: UITableViewCell {
     @IBOutlet weak var btnPreviewImages: MyButton!
     @IBOutlet weak var btnPreviewVideo: MyButton!
     
-    @IBOutlet weak var btnContactDistributor: UIButton!
+    @IBOutlet weak var btnContact: UIButton!
+    
+    var ContactDelegate:ContactDistributorDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,4 +35,9 @@ class ReviewOfferDistributorDetailCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func btnContactAction(_ sender: Any)
+    {
+        self.ContactDelegate.ContactDistributor(CustomCell: self)
+    }
+    
 }

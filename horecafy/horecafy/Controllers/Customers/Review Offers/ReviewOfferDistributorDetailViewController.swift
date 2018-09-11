@@ -119,6 +119,17 @@ extension ReviewOfferDistributorDetailViewController:UITableViewDataSource {
         TblCell.btnDecline.tag = indexPath.row
         TblCell.btnDecline.addTarget(self, action: #selector(declineOffer(sender:)), for: .touchUpInside)
         
+        TblCell.ContactDelegate = self
+        
+        if self.arrProducts[indexPath.row].approvedByCustomer != ""
+        {
+            TblCell.btnContact.isHidden = true
+        }
+        else
+        {
+            TblCell.btnContact.isHidden = false
+        }
+        
         if self.arrProducts[indexPath.row].images != ""
         {
             TblCell.btnPreviewImages.isHidden = false
@@ -177,4 +188,37 @@ extension ReviewOfferDistributorDetailViewController:UITableViewDataSource {
         self.present(VC, animated: true, completion: nil)
     }
     
+}
+
+extension ReviewOfferDistributorDetailViewController: ContactDistributorDelegate
+{
+    func ContactDistributor(CustomCell: UITableViewCell) {
+        if self.loading.isAnimating == false {
+            let Index:IndexPath = self.tblDistributors.indexPath(for: CustomCell)!
+            
+            let id = Int(self.arrProducts[Index.row].hiddenId)
+            if id != 0
+            {
+                self.loading.startAnimating()
+                ApiService.instance.customerAcceptOffer(offerId: id) { (result) in
+                    
+                    if result as? Bool == true
+                    {
+                        self.loading.stopAnimating()
+                        self.performSegue(withIdentifier: CONTACT_DISTRIBUTOR_THANK_YOU, sender: nil)
+                    }
+                    else
+                    {
+                        self.loading.stopAnimating()
+                        print("Failed to accept Offer")
+                        
+                    }
+                }
+            }
+            else
+            {
+                return
+            }
+        }
+    }
 }

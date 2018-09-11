@@ -100,6 +100,17 @@ extension ReviewOfferDistributorViewController : UITableViewDataSource, UITableV
         return tblCell
     }
     
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.row == 0
+        {
+            return nil
+        }
+        else
+        {
+            return indexPath
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let ReviewOfferDetailPage = self.storyboard?.instantiateViewController(withIdentifier: "ReviewOfferDistributorDetailViewController") as!  ReviewOfferDistributorDetailViewController

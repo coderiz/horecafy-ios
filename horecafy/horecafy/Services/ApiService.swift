@@ -615,7 +615,7 @@ class ApiService {
     }
     
     func customerAcceptOffer(offerId: Int, completion: @escaping CompletionHandler) {
-        Alamofire.request("\(URL_OFFER)accept/\(offerId)").responseJSON { response in
+        Alamofire.request("\(URL_OFFER)/accept/\(offerId)").responseJSON { response in
             switch response.result {
             case .failure:
                 completion(false)
@@ -859,16 +859,13 @@ class ApiService {
                 debugPrint(response.result.error as Any)
             }
         }
-        
     }
-    
     
     func ContactDistributor(Wholesaler_ID:String, Customer_ID:String , completion: @escaping CompletionHandler) {
         
-        var body: [String: Any] = [
+        let body: [String: Any] = [
             "wholeSalerId": Wholesaler_ID,
             "customerId": Customer_ID]
-        
         
         Alamofire.request(URL_CONTACT_DISTRIBUTOR, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON {
             response in
@@ -893,9 +890,7 @@ class ApiService {
                 debugPrint(response.result.error as Any)
             }
         }
-        
     }
-
     
     //MARK: Offers
     func createOffer(offer: Offer, completion: @escaping CompletionHandler) {
@@ -949,14 +944,11 @@ class ApiService {
                     completion(res)
                 }
                 
-                
-                
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
             }
         }
-        
     }
     
     func fetchOffers(userID: Int64, completion: @escaping CompletionHandler) {
@@ -994,9 +986,8 @@ class ApiService {
             "zipCode": request.zipCode,
             "visible": true,
             "province": request.province
-            //"country": request.country,
-            
         ]
+        
         Alamofire.request(customer == true ? URL_CUSTOMER : URL_WHOLESALER, method: .put, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { response in
             switch response.result {
             case .failure(let error):
@@ -1030,8 +1021,6 @@ class ApiService {
                         storeUser(user: user)
                     }
                 }
-                
-                
                 completion(true)
             }
         }
