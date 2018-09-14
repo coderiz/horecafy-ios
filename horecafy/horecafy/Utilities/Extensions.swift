@@ -64,7 +64,7 @@ extension Date {
     func getDeliveryTime() -> String {
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "HH:mm:ss"
+        dateFormatter.dateFormat = "HH:mm"
         let strTime = dateFormatter.string(from: self)
         return strTime
     }

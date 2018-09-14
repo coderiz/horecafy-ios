@@ -22,12 +22,17 @@ class WholeSalerCreateListViewController: UIViewController, UICollectionViewDele
         categoriesCollectionView.delegate = self
         setupUI()
         loadCategoriesFromApi()
-        checkIfFamilyAlreadyAddedInCategory()
         
         self.activityIndicator.stopAnimating()
         self.activityIndicator.hidesWhenStopped = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(checkIfFamilyAlreadyAddedInCategory), name: Notification.Name("updateAddedCategoryCheckBox"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        checkIfFamilyAlreadyAddedInCategory()
     }
     
     // MARK: UI
@@ -149,7 +154,8 @@ class WholeSalerCreateListViewController: UIViewController, UICollectionViewDele
             }
             self.activityIndicator.stopAnimating()
             self.categoriesToAdd.removeAll()
-            self.categoriesCollectionView.reloadData()
+
+            self.checkIfFamilyAlreadyAddedInCategory()
         })
         
     }
