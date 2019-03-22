@@ -1,15 +1,17 @@
 
 import UIKit
 
-class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDelegate
+class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate
 {
     @IBOutlet weak var vatTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var rePasswordTF: UITextField!
     @IBOutlet weak var nameTF: UITextField!
-    @IBOutlet weak var scrollViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var btnAcceptTermsConditions: UIButton!
+    @IBOutlet weak var lblTermsAndConditions: UITextView!
     
     override func viewDidLoad()
     {
@@ -19,6 +21,35 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
         passwordTF.delegate = self
         rePasswordTF.delegate = self
         nameTF.delegate = self
+        
+        let string = "Acepto la Política de privacidad y Términos y Condiciones"
+        
+        let mutableString = NSMutableAttributedString(string: string, attributes: [NSAttributedStringKey.font:UIFont(name: "HelveticaNeue", size: 13.0)!, NSAttributedStringKey.foregroundColor:UIColor.black])
+        
+        mutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red: 15/255, green: 98/255, blue: 40/255, alpha: 1.0), range: NSRange(location:10,length:22))
+        mutableString.addAttribute(NSAttributedStringKey.font, value: UIFont(name: "HelveticaNeue", size: 13.0)!, range: NSRange(location: 10, length: 22))
+        
+        mutableString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red: 15/255, green: 98/255, blue: 40/255, alpha: 1.0), range: NSRange(location:35,length:22))
+        mutableString.addAttribute(NSAttributedStringKey.font, value: UIFont(name: "HelveticaNeue", size: 13.0)!, range: NSRange(location: 35, length: 22))
+        
+        mutableString.addAttribute(.link, value: "http://horecafy.com/politica-de-privacidad/", range: NSRange(location: 10, length: 22))
+        mutableString.addAttribute(.link, value: "http://horecafy.com/acceso-clientes/", range: NSRange(location: 35, length: 22))
+        
+        self.lblTermsAndConditions.attributedText = mutableString
+        self.lblTermsAndConditions.sizeToFit()
+        self.lblTermsAndConditions.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(URL, options: [:])
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(URL)
+        }
+        
+        return false
     }
     
     @IBAction func goBack(_ sender: Any)
@@ -26,6 +57,18 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
         userAddressData = nil
         userContactData = nil
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func btnTermsAction(_ sender: UIButton)
+    {
+        if sender.isSelected == true
+        {
+            sender.isSelected = false
+        }
+        else
+        {
+            sender.isSelected = true
+        }
     }
     
     @IBAction func createAccount(_ sender: Any)
@@ -68,6 +111,12 @@ class WholeSalerCreateAccountViewController: BaseViewController, UITextFieldDele
         
         guard let addresData = userAddressData else {
             showAlert(self, WARNING, ADDRESS_DATA_ERROR)
+            return
+        }
+        
+        guard self.btnAcceptTermsConditions.isSelected == true else
+        {
+            showAlert(self, WARNING, TERMS_NOT_ACCEPTED_ERROR)
             return
         }
         

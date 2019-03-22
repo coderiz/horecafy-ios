@@ -12,7 +12,8 @@ import Foundation
 // API
 let BASE_URL_IMAGE_UPLOAD = "http://localhost:4201/api/v1/"
 
-let BASE_URL = "http://demo.aipxperts.com:4201"
+let BASE_URL = "http://app.horecafy.com"
+//let BASE_URL = "http://demo.aipxperts.com:4201"
 //let BASE_URL = "http://192.168.1.111:4201"
 //"https://horecafyapi.azurewebsites.net"
 let API_VERSION = "v1"
@@ -53,7 +54,7 @@ let URL_WHOLESALER_LIST_CATEGORY = "\(URL_WHOLESALER_LIST)/category"
 let URL_PROVINCE_LIST = "\(BASE_URL)/api/\(API_VERSION)/province/"
 let URL_UPLOAD_IMAGES_BUSINESS_VISIT = "businessvisit/upload/"
 let URL_UPLOAD_IMAGES_OFFER = "offer/"
-let URL_IMAGE_VIDEO_UPLOADS = "http://demo.aipxperts.com:4201/uploads/"
+let URL_IMAGE_VIDEO_UPLOADS = "\(BASE_URL)/uploads/"
 let URL_WHOLESALER_STATS = "\(URL_WHOLESALER)/stats"
 let URL_CUSTOMER_STATS = "\(URL_CUSTOMER)/stats"
 
@@ -159,6 +160,9 @@ let WHOLESALER_CREATE_FAILED = "Se produjo un error al crear la cuenta. Por favo
 let NO_DATA_FOUND = "No se pudo recuperar los datos"
 let CONTACT_DATA_ERROR = "Por favor, añada información de contacto"
 let ADDRESS_DATA_ERROR = "Por favor, añada información de dirección"
+
+let TERMS_NOT_ACCEPTED_ERROR = "Por favor, consulte los términos y condiciones"
+
 let EMAIL_DUPLICATED = "El email indicado ya está en uso"
 let VAT_DUPLICATED = "El CIF/NIF indicado ya está en uso"
 let CUSTOMER_CREATED_SUCCESS = "Restaurador creado con éxito"

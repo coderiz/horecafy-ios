@@ -118,6 +118,7 @@
 		7981CC4C2041926D00F2DAE0 /* CustomerShowDemandsForSharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981CC4B2041926D00F2DAE0 /* CustomerShowDemandsForSharingViewController.swift */; };
 		7981CC4E2041947E00F2DAE0 /* DemandToShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981CC4D2041947E00F2DAE0 /* DemandToShareCell.swift */; };
 		79B89CAC203321CF007717AC /* CustomerContactDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B89CAB203321CF007717AC /* CustomerContactDataViewController.swift */; };
+		8011B1142189B96E00D1121E /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8011B1132189B96E00D1121E /* AttributedLabel.swift */; };
 		803A9EDA212A9846007BFE68 /* WholesalerOfferUploadImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803A9ED9212A9846007BFE68 /* WholesalerOfferUploadImageCell.swift */; };
 		803C909A212D2D0600EE28AF /* PreviewPopupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C9099212D2D0600EE28AF /* PreviewPopupCell.swift */; };
 		803E72CE212C43640021B893 /* ShowPreviewPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803E72CD212C43630021B893 /* ShowPreviewPopupVC.swift */; };
@@ -244,6 +245,7 @@
 		7981CC4D2041947E00F2DAE0 /* DemandToShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemandToShareCell.swift; sourceTree = "<group>"; };
 		79B89CAB203321CF007717AC /* CustomerContactDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerContactDataViewController.swift; sourceTree = "<group>"; };
 		7EE2003D2533D5B10C460985 /* Pods_horecafy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_horecafy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8011B1132189B96E00D1121E /* AttributedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
 		803A9ED9212A9846007BFE68 /* WholesalerOfferUploadImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholesalerOfferUploadImageCell.swift; sourceTree = "<group>"; };
 		803C9099212D2D0600EE28AF /* PreviewPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPopupCell.swift; sourceTree = "<group>"; };
 		803E72CD212C43630021B893 /* ShowPreviewPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPreviewPopupVC.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				570D8D642068544F00D0E902 /* UIViewExtension.swift */,
 				3E5A251F20EF3A6C0022A085 /* TimeSlots.plist */,
 				80440154212ECB8100325FF3 /* GlobalData.swift */,
+				8011B1132189B96E00D1121E /* AttributedLabel.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -652,6 +656,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTTAttributedLabel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -721,6 +726,7 @@
 				3E2E04E720E4E8C1003F9D07 /* ForgotPasswordViewController.swift in Sources */,
 				6F5C062E204FE7B80068F84E /* WholeSalerMakeOfferCategoryViewController.swift in Sources */,
 				3E5DE87320F789020075733F /* ContactDistributorResponse.swift in Sources */,
+				8011B1142189B96E00D1121E /* AttributedLabel.swift in Sources */,
 				6F5937D92052874300554D06 /* OfferCell.swift in Sources */,
 				80619DF42126CCBC00EBA28A /* ProvinceListCell.swift in Sources */,
 				6FDC466720310B140019B375 /* CategoryCollectionViewCell.swift in Sources */,
@@ -908,11 +914,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8X5NQZRVNX;
+				DEVELOPMENT_TEAM = W96UP54D38;
 				INFOPLIST_FILE = horecafy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.horecafyDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oderiz.horecafy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -927,11 +933,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8X5NQZRVNX;
+				DEVELOPMENT_TEAM = W96UP54D38;
 				INFOPLIST_FILE = horecafy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.horecafyDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oderiz.horecafy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

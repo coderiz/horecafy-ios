@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D946A6E8831BAE2C121B3A62CF5B134"
+               BlueprintIdentifier = "9994420C9DBDA257E09301D8B93434D0"
                BuildableName = "Pods_horecafy.framework"
                BlueprintName = "Pods-horecafy"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D946A6E8831BAE2C121B3A62CF5B134"
+            BlueprintIdentifier = "9994420C9DBDA257E09301D8B93434D0"
             BuildableName = "Pods_horecafy.framework"
             BlueprintName = "Pods-horecafy"
             ReferencedContainer = "container:Pods.xcodeproj">
